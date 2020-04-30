@@ -19,6 +19,11 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        rigidbody.velocity = new Vector3(horizontal * speed, vertical * speed,0);
+        //basic Movement bei dem man sich diagonal schneller bewegt
+        //rigidbody.velocity = new Vector3(horizontal * speed, vertical * speed, 0); 
+
+        float unadjustedSpeed = Mathf.Sqrt(horizontal * horizontal + vertical * vertical);
+        float speedfactor = unadjustedSpeed==0 ? 0 : speed/unadjustedSpeed;
+        rigidbody.velocity = new Vector3(horizontal * speedfactor, vertical * speedfactor, 0);
     }
 }
