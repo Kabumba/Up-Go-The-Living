@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour
                 Follow();
                 break;
             case (EnemyState.Die):
-                Die();
+                Death();
                 break;
         }
 
@@ -89,8 +89,8 @@ public class EnemyController : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
 
-    void Die()
+    public void Death()
     {
-
+        Destroy(gameObject);
     }
 }
