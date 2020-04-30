@@ -20,6 +20,8 @@ public class Room : MonoBehaviour
             Debug.Log("Wrong scene!");
             return;
         }
+
+        RoomController.instance.RegisterRoom(this);
     }
 
     void OnDrawGizmos()

@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.ComponentModel;
-using System.ComponentModel.Design.Serialization;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -27,7 +25,7 @@ public class RoomController : MonoBehaviour
 
     Queue<RoomInfo> loadRoomQueue = new Queue<RoomInfo>();
 
-    public List<RoomInfo> loadedRooms = new List<RoomInfo>();
+    public List<Room> loadedRooms = new List<Room>();
 
     bool isLoadingRoom = false;
 
@@ -38,17 +36,43 @@ public class RoomController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        LoadRoom("Start", 0, 0);
+        LoadRoom("Start", 0, 1);
+        LoadRoom("Start", 0, -1);
+        LoadRoom("Start", 1, 0);
+        LoadRoom("Start", -1, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateRoomQueue();
+    }
+
+    void UpdateRoomQueue()
+    {
+        if(isLoadingRoom)
+        {
+            return;
+        }
+
+        if(loadRoomQueue.Count == 0)
+        {
+            return;
+        }
+
+        currentLoadRoomData = loadRoomQueue.Dequeue();
+        isLoadingRoom = true;
+
+        StartCoroutine(LoadRoomRoutine(currentLoadRoomData));
     }
 
     public void LoadRoom(string name, int x, int y)
     {
+        if(DoesRoomExist(x, y))
+        {
+            return;
+        }
         RoomInfo newRoomData = new RoomInfo();
         newRoomData.name = name;
         newRoomData.X = x;
