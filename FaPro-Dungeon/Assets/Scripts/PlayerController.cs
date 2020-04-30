@@ -42,14 +42,14 @@ public class PlayerController : MonoBehaviour
         //Schüsse nur Vertikal oder Horizontal
         if (Time.time > lastFire + fireDelay)
         {
-            if (shootHorizontal != 0)
+            if (shootVertical != 0)
             {
-                Shoot(shootHorizontal, 0);
+                Shoot(0, shootVertical);
             }
             else
-                if (shootVertical != 0)
+                if (shootHorizontal != 0)
                 {
-                Shoot(0, shootVertical);
+                    Shoot(shootHorizontal, 0);
                 }
         }
     }
