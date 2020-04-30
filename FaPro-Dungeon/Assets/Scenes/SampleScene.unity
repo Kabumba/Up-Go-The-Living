@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 1183684410}
   - component: {fileID: 1183684409}
   - component: {fileID: 1183684408}
+  - component: {fileID: 1183684413}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -237,6 +238,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  bulletPrefab: {fileID: 5473610484710109101, guid: d66fc8750b8251443b273168c87e5171,
+    type: 3}
+  bulletSpeed: 7
+  fireDelay: 0.5
 --- !u!212 &1183684409
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -338,3 +343,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1183684413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183684407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda7f614dcd30ba44a9b65adbacb79dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 6
+  currentHealth: 6
