@@ -30,6 +30,7 @@ public class CameraController : MonoBehaviour
         UpdatePosition();
     }
 
+    //Überprüfe regelmäßig, ob ein neuer Raum erreicht wurde, wenn einer erreicht wurde, aktualisiere Kameraposition von vorheriger Raummitte zu neuer Raummitte
     void UpdatePosition()
     {
         if(currRoom == null)
@@ -42,6 +43,7 @@ public class CameraController : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeedRoomChange);
     }
 
+    //Bestimme und gebe Raummitte des neuen Raums aus
     Vector3 GetCameraTargetPosition()
     {
         if(currRoom == null)

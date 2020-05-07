@@ -37,7 +37,7 @@ public class RoomController : MonoBehaviour
     }
     // Start is called before the first frame update
     void Start()
-    {/*
+    {/* Testräume ohne Randomgenerierung
         LoadRoom("Start", 0, 0);
         LoadRoom("Empty", 0, 1);
         LoadRoom("Empty", 0, -1);
@@ -52,6 +52,7 @@ public class RoomController : MonoBehaviour
         UpdateRoomQueue();
     }
 
+    //Überprüfe regelmäßig, ob es zu ladende Räume gibt und starte den Registrierprozess, falls es welche gibt
     void UpdateRoomQueue()
     {
         if(isLoadingRoom)
@@ -70,6 +71,7 @@ public class RoomController : MonoBehaviour
         StartCoroutine(LoadRoomRoutine(currentLoadRoomData));
     }
 
+    //Erstelle noch nicht vorhandenen Raum und füge ihn einer Queue hinzu
     public void LoadRoom(string name, int x, int y)
     {
         if(DoesRoomExist(x, y))
@@ -84,6 +86,7 @@ public class RoomController : MonoBehaviour
         loadRoomQueue.Enqueue(newRoomData);
     }
 
+    //Ermöglicht Laden von korrekten Raumszenen, wenn BasementMain gestartet wird (z.B. roomName = "BasementStart" -> BasementStart-Szene wird geladen
     IEnumerator LoadRoomRoutine(RoomInfo info)
     {
         string roomName = currentWorldName + info.name;
@@ -98,6 +101,7 @@ public class RoomController : MonoBehaviour
 
     public void RegisterRoom(Room room)
     {
+        //Wenn kein Raum an einer Stelle existiert, setze Position und Attribute für zu ladenden Raum
         if (!DoesRoomExist(currentLoadRoomData.X, currentLoadRoomData.Y))
         {
             room.transform.position = new Vector3(
@@ -109,10 +113,13 @@ public class RoomController : MonoBehaviour
             room.X = currentLoadRoomData.X;
             room.Y = currentLoadRoomData.Y;
             room.name = currentWorldName + "-" + currentLoadRoomData.name + " " + room.X + ", " + room.Y;
+
+            //Ermöglicht hierachische Unterordnung von generierten Räumen zu RoomController in Szenenliste
             room.transform.parent = transform;
 
             isLoadingRoom = false;
 
+            //Startraum ist erster currRoom für CameraController
             if (loadedRooms.Count == 0)
             {
                 CameraController.instance.currRoom = room;
@@ -120,6 +127,8 @@ public class RoomController : MonoBehaviour
 
             loadedRooms.Add(room);
         }
+
+        //Falls Raum bereits besucht/geladen, entferne Objekt in Szenenansicht (keine Dopplung von Raumobjekten)
         else
         {
             Destroy(room.gameObject);
@@ -132,6 +141,7 @@ public class RoomController : MonoBehaviour
         return loadedRooms.Find(item => item.X == x && item.Y == y) != null;
     }
 
+    //Setze nächsten Raum für CameraController, wenn Trigger aktiviert wird
     public void OnPlayerEnterRoom(Room room)
     {
         CameraController.instance.currRoom = room;

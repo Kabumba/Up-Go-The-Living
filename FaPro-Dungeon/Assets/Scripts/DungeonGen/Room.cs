@@ -21,9 +21,11 @@ public class Room : MonoBehaviour
             return;
         }
 
+        //Wenn RoomController läuft(korrekte Szene gestartet, dann registriere diesen Raum)
         RoomController.instance.RegisterRoom(this);
     }
 
+    //Visualisierung des Raumes durch Linien
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -35,6 +37,7 @@ public class Room : MonoBehaviour
         return new Vector3(X * Width, Y * Height);
     }
 
+    //Starte Kamerabewegung zu neuem Raum, wenn Raumcollider durch Spieler ausgelöst wird
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
