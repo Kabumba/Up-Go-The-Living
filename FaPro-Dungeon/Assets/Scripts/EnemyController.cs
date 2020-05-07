@@ -10,12 +10,21 @@ public enum EnemyState
     Attack,
 };
 
+public enum EnemyType
+{
+    Melee,
+    Ranged,
+};
+
+
 public class EnemyController : MonoBehaviour
 {
 
     GameObject player;
 
     public EnemyState currentState = EnemyState.Wander;
+
+    public EnemyType enemyType;
 
     public float range = 5;
 
@@ -30,6 +39,8 @@ public class EnemyController : MonoBehaviour
     private bool chooseDir = false;
 
     private bool dead = false;
+
+    public GameObject bulletPrefab;
 
     private Vector3 randomDir;
 
@@ -112,8 +123,21 @@ public class EnemyController : MonoBehaviour
     {
         if (!coolDownAttack)
         {
-            GameController.DamagePlayer(1);
-            StartCoroutine(CoolDown());
+            switch (enemyType)
+            {
+                case (EnemyType.Melee):
+                    GameController.DamagePlayer(1);
+                    StartCoroutine(CoolDown());
+                    break;
+                case (EnemyType.Ranged):
+                    GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity) as GameObject;
+                    bullet.GetComponent<BulletController>().GetPlayer(player.transform);
+                    bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
+                    bullet.GetComponent<BulletController>().isEnemyBullet = true;
+                    StartCoroutine(CoolDown());
+                    break;
+            }
+            
         }
         
     }
