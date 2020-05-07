@@ -12,17 +12,23 @@ public class GameController : MonoBehaviour
 
     private static int maxHealth = 6;
 
-    private static float moveSpeed = 5;
+    private static float damage = 3.5f;
+
+    private static float moveSpeed = 4;
 
     private static float fireRate = 0.5f;
 
-    private static float range = 10f;
+    private static float range = 7f;
 
-    private static float bulletSpeed = 8f;
+    private static float bulletSpeed = 7f;
+
+    private static float bulletSize = 0.5f;
 
     public static int Health { get => health; set => health = value; }
 
     public static int MaxHealth { get => maxHealth; set => maxHealth = value; }
+
+    public static float Damage { get => damage; set => damage = value; }
 
     public static float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
 
@@ -31,6 +37,8 @@ public class GameController : MonoBehaviour
     public static float Range { get => range; set => range = value; }
 
     public static float BulletSpeed { get => bulletSpeed; set => bulletSpeed = value; }
+
+    public static float BulletSize { get => bulletSize; set => bulletSize = value; }
 
     public Text healthText;
 
@@ -66,5 +74,40 @@ public class GameController : MonoBehaviour
     public static void KillPlayer()
     {
 
+    }
+
+    public static void ChangeMaxHealth(int maxHealthChange)
+    {
+        maxHealth += maxHealthChange;
+    }
+
+    public static void ChangeDamage(float damageChange)
+    {
+        damage += damageChange;
+    }
+
+    public static void ChangeMoveSpeed(float moveSpeedChange)
+    {
+        moveSpeed += moveSpeedChange;
+    }
+
+    public static void ChangeFireRate(float fireRateChange)
+    {
+        fireRate += fireRateChange;
+    }
+
+    public static void ChangeRange(float rangeChange)
+    {
+        range += rangeChange;
+    }
+
+    public static void ChangeBulletSpeed(float bulletSpeedChange)
+    {
+        bulletSpeed += bulletSpeedChange;
+    }
+
+    public static void ChangeBulletSize(float bulletSizeChange)
+    {
+        bulletSize += bulletSizeChange;
     }
 }

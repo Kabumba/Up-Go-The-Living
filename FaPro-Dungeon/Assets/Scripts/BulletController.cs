@@ -5,11 +5,20 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
 
-    public float lifeTime;
+    public float range;
+
+    public float damage;
+
+    private Vector3 startPosition;
+
     // Start is called before the first frame update
     void Start()
     {
+        damage = GameController.Damage;
+        range = GameController.Range;
         StartCoroutine(DeathDelay());
+        transform.localScale = new Vector2(GameController.BulletSize, GameController.BulletSize);
+        startPosition = gameObject.transform.position;
     }
 
     // Update is called once per frame
@@ -20,9 +29,10 @@ public class BulletController : MonoBehaviour
 
     IEnumerator DeathDelay()
     {
-        yield return new WaitForSeconds(lifeTime);
+        yield return new WaitUntil(() => Vector3.Distance(transform.position, startPosition) >= range);
         Destroy(gameObject);
     }
+
 
     void OnTriggerEnter2D(Collider2D collision)
     {
