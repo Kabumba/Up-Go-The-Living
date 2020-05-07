@@ -37,12 +37,12 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        Vector3 targetPos = getCameraTargetPosition();
+        Vector3 targetPos = GetCameraTargetPosition();
 
         transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeedRoomChange);
     }
 
-    Vector3 getCameraTargetPosition()
+    Vector3 GetCameraTargetPosition()
     {
         if(currRoom == null)
         {
@@ -55,8 +55,8 @@ public class CameraController : MonoBehaviour
         return targetPos;
     }
 
-    public bool isSwitchingScene()
+    public bool IsSwitchingScene()
     {
-        return transform.position.Equals(getCameraTargetPosition());
+        return transform.position.Equals(GetCameraTargetPosition());
     }
 }

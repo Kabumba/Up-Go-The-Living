@@ -39,7 +39,7 @@ public class Room : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            RoomController.instance.onPlayerEnterRoom(this);
+            RoomController.instance.OnPlayerEnterRoom(this);
         }
     }
 }

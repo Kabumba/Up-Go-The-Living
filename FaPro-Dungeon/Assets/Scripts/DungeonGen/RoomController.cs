@@ -106,7 +106,7 @@ public class RoomController : MonoBehaviour
         room.X = currentLoadRoomData.X;
         room.Y = currentLoadRoomData.Y;
         room.name = currentWorldName + "-" + currentLoadRoomData.name + " " + room.X + ", " + room.Y;
-        room.transform.parent = transform;
+        //room.transform.parent = transform;
 
         isLoadingRoom = false;
 
@@ -123,7 +123,7 @@ public class RoomController : MonoBehaviour
         return loadedRooms.Find(item => item.X == x && item.Y == y) != null;
     }
 
-    public void onPlayerEnterRoom(Room room)
+    public void OnPlayerEnterRoom(Room room)
     {
         CameraController.instance.currRoom = room;
         currRoom = room;
