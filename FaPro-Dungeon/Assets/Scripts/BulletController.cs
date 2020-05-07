@@ -27,6 +27,7 @@ public class BulletController : MonoBehaviour
         
     }
 
+    //Sorgt dafür, dass das Projektil zerstört wird, wenn es sich zu weit von seiner startpostion entfernt hat
     IEnumerator DeathDelay()
     {
         yield return new WaitUntil(() => Vector3.Distance(transform.position, startPosition) >= range);

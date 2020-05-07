@@ -12,6 +12,8 @@ public class GameController : MonoBehaviour
 
     private static int maxHealth = 6;
 
+    private static int coins = 0;
+
     private static float damage = 3.5f;
 
     private static float moveSpeed = 4;
@@ -28,6 +30,8 @@ public class GameController : MonoBehaviour
 
     public static int MaxHealth { get => maxHealth; set => maxHealth = value; }
 
+    public static int Coins { get => coins; set => coins = value; }
+
     public static float Damage { get => damage; set => damage = value; }
 
     public static float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
@@ -42,6 +46,8 @@ public class GameController : MonoBehaviour
 
     public Text healthText;
 
+    public Text coinText;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -55,6 +61,7 @@ public class GameController : MonoBehaviour
     void Update()
     {
         healthText.text = "Health: " + health;
+        coinText.text = "Coins: " + coins;
     }
 
     public static void DamagePlayer(int damage)
@@ -79,6 +86,11 @@ public class GameController : MonoBehaviour
     public static void ChangeMaxHealth(int maxHealthChange)
     {
         maxHealth += maxHealthChange;
+    }
+
+    public static void ChangeCoins(int coinChange)
+    {
+        coins += coinChange;
     }
 
     public static void ChangeDamage(float damageChange)

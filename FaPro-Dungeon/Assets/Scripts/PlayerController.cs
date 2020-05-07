@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Schießt ein Projektil in richtung x,y vom spieler aus
     void Shoot(float x, float y)
     {
         GameObject bullet = Instantiate(bulletPrefab,transform.position,transform.rotation) as GameObject;

@@ -87,6 +87,7 @@ public class EnemyController : MonoBehaviour
         chooseDir = false;
     }
 
+    //bewegt sich ziellos herum
     void Wander()
     {
         if (!chooseDir)
@@ -100,11 +101,13 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    //Bewegt sich auf den spieler zu
     void Follow()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
     }
 
+    //Fügt dem Spieler Schaden zu
     void Attack()
     {
         if (!coolDownAttack)
@@ -115,6 +118,7 @@ public class EnemyController : MonoBehaviour
         
     }
 
+    //Verarbeitet den Angriffscooldown
     private IEnumerator CoolDown()
     {
         coolDownAttack = true;

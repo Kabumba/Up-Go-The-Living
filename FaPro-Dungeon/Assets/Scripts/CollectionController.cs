@@ -24,6 +24,8 @@ public class CollectionController : MonoBehaviour
 
     public int maxHealthChange;
 
+    public int coinChange;
+
     public float damageChange;
 
     public float moveSpeedChange;
@@ -46,13 +48,14 @@ public class CollectionController : MonoBehaviour
         gameObject.AddComponent<PolygonCollider2D>();
     }
     
-
+    //Statuswertänderungen wenn das Item eingesammelt wird.
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
             GameController.HealPlayer(healthChange);
             GameController.ChangeMaxHealth(maxHealthChange);
+            GameController.ChangeCoins(coinChange);
             GameController.ChangeDamage(damageChange);
             GameController.ChangeMoveSpeed(moveSpeedChange);
             GameController.ChangeFireRate(fireRateChange);
