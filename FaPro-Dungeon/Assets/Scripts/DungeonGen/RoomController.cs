@@ -49,6 +49,7 @@ public class RoomController : MonoBehaviour
         UpdateRoomQueue();
     }
 
+    //Stellt regelmäßig sicher, dass zu ladende Räume auch geladen und registriert werden
     void UpdateRoomQueue()
     {
         if(isLoadingRoom)
@@ -67,6 +68,7 @@ public class RoomController : MonoBehaviour
         StartCoroutine(LoadRoomRoutine(currentLoadRoomData));
     }
 
+    //Erstellt zu ladenden Raum mit Parametern und fügt einer Warteschlange hinzu
     public void LoadRoom(string name, int x, int y)
     {
         if(DoesRoomExist(x, y))
@@ -81,6 +83,7 @@ public class RoomController : MonoBehaviour
         loadRoomQueue.Enqueue(newRoomData);
     }
 
+    //Ermöglicht das Laden der korrekten Szenen (z.B. roomName = BasementStart -> BasementStart Szene wird geladen)
     IEnumerator LoadRoomRoutine(RoomInfo info)
     {
         string roomName = currentWorldName + info.name;
@@ -95,15 +98,19 @@ public class RoomController : MonoBehaviour
 
     public void RegisterRoom(Room room)
     {
-        room.transform.position = new Vector3(
+        //transform Position für neuen Raum setzen
+        room.transform.position = new Vector3(          
                 currentLoadRoomData.X * room.Width,
                 currentLoadRoomData.Y * room.Height,
                 0
             );
 
+        //Attribute für Room Objekt setzen
         room.X = currentLoadRoomData.X;
         room.Y = currentLoadRoomData.Y;
         room.name = currentWorldName + "-" + currentLoadRoomData.name + " " + room.X + ", " + room.Y;
+
+        //hierarchische Unterordnung der generierten Räume unter dem RoomController
         room.transform.parent = transform;
 
         isLoadingRoom = false;
