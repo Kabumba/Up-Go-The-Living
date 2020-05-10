@@ -7,7 +7,7 @@ public class Door : MonoBehaviour
 
     public enum DoorType
     {
-        left, right, up, down
+        left, right, top, bottom
     }
 
     public DoorType doorType;

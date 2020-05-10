@@ -12,6 +12,11 @@ public class Room : MonoBehaviour
     public int X;
 
     public int Y;
+
+    public Door leftDoor, rightDoor, topDoor, bottomDoor;
+
+    public List<Door> doors = new List<Door>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +26,74 @@ public class Room : MonoBehaviour
             return;
         }
 
+        Door[] ds = GetComponentsInChildren<Door>();
+        foreach (Door d in ds)
+        {
+            doors.Add(d);
+            if (d.doorType == Door.DoorType.right)
+            {
+                rightDoor = d;
+            }
+            if(d.doorType == Door.DoorType.left)
+            {
+                leftDoor = d;
+            }
+            if(d.doorType == Door.DoorType.top)
+            {
+                topDoor = d;
+            }
+            if(d.doorType == Door.DoorType.bottom)
+            {
+                bottomDoor = d;
+            }
+        }
+
         //Wenn RoomController läuft(korrekte Szene gestartet, dann registriere diesen Raum)
         RoomController.instance.RegisterRoom(this);
+    }
+
+    public Room GetRight()
+    {
+        if(RoomController.instance.DoesRoomExist(X + 1, Y))
+        {
+            return RoomController.instance.FindRoom(X + 1, Y);
+        }
+        return null;
+    }
+
+    public Room GetLeft()
+    {
+        if(RoomController.instance.FindRoom(X - 1, Y))
+        {
+            return RoomController.instance.FindRoom(X - 1, Y);
+        }
+        return null;
+    }
+
+    public Room GetTop()
+    {
+        if(RoomController.instance.FindRoom(X, Y + 1))
+        {
+            return RoomController.instance.FindRoom(X, Y + 1);
+        }
+        return null;
+    }
+
+    public Room GetBottom()
+    {
+        if(RoomController.instance.FindRoom(X, Y - 1))
+        {
+            return RoomController.instance.FindRoom(X, Y - 1);
+        }
+        return null;
+    }
+
+    public void RemoveUnconnectedDoors()
+    {
+        foreach(Door door in doors)
+        {
+
+        }
     }
 
     //Visualisierung des Raumes durch Linien
