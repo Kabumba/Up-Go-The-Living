@@ -52,6 +52,41 @@ public class Room : MonoBehaviour
         RoomController.instance.RegisterRoom(this);
     }
 
+    public void RemoveUnconnectedDoors()
+    {
+        foreach(Door door in doors)
+        {
+            if (door.doorType == Door.DoorType.right)
+            {
+                if(GetRight() == null)
+                {
+                    door.gameObject.SetActive(false);
+                }
+            }
+            if (door.doorType == Door.DoorType.left)
+            {
+                if (GetLeft() == null)
+                {
+                    door.gameObject.SetActive(false);
+                }
+            }
+            if (door.doorType == Door.DoorType.top)
+            {
+                if (GetTop() == null)
+                {
+                    door.gameObject.SetActive(false);
+                }
+            }
+            if (door.doorType == Door.DoorType.bottom)
+            {
+                if (GetBottom() == null)
+                {
+                    door.gameObject.SetActive(false);
+                }
+            }
+        }
+    }
+
     public Room GetRight()
     {
         if(RoomController.instance.DoesRoomExist(X + 1, Y))
@@ -63,7 +98,7 @@ public class Room : MonoBehaviour
 
     public Room GetLeft()
     {
-        if(RoomController.instance.FindRoom(X - 1, Y))
+        if(RoomController.instance.DoesRoomExist(X - 1, Y))
         {
             return RoomController.instance.FindRoom(X - 1, Y);
         }
@@ -72,7 +107,7 @@ public class Room : MonoBehaviour
 
     public Room GetTop()
     {
-        if(RoomController.instance.FindRoom(X, Y + 1))
+        if(RoomController.instance.DoesRoomExist(X, Y + 1))
         {
             return RoomController.instance.FindRoom(X, Y + 1);
         }
@@ -81,19 +116,11 @@ public class Room : MonoBehaviour
 
     public Room GetBottom()
     {
-        if(RoomController.instance.FindRoom(X, Y - 1))
+        if(RoomController.instance.DoesRoomExist(X, Y - 1))
         {
             return RoomController.instance.FindRoom(X, Y - 1);
         }
         return null;
-    }
-
-    public void RemoveUnconnectedDoors()
-    {
-        foreach(Door door in doors)
-        {
-
-        }
     }
 
     //Visualisierung des Raumes durch Linien

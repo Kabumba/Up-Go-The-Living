@@ -126,6 +126,7 @@ public class RoomController : MonoBehaviour
             }
 
             loadedRooms.Add(room);
+            room.RemoveUnconnectedDoors();
         }
 
         //Falls Raum bereits besucht/geladen, entferne Objekt in Szenenansicht (keine Dopplung von Raumobjekten)
