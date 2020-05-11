@@ -12,6 +12,13 @@ public class Room : MonoBehaviour
     public int X;
 
     public int Y;
+    public Room(int x, int y)
+    {
+        X = x;
+        Y = y;
+    }
+
+    private bool updatedDoors = false;
 
     public Door leftDoor, rightDoor, topDoor, bottomDoor;
 
@@ -50,6 +57,15 @@ public class Room : MonoBehaviour
 
         //Wenn RoomController läuft(korrekte Szene gestartet, dann registriere diesen Raum)
         RoomController.instance.RegisterRoom(this);
+    }
+
+    void Update()
+    {
+        if(name.Contains("End") && !updatedDoors)
+        {
+            RemoveUnconnectedDoors();
+            updatedDoors = true;
+        }
     }
 
     public void RemoveUnconnectedDoors()
