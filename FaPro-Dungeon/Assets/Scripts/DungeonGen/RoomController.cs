@@ -57,7 +57,7 @@ public class RoomController : MonoBehaviour
         UpdateRoomQueue();
     }
 
-    //Stellt regelmäßig sicher, dass zu ladende Räume auch geladen und registriert werden
+    //Überprüfe regelmäßig, ob es zu ladende Räume gibt und starte den Registrierprozess, falls es welche gibt
     void UpdateRoomQueue()
     {
         if(isLoadingRoom)
@@ -103,7 +103,7 @@ public class RoomController : MonoBehaviour
         }
     }
 
-    //Erstellt zu ladenden Raum mit Parametern und fügt einer Warteschlange hinzu
+    //Erstelle noch nicht vorhandenen Raum und füge ihn einer Queue hinzu
     public void LoadRoom(string name, int x, int y)
     {
         if(DoesRoomExist(x, y))
@@ -118,7 +118,7 @@ public class RoomController : MonoBehaviour
         loadRoomQueue.Enqueue(newRoomData);
     }
 
-    //Ermöglicht das Laden der korrekten Szenen (z.B. roomName = BasementStart -> BasementStart Szene wird geladen)
+    //Ermöglicht Laden von korrekten Raumszenen, wenn BasementMain gestartet wird (z.B. roomName = "BasementStart" -> BasementStart-Szene wird geladen
     IEnumerator LoadRoomRoutine(RoomInfo info)
     {
         string roomName = currentWorldName + info.name;
@@ -133,23 +133,6 @@ public class RoomController : MonoBehaviour
 
     public void RegisterRoom(Room room)
     {
-        //transform Position für neuen Raum setzen
-        room.transform.position = new Vector3(          
-                currentLoadRoomData.X * room.Width,
-                currentLoadRoomData.Y * room.Height,
-                0
-            );
-
-        //Attribute für Room Objekt setzen
-        room.X = currentLoadRoomData.X;
-        room.Y = currentLoadRoomData.Y;
-        room.name = currentWorldName + "-" + currentLoadRoomData.name + " " + room.X + ", " + room.Y;
-
-        //hierarchische Unterordnung der generierten Räume unter dem RoomController
-        room.transform.parent = transform;
-
-        isLoadingRoom = false;
-
         //Wenn kein Raum an einer Stelle existiert, setze Position und Attribute für zu ladenden Raum
         if (!DoesRoomExist(currentLoadRoomData.X, currentLoadRoomData.Y))
         {

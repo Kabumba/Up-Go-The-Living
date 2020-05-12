@@ -14,8 +14,6 @@ public class PlayerController : MonoBehaviour
 
     public float fireDelay;
 
-    private float velocityAddedToBullet = 0.3f;
-
     Rigidbody2D rigidbody;
 
     // Start is called before the first frame update
@@ -27,10 +25,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fireDelay = GameController.FireRate;
-        speed = GameController.MoveSpeed;
-        bulletSpeed = GameController.BulletSpeed;
-
         //Inputs
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -60,7 +54,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    //Schießt ein Projektil in richtung x,y vom spieler aus
     void Shoot(float x, float y)
     {
         GameObject bullet = Instantiate(bulletPrefab,transform.position,transform.rotation) as GameObject;
@@ -68,8 +61,8 @@ public class PlayerController : MonoBehaviour
         float fixedX = (x < 0) ? Mathf.Floor(x) : Mathf.Ceil(x);
         float fixedY = (y < 0) ? Mathf.Floor(y) : Mathf.Ceil(y);
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(
-            fixedX * bulletSpeed + velocityAddedToBullet * rigidbody.velocity.x,
-            fixedY * bulletSpeed + velocityAddedToBullet * rigidbody.velocity.y,
+            fixedX * bulletSpeed + rigidbody.velocity.x,
+            fixedY * bulletSpeed + rigidbody.velocity.y,
             0
             );
         lastFire = Time.time;
