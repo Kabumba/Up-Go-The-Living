@@ -8,6 +8,8 @@ public class DungeonGenerator : MonoBehaviour
 
     private List<Vector2Int> dungeonRooms;
 
+    private int layout;
+
     private void Start()
     {
         dungeonRooms = DungeonCrawlerController.GenerateDungeon(dungeonGenerationData);
@@ -19,7 +21,8 @@ public class DungeonGenerator : MonoBehaviour
         RoomController.instance.LoadRoom("Start", 0, 0);
         foreach(Vector2Int roomLocation in rooms)
         {
-            RoomController.instance.LoadRoom("3", roomLocation.x, roomLocation.y);
+            layout = Random.Range(1, 4);
+            RoomController.instance.LoadRoom(layout.ToString(), roomLocation.x, roomLocation.y);
         }
     }
 }
