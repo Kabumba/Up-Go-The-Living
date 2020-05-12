@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum EnemyState
 {
+    Idle,
     Wander,
     Follow,
     Die,
@@ -22,7 +23,7 @@ public class EnemyController : MonoBehaviour
 
     GameObject player;
 
-    public EnemyState currentState = EnemyState.Wander;
+    public EnemyState currentState = EnemyState.Idle;
 
     public EnemyType enemyType;
 
@@ -40,6 +41,8 @@ public class EnemyController : MonoBehaviour
 
     private bool dead = false;
 
+    public bool notInRoom = false;
+
     public GameObject bulletPrefab;
 
     private Vector3 randomDir;
@@ -56,6 +59,9 @@ public class EnemyController : MonoBehaviour
     {
         switch (currentState)
         {
+            case (EnemyState.Idle):
+                Idle();
+                break;
             case (EnemyState.Wander):
                 Wander();
                 break;
@@ -70,16 +76,23 @@ public class EnemyController : MonoBehaviour
                 break;
         }
 
-        if(IsPlayerInRange() && currentState != EnemyState.Die)
+        if (!notInRoom)
         {
-            currentState = EnemyState.Follow;
-        } else if (!IsPlayerInRange() && currentState != EnemyState.Die)
-        {
-            currentState = EnemyState.Wander;
+            if (IsPlayerInRange() && currentState != EnemyState.Die)
+            {
+                currentState = EnemyState.Follow;
+            } else if (!IsPlayerInRange() && currentState != EnemyState.Die)
+            {
+                currentState = EnemyState.Wander;
+            }
+            if (Vector3.Distance(transform.position, player.transform.position) <= attackRange)
+            {
+                currentState = EnemyState.Attack;
+            }
         }
-        if(Vector3.Distance(transform.position, player.transform.position) <= attackRange)
+        else
         {
-            currentState = EnemyState.Attack;
+            currentState = EnemyState.Idle;
         }
     }
 
@@ -96,6 +109,11 @@ public class EnemyController : MonoBehaviour
         Quaternion nextRotation = Quaternion.Euler(randomDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, nextRotation, Random.Range(0.5f, 2.5f)); //dreht sich über eine zufällige Zeit in diese Richtung
         chooseDir = false;
+    }
+
+    void Idle()
+    {
+        ;
     }
 
     //bewegt sich ziellos herum
@@ -152,6 +170,7 @@ public class EnemyController : MonoBehaviour
 
     public void Death()
     {
+        RoomController.instance.StartCoroutine(RoomController.instance.RoomCoroutine());
         Destroy(gameObject);
     }
 }
