@@ -117,18 +117,34 @@ public  class LayoutGenerator : MonoBehaviour
     public Dictionary<Vector2Int,RoomNode> rooms;
     public List<RoomNode> roomList;
 
+    [HideInInspector]
     public int numberOfBossRooms = 0;
-    public int maxNumberOfBossRooms;
-    public int numberOfLootRooms = 0;
-    public int maxNumberOfLootRooms;
-    public int numberOfNonSpecialRooms = 0;
-    public int maxNumberOfNonSpecialRooms;
-    public int maxNumberOfRooms;
-    private List<RoomGenerationRule> rules;
-    public DungeonGenerationData Dgd;
 
-    void Start()
+    [HideInInspector]
+    public int maxNumberOfBossRooms;
+
+    [HideInInspector]
+    public int numberOfLootRooms = 0;
+
+    [HideInInspector]
+    public int maxNumberOfLootRooms;
+
+    [HideInInspector]
+    public int numberOfNonSpecialRooms = 0;
+
+    [HideInInspector]
+    public int maxNumberOfNonSpecialRooms;
+
+    [HideInInspector]
+    public int maxNumberOfRooms;
+
+    private List<RoomGenerationRule> rules;
+
+    private DungeonGenerationData Dgd;
+
+    public LayoutGenerator()
     {
+        Dgd = new DungeonGenerationData();
         maxNumberOfBossRooms = Dgd.numberOfBossRooms;
         maxNumberOfLootRooms = Dgd.numberOfLootRooms;
         maxNumberOfRooms = Mathf.RoundToInt(Random.Range(Dgd.minNumberOfRooms - 0.5f, Dgd.maxNumberOfRooms + 0.5f));

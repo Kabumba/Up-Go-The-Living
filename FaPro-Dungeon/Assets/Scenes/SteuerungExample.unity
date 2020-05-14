@@ -312,15 +312,15 @@ MonoBehaviour:
     name: 
     description: 
     itemImage: {fileID: 21300000, guid: 5226ebbac4615a1449a4e25739503346, type: 3}
-  healthChange: 0
+  healthChange: 1
   maxHealthChange: 0
   coinChange: 0
-  damageChange: 0
-  moveSpeedChange: 0
-  fireRateChange: 0
-  rangeChange: 0
-  bulletSpeedChange: 0
-  bulletSizeChange: 0
+  damageChange: 1
+  moveSpeedChange: 1
+  fireRateChange: -0.3
+  rangeChange: 1
+  bulletSpeedChange: 1
+  bulletSizeChange: 0.2
 --- !u!4 &198668624
 Transform:
   m_ObjectHideFlags: 0
@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39940a648883434db74faed25125d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartContainer: {fileID: 0}
+  heartContainer: {fileID: 847882206}
 --- !u!222 &243938175
 CanvasRenderer:
   m_ObjectHideFlags: 0

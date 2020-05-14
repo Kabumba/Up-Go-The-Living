@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class DungeonGenerator : MonoBehaviour
 {
-    public DungeonGenerationData dungeonGenerationData;
-
-    public LayoutGenerator Lg;
-
-    private List<Vector2Int> dungeonRooms;
+    private LayoutGenerator Lg;
 
     private Dictionary<Vector2Int, RoomNode> rooms;
 
@@ -16,8 +12,8 @@ public class DungeonGenerator : MonoBehaviour
     private void Start()
     {
         //dungeonRooms = DungeonCrawlerController.GenerateDungeon(dungeonGenerationData);
+        Lg = new LayoutGenerator();
         rooms = Lg.GetLayout();
-
         SpawnRooms(rooms);
     }
 

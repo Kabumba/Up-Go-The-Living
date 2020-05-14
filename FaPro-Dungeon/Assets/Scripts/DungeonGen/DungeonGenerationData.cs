@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class DungeonGenerationData : ScriptableObject
 {
-    public int minNumberOfRooms;
+    public int minNumberOfRooms = 7;
 
-    public int maxNumberOfRooms;
+    public int maxNumberOfRooms = 10;
 
-    public int numberOfBossRooms;
+    public int numberOfBossRooms = 1;
 
-    public int numberOfLootRooms;
+    public int numberOfLootRooms = 1;
 }
