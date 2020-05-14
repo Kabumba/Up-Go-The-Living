@@ -1130,7 +1130,7 @@ MonoBehaviour:
   speed: 3
   attackRange: 6
   coolDown: 3
-  bulletPrefab: {fileID: 5473610484710109101, guid: d66fc8750b8251443b273168c87e5171,
+  bulletPrefab: {fileID: 5473610484710109101, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
     type: 3}
 --- !u!4 &1964644529
 Transform:
@@ -1301,6 +1301,12 @@ PrefabInstance:
       propertyPath: coolDown
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2696955392005806666, guid: 03799f00b07acba4097e6c0f0cf6aa6b,
+        type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 5473610484710109101, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
+        type: 3}
     - target: {fileID: 2696955392005806667, guid: 03799f00b07acba4097e6c0f0cf6aa6b,
         type: 3}
       propertyPath: m_IsTrigger
