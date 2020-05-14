@@ -142,9 +142,9 @@ public  class LayoutGenerator : MonoBehaviour
 
     private DungeonGenerationData Dgd;
 
-    public LayoutGenerator()
+    public void Awake()
     {
-        Dgd = new DungeonGenerationData();
+        Dgd = (DungeonGenerationData) ScriptableObject.CreateInstance("DungeonGenerationData"); ;
         maxNumberOfBossRooms = Dgd.numberOfBossRooms;
         maxNumberOfLootRooms = Dgd.numberOfLootRooms;
         maxNumberOfRooms = Mathf.RoundToInt(Random.Range(Dgd.minNumberOfRooms - 0.5f, Dgd.maxNumberOfRooms + 0.5f));
