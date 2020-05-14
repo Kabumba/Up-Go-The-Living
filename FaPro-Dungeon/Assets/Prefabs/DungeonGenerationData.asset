@@ -15,3 +15,7 @@ MonoBehaviour:
   numberOfCrawlers: 2
   iterationMin: 3
   iterationMax: 6
+  minNumberOfRooms: 7
+  maxNumberOfRooms: 12
+  numberOfBossRooms: 1
+  numberOfLootRooms: 1
