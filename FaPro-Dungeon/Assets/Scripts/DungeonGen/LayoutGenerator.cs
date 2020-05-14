@@ -8,7 +8,21 @@ public enum RoomType
     Start,
     Boss,
     Loot,
-    Enemy,
+    Enemy4,
+    Enemy3U,
+    Enemy3D,
+    Enemy3L,
+    Enemy3R,
+    Enemy2UL,
+    Enemy2UD,
+    Enemy2UR,
+    Enemy2LD,
+    Enemy2LR,
+    Enemy2DR,
+    Enemy1U,
+    Enemy1D,
+    Enemy1L,
+    Enemy1R,
 }
 
 public enum Direction
