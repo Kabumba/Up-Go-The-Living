@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2696955392005806667}
   - component: {fileID: 2696955392005806666}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: MeleeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,10 +133,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5137f6cf01ac98643a9a90e27b5350d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  enemyType: 0
+  currentState: 1
+  enemyType: 1
   range: 5
   speed: 3
   attackRange: 0
   coolDown: 0
-  bulletPrefab: {fileID: 0}
+  notInRoom: 0
+  bulletPrefab: {fileID: 5473610484710109101, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
+    type: 3}
