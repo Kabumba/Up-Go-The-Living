@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 737318927}
   - component: {fileID: 737318926}
   - component: {fileID: 737318928}
+  - component: {fileID: 737318929}
   m_Layer: 0
   m_Name: RoomController
   m_TagString: Untagged
@@ -278,6 +279,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dungeonGenerationData: {fileID: 11400000, guid: ff36c61d191b83b46893904038eb20e4,
     type: 2}
+  Lg: {fileID: 737318929}
+--- !u!114 &737318929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 737318925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3076bd555e76de94099b97777ae26ca8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfBossRooms: 0
+  maxNumberOfBossRooms: 0
+  numberOfLootRooms: 0
+  maxNumberOfLootRooms: 0
+  numberOfNonSpecialRooms: 0
+  maxNumberOfNonSpecialRooms: 0
+  maxNumberOfRooms: 0
+  Dgd: {fileID: 11400000, guid: ff36c61d191b83b46893904038eb20e4, type: 2}
 --- !u!1 &1183684407
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,7 +333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  bulletPrefab: {fileID: 5473610484710109101, guid: d66fc8750b8251443b273168c87e5171,
+  bulletPrefab: {fileID: 5473610484710109101, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
     type: 3}
   bulletSpeed: 7
   fireDelay: 0.5
@@ -487,7 +509,7 @@ PrefabInstance:
         type: 3}
       propertyPath: bulletPrefab
       value: 
-      objectReference: {fileID: 5473610484710109101, guid: d66fc8750b8251443b273168c87e5171,
+      objectReference: {fileID: 5473610484710109101, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
         type: 3}
     - target: {fileID: 2696955392005806666, guid: 03799f00b07acba4097e6c0f0cf6aa6b,
         type: 3}
