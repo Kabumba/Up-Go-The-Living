@@ -256,6 +256,7 @@ public  class LayoutGenerator : MonoBehaviour
         }
     }
     
+    //Erstellt alle Ersetzungsregeln, nach denen Dungeonsräume angeordnet generiert werden können.
     private void InitializeRules()
     {
         rules = new List<RoomGenerationRule>();
