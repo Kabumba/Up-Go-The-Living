@@ -21,17 +21,16 @@ public abstract class RoomGenerationRule
     };
 
     public abstract override string ToString();
+    
 }
 
-
-class AddNonSpecialRoom : RoomGenerationRule
+class AddSingleRoom : RoomGenerationRule
 {
     public RoomType addTo;
 
     public RoomType toAdd;
 
     public Direction dir;
-
 
     public override void Apply(RoomNode rn)
     {
@@ -40,25 +39,31 @@ class AddNonSpecialRoom : RoomGenerationRule
 
     public override bool IsApplicable(RoomNode rn)
     {
-        if(Lg.roomList.Count < Lg.maxNumberOfRooms && Lg.numberOfNonSpecialRooms < Lg.maxNumberOfNonSpecialRooms && rn.Type == addTo && rn.Get(dir) == null && !Lg.rooms.ContainsKey(rn.Position + directionMovementMap[dir]))
-        {
-            return true;
-        }
-        return false;
+        return LimitCheck(rn);
+    }
+
+    public bool LimitCheck(RoomNode rn)
+    {
+        return Lg.roomList.Count < Lg.maxNumberOfRooms && rn.DoorCount() < rn.MaxDoors() && rn.Type == addTo && rn.Get(dir) == null && !Lg.rooms.ContainsKey(rn.Position + directionMovementMap[dir]);
     }
 
     public override string ToString()
     {
         return "addTo: " + addTo + ", toAdd: " + toAdd + ", dir: " + dir;
     }
+
 }
 
-class AddLootRoom : RoomGenerationRule
+class AddNonSpecialRoom : AddSingleRoom
 {
-    public RoomType addTo;
+    public override bool IsApplicable(RoomNode rn)
+    {
+        return LimitCheck(rn) && Lg.numberOfNonSpecialRooms < Lg.maxNumberOfNonSpecialRooms;
+    }
+}
 
-    public Direction dir;
-
+class AddLootRoom : AddSingleRoom
+{
     public override void Apply(RoomNode rn)
     {
         rn.Create(RoomType.Loot, dir);
@@ -66,25 +71,12 @@ class AddLootRoom : RoomGenerationRule
 
     public override bool IsApplicable(RoomNode rn)
     {
-        if (Lg.roomList.Count < Lg.maxNumberOfRooms && Lg.numberOfLootRooms<Lg.maxNumberOfLootRooms && rn.Type == addTo && rn.Get(dir) == null && !Lg.rooms.ContainsKey(rn.Position + directionMovementMap[dir]))
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public override string ToString()
-    {
-        return "addTo: " + addTo + ", toAdd: loot" + ", dir: " + dir;
+        return LimitCheck(rn) && Lg.numberOfLootRooms < Lg.maxNumberOfLootRooms;
     }
 }
 
-class AddBossRoom : RoomGenerationRule
+class AddBossRoom : AddSingleRoom
 {
-    public RoomType addTo;
-
-    public Direction dir;
-
     public override void Apply(RoomNode rn)
     {
         rn.Create(RoomType.Boss, dir);
@@ -92,16 +84,7 @@ class AddBossRoom : RoomGenerationRule
 
     public override bool IsApplicable(RoomNode rn)
     {
-        if (Lg.roomList.Count < Lg.maxNumberOfRooms && Lg.numberOfBossRooms < Lg.maxNumberOfBossRooms && rn.Type == addTo && rn.Get(dir) == null && !Lg.rooms.ContainsKey(rn.Position + directionMovementMap[dir]))
-        {
-            return true;
-        }
-        return false;
-    }
-
-    public override string ToString()
-    {
-        return "addTo: " + addTo + ", toAdd: boss" + ", dir: " + dir;
+        return LimitCheck(rn) && Lg.numberOfBossRooms < Lg.maxNumberOfBossRooms;
     }
 }
 

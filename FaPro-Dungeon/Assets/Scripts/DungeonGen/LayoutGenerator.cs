@@ -5,32 +5,21 @@ using UnityEngine;
 
 public enum RoomType
 {
-    Start,
-    Boss,
-    Loot,
-    Enemy4,
-    Enemy3U,
-    Enemy3D,
-    Enemy3L,
-    Enemy3R,
-    Enemy2UL,
-    Enemy2UD,
-    Enemy2UR,
-    Enemy2LD,
-    Enemy2LR,
-    Enemy2DR,
-    Enemy1U,
-    Enemy1D,
-    Enemy1L,
-    Enemy1R,
+    Start = 0,
+    Boss = 1,
+    Loot = 2,
+    Enemy4 = 3,
+    Enemy3 = 4,
+    Enemy2 = 5,
+    Enemy1 = 6
 }
 
 public enum Direction
 {
-    up,
-    down,
-    left,
-    right
+    up = 0,
+    right= 1,
+    down = 2,
+    left = 3,
 }
 
 
@@ -54,6 +43,41 @@ public class RoomNode
     {
         Type = t;
         Position = pos;
+    }
+
+    public int MaxDoors()
+    {
+        switch (Type)
+        {
+            case RoomType.Start:
+                return 4;
+            case RoomType.Boss:
+                return 1;
+            case RoomType.Loot:
+                return 1;
+            case RoomType.Enemy1:
+                return 1;
+            case RoomType.Enemy2:
+                return 2;
+            case RoomType.Enemy3:
+                return 3;
+            case RoomType.Enemy4:
+                return 4;
+        }
+        return 4;
+    }
+
+    public int DoorCount()
+    {
+        int count = 0;
+        foreach(Direction dir in directionMovementMap.Keys)
+        {
+            if (Get(dir) != null)
+            {
+                count++;
+            }
+        }
+        return count;
     }
 
     public static readonly Dictionary<Direction, Vector2Int> directionMovementMap = new Dictionary<Direction, Vector2Int>
