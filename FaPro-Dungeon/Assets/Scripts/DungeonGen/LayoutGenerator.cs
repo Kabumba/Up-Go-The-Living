@@ -148,13 +148,24 @@ public class RoomNode
         }
         return null;
     }
+    public List<Direction> GetDoorlessWalls()
+    {
+        List<Direction> doorlessWalls = new List<Direction>();
+        foreach(Direction dir in Enum.GetValues(typeof(Direction)))
+        {
+            if (Get(dir) == null)
+            {
+                doorlessWalls.Add(dir);
+            }
+        }
+        return doorlessWalls;
+    }
 
 }
 
 public  class LayoutGenerator : MonoBehaviour
 {
-    public Dictionary<Vector2Int,RoomNode> rooms;
-    public List<RoomNode> roomList;
+   
 
     [HideInInspector]
     public int numberOfBossRooms = 0;
@@ -177,7 +188,11 @@ public  class LayoutGenerator : MonoBehaviour
     [HideInInspector]
     public int maxNumberOfRooms;
 
-    private List<RoomGenerationRule> rules;
+    public Dictionary<Vector2Int, RoomNode> rooms;
+
+    public List<RoomNode> roomList;
+
+    private List<RoomGenerationRule>[][] rules;
 
     private DungeonGenerationData Dgd;
 
@@ -232,11 +247,17 @@ public  class LayoutGenerator : MonoBehaviour
         while (workableRooms.Count > 0) {
             RoomNode randomRoom = workableRooms[Mathf.RoundToInt(UnityEngine.Random.Range(-0.5f, workableRooms.Count - 0.5f))];
             applicableRules = new List<RoomGenerationRule>();
-            foreach (RoomGenerationRule rule in rules)
+            List<Direction> doorlessWalls = randomRoom.GetDoorlessWalls();
+            if (doorlessWalls.Count != 0)
             {
-                if (rule.IsApplicable(randomRoom))
+                Direction randomDirection = doorlessWalls[Mathf.RoundToInt(UnityEngine.Random.Range(-0.5f, doorlessWalls.Count - 0.5f))];
+                List<RoomGenerationRule> narrowedRules = rules[(int)randomRoom.Type][(int)randomDirection];
+                foreach (RoomGenerationRule rule in narrowedRules)
                 {
-                    applicableRules.Add(rule);
+                    if (rule.IsApplicable(randomRoom))
+                    {
+                        applicableRules.Add(rule);
+                    }
                 }
             }
             if (applicableRules.Count == 0)
@@ -259,7 +280,23 @@ public  class LayoutGenerator : MonoBehaviour
     //Erstellt alle Ersetzungsregeln, nach denen Dungeonsräume angeordnet generiert werden können.
     private void InitializeRules()
     {
-        rules = new List<RoomGenerationRule>();
+        //Rules Datenstruktor initialisieren
+        int numberOfRoomTypes = 0;
+        foreach(RoomType rT in Enum.GetValues(typeof(RoomType)))
+        {
+            numberOfRoomTypes++;
+        }
+        rules = new List<RoomGenerationRule>[numberOfRoomTypes][];
+        for(int i = 0; i<numberOfRoomTypes; i++)
+        {
+            rules[i] = new List<RoomGenerationRule>[4];
+            for(int j = 0; j<4; j++)
+            {
+                rules[i][j] = new List<RoomGenerationRule>();
+            }
+        }
+
+        //Regeln erstellen
         foreach (Direction dir in Enum.GetValues(typeof(Direction))) {
             foreach (RoomType addTo in Enum.GetValues(typeof(RoomType)))
             {
@@ -270,17 +307,17 @@ public  class LayoutGenerator : MonoBehaviour
                     if (addTo != RoomType.Start)
                     {
                         //Bossraumregel hinzufügen
-                        rules.Add(new AddBossRoom(addTo, dir));
+                        rules[(int)addTo][(int)dir].Add(new AddBossRoom(addTo, dir));
                     }
                     //Lootraumregel hinzufügen
-                    rules.Add(new AddLootRoom(addTo, dir));
+                    rules[(int)addTo][(int)dir].Add(new AddLootRoom(addTo, dir));
                     foreach (RoomType toAdd in Enum.GetValues(typeof(RoomType)))
                     {
                         //Starträume können nicht generiert werden, Boss und Loot haben Sonderregeln
                         if(toAdd != RoomType.Start && toAdd != RoomType.Boss && toAdd != RoomType.Loot)
                         {
                             //Gegnerraumregel hinzufügen
-                            rules.Add(new AddNonSpecialRoom(addTo, toAdd, dir));
+                            rules[(int)addTo][(int)dir].Add(new AddNonSpecialRoom(addTo, toAdd, dir));
                         }
                     }
                 }
@@ -288,10 +325,15 @@ public  class LayoutGenerator : MonoBehaviour
         }
 
         //LayoutGenerator in den Regeln anmelden
-        foreach(RoomGenerationRule rule in rules)
+        foreach(List<RoomGenerationRule>[] i in rules)
         {
-            rule.Lg = this;
+            foreach (List<RoomGenerationRule> j in i)
+            {
+                foreach (RoomGenerationRule rule in j)
+                {
+                    rule.Lg = this;
+                }
+            }
         }
     }
-
 }
