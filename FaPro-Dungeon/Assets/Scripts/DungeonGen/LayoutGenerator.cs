@@ -23,6 +23,25 @@ public enum Direction
     left = 3,
 }
 
+static class Directions
+{
+    public static readonly Dictionary<Direction, Vector2Int> dirToVector2 = new Dictionary<Direction, Vector2Int>
+    {
+        {Direction.up, Vector2Int.up },
+        {Direction.left, Vector2Int.left },
+        {Direction.down, Vector2Int.down },
+        {Direction.right, Vector2Int.right }
+    };
+
+    public static readonly Dictionary<Direction, Direction> opposite = new Dictionary<Direction, Direction>
+    {
+        {Direction.up, Direction.down },
+        {Direction.left, Direction.right },
+        {Direction.down, Direction.up },
+        {Direction.right, Direction.left }
+    };
+}
+
 
 
 public class RoomNode
@@ -81,13 +100,8 @@ public class RoomNode
         return count;
     }
 
-    public static readonly Dictionary<Direction, Vector2Int> directionMovementMap = new Dictionary<Direction, Vector2Int>
-    {
-        {Direction.up, Vector2Int.up },
-        {Direction.left, Vector2Int.left },
-        {Direction.down, Vector2Int.down },
-        {Direction.right, Vector2Int.right }
-    };
+
+    
 
     //Erzeugt einen neuen Raum vom Typ t in Richtung dir vom ausrufenden Raum aus.
     public RoomNode Create(RoomType t, Direction dir)
@@ -112,10 +126,40 @@ public class RoomNode
                 newR.Left = this;
                 break;
         }
-        newR.Position = Position + directionMovementMap[dir];
+        newR.Position = Position + Directions.dirToVector2[dir];
         Lg.rooms.Add(newR.Position, newR);
         Lg.roomList.Add(newR);
         newR.Lg = Lg;
+
+        //Neuen Raum wenn möglich mit benachbarten Räumen verbinden
+        int doorsleft = MaxDoors(newR.Type) - newR.DoorCount();
+        if (doorsleft > 0)
+        {
+            List<Direction> doorlessWalls = newR.GetDoorlessWalls();
+            for (int i = 0; i < doorsleft; i++)
+            {
+                int dlc = doorlessWalls.Count;
+                for (int j = 0; j < dlc; j++)
+                {
+                    if (doorlessWalls.Count > 0)
+                    {
+                        Direction randomDirection = doorlessWalls[Mathf.RoundToInt(UnityEngine.Random.Range(-0.5f, doorlessWalls.Count - 0.5f))];
+                        Vector2Int randomPostion = newR.Position + Directions.dirToVector2[randomDirection];
+                        if (Lg.rooms.ContainsKey(randomPostion))
+                        {
+                            RoomNode connectTo = Lg.rooms[randomPostion];
+                            if (connectTo.Get(Directions.opposite[randomDirection]) == null && MaxDoors(connectTo.Type) > connectTo.DoorCount())
+                            {
+                                Set(randomDirection, connectTo);
+                                connectTo.Set(Directions.opposite[randomDirection], newR);
+                                break;
+                            }
+                        }
+                        doorlessWalls.Remove(randomDirection);
+                    }
+                }
+            }
+        }
 
         //Raumanzahl updaten
         switch (t)
@@ -147,6 +191,25 @@ public class RoomNode
                 return Right;
         }
         return null;
+    }
+
+    public void Set(Direction dir, RoomNode rn)
+    {
+        switch (dir)
+        {
+            case Direction.up:
+                Up = rn;
+                break;
+            case Direction.down:
+                Down = rn;
+                break;
+            case Direction.left:
+                Left = rn;
+                break;
+            case Direction.right:
+                Right = rn;
+                break;
+        }
     }
     public List<Direction> GetDoorlessWalls()
     {
@@ -322,14 +385,14 @@ public class LayoutGenerator : MonoBehaviour
                 //Verschieben von Räumen um Situationen aufzubrechen in denen kein weiterer Raum mehr generiert werden kann. 
                 foreach (RoomType replaceWith in Enum.GetValues(typeof(RoomType)))
                 {
-                    if(RoomNode.MaxDoors(replaceWith) <= RoomNode.MaxDoors(addTo))
+                    if (RoomNode.MaxDoors(replaceWith) <= RoomNode.MaxDoors(addTo))
                     {
                         continue;
                     }
                     //Der Bossraum kann nur an das Ende von Gängen verschoben werden.
                     if (addTo == RoomType.Boss)
                     {
-                        if(replaceWith == RoomType.Enemy2)
+                        if (replaceWith == RoomType.Enemy2)
                         {
                             rules[(int)addTo][(int)dir].Add(new MoveSingleRoom(addTo, replaceWith, dir));
                         }
