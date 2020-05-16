@@ -39,12 +39,12 @@ class AddSingleRoom : RoomGenerationRule
 
     public override bool IsApplicable(RoomNode rn)
     {
-        return LimitCheck(rn);
+        return CanAddSingleRoom(rn);
     }
 
-    public bool LimitCheck(RoomNode rn)
+    public bool CanAddSingleRoom(RoomNode rn)
     {
-        return Lg.roomList.Count < Lg.maxNumberOfRooms && rn.DoorCount() < rn.MaxDoors() && rn.Type == addTo && rn.Get(dir) == null && !Lg.rooms.ContainsKey(rn.Position + directionMovementMap[dir]);
+        return Lg.roomList.Count < Lg.maxNumberOfRooms && rn.DoorCount() < RoomNode.MaxDoors(rn.Type) && rn.Type == addTo && rn.Get(dir) == null && !Lg.rooms.ContainsKey(rn.Position + directionMovementMap[dir]);
     }
 
     public override string ToString()
@@ -54,11 +54,68 @@ class AddSingleRoom : RoomGenerationRule
 
 }
 
+class MoveSingleRoom : AddSingleRoom
+{
+    public RoomType replaceWith;
+
+    public override void Apply(RoomNode rn)
+    {
+        rn.Create(toAdd, dir);
+        switch (toAdd)
+        {
+            case RoomType.Loot:
+                Lg.numberOfLootRooms--;
+                break;
+            case RoomType.Boss:
+                Lg.numberOfBossRooms--;
+                break;
+            default:
+                Lg.numberOfNonSpecialRooms--;
+                break;
+        }
+        rn.Type = replaceWith;
+        switch (replaceWith)
+        {
+            case RoomType.Loot:
+                Lg.numberOfLootRooms++;
+                break;
+            case RoomType.Boss:
+                Lg.numberOfBossRooms++;
+                break;
+            default:
+                Lg.numberOfNonSpecialRooms++;
+                break;
+        }
+    }
+
+    public override bool IsApplicable(RoomNode rn)
+    {
+        return CanMoveSingleRoom(rn);
+    }
+
+    public bool CanMoveSingleRoom(RoomNode rn)
+    {
+        return Lg.roomList.Count < Lg.maxNumberOfRooms && rn.Type == addTo && rn.Get(dir) == null && !Lg.rooms.ContainsKey(rn.Position + directionMovementMap[dir]) && Lg.numberOfNonSpecialRooms < Lg.maxNumberOfNonSpecialRooms && replaceWith != RoomType.Start && rn.DoorCount() < RoomNode.MaxDoors(replaceWith);
+    }
+
+    public override string ToString()
+    {
+        return "addTo: " + addTo + ", replaceWith: " + replaceWith + ", dir: " + dir;
+    }
+
+    public MoveSingleRoom(RoomType aT, RoomType rW, Direction d)
+    {
+        addTo = aT;
+        replaceWith = rW;
+        dir = d;
+    }
+}
+
 class AddNonSpecialRoom : AddSingleRoom
 {
     public override bool IsApplicable(RoomNode rn)
     {
-        return LimitCheck(rn) && Lg.numberOfNonSpecialRooms < Lg.maxNumberOfNonSpecialRooms && toAdd != RoomType.Boss && toAdd != RoomType.Loot;
+        return CanAddSingleRoom(rn) && Lg.numberOfNonSpecialRooms < Lg.maxNumberOfNonSpecialRooms && toAdd != RoomType.Boss && toAdd != RoomType.Loot;
     }
 
     public AddNonSpecialRoom(RoomType aT, RoomType tA, Direction d)
@@ -78,7 +135,7 @@ class AddLootRoom : AddSingleRoom
 
     public override bool IsApplicable(RoomNode rn)
     {
-        return LimitCheck(rn) && Lg.numberOfLootRooms < Lg.maxNumberOfLootRooms;
+        return CanAddSingleRoom(rn) && Lg.numberOfLootRooms < Lg.maxNumberOfLootRooms;
     }
     public override string ToString()
     {
@@ -101,7 +158,7 @@ class AddBossRoom : AddSingleRoom
 
     public override bool IsApplicable(RoomNode rn)
     {
-        return LimitCheck(rn) && Lg.numberOfBossRooms < Lg.maxNumberOfBossRooms;
+        return CanAddSingleRoom(rn) && Lg.numberOfBossRooms < Lg.maxNumberOfBossRooms;
     }
     public override string ToString()
     {
@@ -114,6 +171,3 @@ class AddBossRoom : AddSingleRoom
         dir = d;
     }
 }
-
-
-
