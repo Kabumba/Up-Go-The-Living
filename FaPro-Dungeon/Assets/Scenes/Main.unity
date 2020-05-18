@@ -684,6 +684,7 @@ MonoBehaviour:
   numberOfNonSpecialRooms: 0
   maxNumberOfNonSpecialRooms: 0
   maxNumberOfRooms: 0
+  Dgd: {fileID: 11400000, guid: ff36c61d191b83b46893904038eb20e4, type: 2}
 --- !u!1 &1159579208
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,7 +853,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!4 &1183684412
 Transform:
   m_ObjectHideFlags: 0

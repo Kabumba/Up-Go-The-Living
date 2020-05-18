@@ -11,7 +11,7 @@ public class DungeonGenerator : MonoBehaviour
 
     private void Start()
     {
-        Lg.Awake();
+        Lg.Initialize();
         rooms = Lg.GetLayout();
         SpawnRooms(rooms);
     }
