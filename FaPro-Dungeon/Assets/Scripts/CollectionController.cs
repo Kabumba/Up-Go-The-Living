@@ -46,7 +46,6 @@ public class CollectionController : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = item.itemImage;
         Destroy(GetComponent<PolygonCollider2D>());
         gameObject.AddComponent<PolygonCollider2D>();
-        gameObject.GetComponent<PolygonCollider2D>().isTrigger = true;
     }
     
     //Statuswertänderungen wenn das Item eingesammelt wird.

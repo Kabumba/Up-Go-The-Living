@@ -7,24 +7,24 @@ public class GameController : MonoBehaviour
 {
 
     public static GameController instance;
-    
-    public static int health = 6;
 
-    public static int maxHealth = 6;
+    private static int health = 6;
 
-    public static int coins = 0;
+    private static int maxHealth = 6;
 
-    public static float damage = 3.5f;
+    private static int coins = 0;
 
-    public static float moveSpeed = 4;
+    private static float damage = 3.5f;
 
-    public static float fireRate = 0.5f;
+    private static float moveSpeed = 4;
 
-    public static float range = 23.75f;
+    private static float fireRate = 0.5f;
 
-    public static float bulletSpeed = 7f;
+    private static float range = 7f;
 
-    public static float bulletSize = 0.5f;
+    private static float bulletSpeed = 7f;
+
+    private static float bulletSize = 0.5f;
 
     public static int Health { get => health; set => health = value; }
 
