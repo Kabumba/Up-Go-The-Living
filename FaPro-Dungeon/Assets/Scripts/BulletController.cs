@@ -26,6 +26,7 @@ public class BulletController : MonoBehaviour
     {
         damage = GameController.Damage;
         range = GameController.Range;
+        lifeTime = range / 30f;
         StartCoroutine(DeathDelay());
         if (!isEnemyBullet)
         {

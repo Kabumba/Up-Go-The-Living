@@ -1,22 +1,45 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 public enum RoomType
 {
-    Start,
-    Boss,
-    Loot,
-    Enemy,
+    Start = 0,
+    Boss = 1,
+    Loot = 2,
+    Enemy4 = 3,
+    Enemy3 = 4,
+    Enemy2 = 5,
+    Enemy1 = 6
 }
 
 public enum Direction
 {
-    up,
-    down,
-    left,
-    right
+    up = 0,
+    right = 1,
+    down = 2,
+    left = 3,
+}
+
+static class Directions
+{
+    public static readonly Dictionary<Direction, Vector2Int> dirToVector2 = new Dictionary<Direction, Vector2Int>
+    {
+        {Direction.up, Vector2Int.up },
+        {Direction.left, Vector2Int.left },
+        {Direction.down, Vector2Int.down },
+        {Direction.right, Vector2Int.right }
+    };
+
+    public static readonly Dictionary<Direction, Direction> opposite = new Dictionary<Direction, Direction>
+    {
+        {Direction.up, Direction.down },
+        {Direction.left, Direction.right },
+        {Direction.down, Direction.up },
+        {Direction.right, Direction.left }
+    };
 }
 
 
@@ -42,13 +65,43 @@ public class RoomNode
         Position = pos;
     }
 
-    public static readonly Dictionary<Direction, Vector2Int> directionMovementMap = new Dictionary<Direction, Vector2Int>
+    public static int MaxDoors(RoomType t)
     {
-        {Direction.up, Vector2Int.up },
-        {Direction.left, Vector2Int.left },
-        {Direction.down, Vector2Int.down },
-        {Direction.right, Vector2Int.right }
-    };
+        switch (t)
+        {
+            case RoomType.Start:
+                return 4;
+            case RoomType.Boss:
+                return 1;
+            case RoomType.Loot:
+                return 1;
+            case RoomType.Enemy1:
+                return 1;
+            case RoomType.Enemy2:
+                return 2;
+            case RoomType.Enemy3:
+                return 3;
+            case RoomType.Enemy4:
+                return 4;
+        }
+        return 4;
+    }
+
+    public int DoorCount()
+    {
+        int count = 0;
+        foreach (Direction dir in Enum.GetValues(typeof(Direction)))
+        {
+            if (Get(dir) != null)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+    
 
     //Erzeugt einen neuen Raum vom Typ t in Richtung dir vom ausrufenden Raum aus.
     public RoomNode Create(RoomType t, Direction dir)
@@ -73,10 +126,40 @@ public class RoomNode
                 newR.Left = this;
                 break;
         }
-        newR.Position = Position + directionMovementMap[dir];
-        Lg.rooms.Add(newR.Position,newR);
+        newR.Position = Position + Directions.dirToVector2[dir];
+        Lg.rooms.Add(newR.Position, newR);
         Lg.roomList.Add(newR);
         newR.Lg = Lg;
+
+        //Neuen Raum wenn möglich mit benachbarten Räumen verbinden
+        int doorsleft = MaxDoors(newR.Type) - newR.DoorCount();
+        if (doorsleft > 0)
+        {
+            List<Direction> doorlessWalls = newR.GetDoorlessWalls();
+            for (int i = 0; i < doorsleft; i++)
+            {
+                int dlc = doorlessWalls.Count;
+                for (int j = 0; j < dlc; j++)
+                {
+                    if (doorlessWalls.Count > 0)
+                    {
+                        Direction randomDirection = doorlessWalls[Mathf.RoundToInt(UnityEngine.Random.Range(-0.5f, doorlessWalls.Count - 0.5f))];
+                        Vector2Int randomPostion = newR.Position + Directions.dirToVector2[randomDirection];
+                        if (Lg.rooms.ContainsKey(randomPostion))
+                        {
+                            RoomNode connectTo = Lg.rooms[randomPostion];
+                            if (connectTo.Get(Directions.opposite[randomDirection]) == null && MaxDoors(connectTo.Type) > connectTo.DoorCount())
+                            {
+                                Set(randomDirection, connectTo);
+                                connectTo.Set(Directions.opposite[randomDirection], newR);
+                                break;
+                            }
+                        }
+                        doorlessWalls.Remove(randomDirection);
+                    }
+                }
+            }
+        }
 
         //Raumanzahl updaten
         switch (t)
@@ -88,7 +171,7 @@ public class RoomNode
                 Lg.numberOfBossRooms++;
                 break;
             default:
-                Lg.maxNumberOfNonSpecialRooms++;
+                Lg.numberOfNonSpecialRooms++;
                 break;
         }
         return newR;
@@ -110,44 +193,70 @@ public class RoomNode
         return null;
     }
 
+    public void Set(Direction dir, RoomNode rn)
+    {
+        switch (dir)
+        {
+            case Direction.up:
+                Up = rn;
+                break;
+            case Direction.down:
+                Down = rn;
+                break;
+            case Direction.left:
+                Left = rn;
+                break;
+            case Direction.right:
+                Right = rn;
+                break;
+        }
+    }
+    public List<Direction> GetDoorlessWalls()
+    {
+        List<Direction> doorlessWalls = new List<Direction>();
+        foreach (Direction dir in Enum.GetValues(typeof(Direction)))
+        {
+            if (Get(dir) == null)
+            {
+                doorlessWalls.Add(dir);
+            }
+        }
+        return doorlessWalls;
+    }
+
 }
 
-public  class LayoutGenerator : MonoBehaviour
+public class LayoutGenerator : MonoBehaviour
 {
-    public Dictionary<Vector2Int,RoomNode> rooms;
-    public List<RoomNode> roomList;
 
-    [HideInInspector]
+
     public int numberOfBossRooms = 0;
 
-    [HideInInspector]
     public int maxNumberOfBossRooms;
 
-    [HideInInspector]
     public int numberOfLootRooms = 0;
 
-    [HideInInspector]
     public int maxNumberOfLootRooms;
 
-    [HideInInspector]
     public int numberOfNonSpecialRooms = 0;
 
-    [HideInInspector]
     public int maxNumberOfNonSpecialRooms;
 
-    [HideInInspector]
     public int maxNumberOfRooms;
 
-    private List<RoomGenerationRule> rules;
+    public Dictionary<Vector2Int, RoomNode> rooms;
 
-    private DungeonGenerationData Dgd;
+    public List<RoomNode> roomList;
 
-    public void Awake()
+    private List<RoomGenerationRule>[][] rules;
+
+    public DungeonGenerationData Dgd;
+
+    public void Initialize()
     {
-        Dgd = (DungeonGenerationData) ScriptableObject.CreateInstance("DungeonGenerationData"); ;
         maxNumberOfBossRooms = Dgd.numberOfBossRooms;
         maxNumberOfLootRooms = Dgd.numberOfLootRooms;
-        maxNumberOfRooms = Mathf.RoundToInt(Random.Range(Dgd.minNumberOfRooms - 0.5f, Dgd.maxNumberOfRooms + 0.5f));
+        maxNumberOfRooms = Mathf.RoundToInt(UnityEngine.Random.Range(Dgd.minNumberOfRooms - 0.5f, Dgd.maxNumberOfRooms + 0.5f));
         maxNumberOfNonSpecialRooms = MaxNumberOfNonSpecialRooms();
         InitializeRooms();
         InitializeRules();
@@ -163,11 +272,13 @@ public  class LayoutGenerator : MonoBehaviour
     {
         rooms = new Dictionary<Vector2Int, RoomNode>();
         roomList = new List<RoomNode>();
-        RoomNode start = new RoomNode(RoomType.Start, new Vector2Int(0, 0));
-        start.Lg = this;
-
+        RoomNode start = new RoomNode(RoomType.Start, new Vector2Int(0, 0))
+        {
+            Lg = this
+        };
         rooms.Add(new Vector2Int(0, 0), start);
         roomList.Add(start);
+        numberOfNonSpecialRooms++;
     }
 
     public Dictionary<Vector2Int, RoomNode> GetLayout()
@@ -190,14 +301,21 @@ public  class LayoutGenerator : MonoBehaviour
         {
             workableRooms.Add(rn);
         }
-        while (workableRooms.Count > 0) {
-            RoomNode randomRoom = workableRooms[Mathf.RoundToInt(Random.Range(-0.5f, workableRooms.Count - 0.5f))];
+        while (roomList.Count < maxNumberOfRooms && workableRooms.Count > 0)
+        {
+            RoomNode randomRoom = workableRooms[Mathf.RoundToInt(UnityEngine.Random.Range(-0.5f, workableRooms.Count - 0.5f))];
             applicableRules = new List<RoomGenerationRule>();
-            foreach (RoomGenerationRule rule in rules)
+            List<Direction> doorlessWalls = randomRoom.GetDoorlessWalls();
+            if (doorlessWalls.Count != 0)
             {
-                if (rule.IsApplicable(randomRoom))
+                Direction randomDirection = doorlessWalls[Mathf.RoundToInt(UnityEngine.Random.Range(-0.5f, doorlessWalls.Count - 0.5f))];
+                List<RoomGenerationRule> narrowedRules = rules[(int)randomRoom.Type][(int)randomDirection];
+                foreach (RoomGenerationRule rule in narrowedRules)
                 {
-                    applicableRules.Add(rule);
+                    if (rule.IsApplicable(randomRoom))
+                    {
+                        applicableRules.Add(rule);
+                    }
                 }
             }
             if (applicableRules.Count == 0)
@@ -206,8 +324,10 @@ public  class LayoutGenerator : MonoBehaviour
             }
             else
             {
-                randomRule = applicableRules[Mathf.RoundToInt(Random.Range(-0.5f, applicableRules.Count - 0.5f))];
+                randomRule = applicableRules[Mathf.RoundToInt(UnityEngine.Random.Range(-0.5f, applicableRules.Count - 0.5f))];
                 randomRule.Apply(randomRoom);
+                print(randomRule.ToString());
+                print("numberOfnonspecialRooms: " + numberOfNonSpecialRooms);
                 workableRooms = new List<RoomNode>();
                 foreach (RoomNode rn in roomList)
                 {
@@ -216,36 +336,85 @@ public  class LayoutGenerator : MonoBehaviour
             }
         }
     }
-    
+
+    //Erstellt alle Ersetzungsregeln, nach denen Dungeonsräume angeordnet generiert werden können.
     private void InitializeRules()
     {
-        rules = new List<RoomGenerationRule>();
-        rules.Add(new Rule1());
-        rules.Add(new Rule2());
-        rules.Add(new Rule3());
-        rules.Add(new Rule4());
-        rules.Add(new Rule5());
-        rules.Add(new Rule6());
-        rules.Add(new Rule7());
-        rules.Add(new Rule8());
-        rules.Add(new Rule9());
-        rules.Add(new Rule10());
-        rules.Add(new Rule11());
-        rules.Add(new Rule12());
-        rules.Add(new Rule13());
-        rules.Add(new Rule14());
-        rules.Add(new Rule15());
-        rules.Add(new Rule16());
-        rules.Add(new Rule17());
-        rules.Add(new Rule18());
-        rules.Add(new Rule19());
-        rules.Add(new Rule20());
-
-        foreach(RoomGenerationRule rule in rules)
+        //Rules Datenstruktor initialisieren
+        int numberOfRoomTypes = 0;
+        foreach (RoomType rT in Enum.GetValues(typeof(RoomType)))
         {
-            rule.Lg = this;
-            //print(rule.ToString());
+            numberOfRoomTypes++;
+        }
+        rules = new List<RoomGenerationRule>[numberOfRoomTypes][];
+        for (int i = 0; i < numberOfRoomTypes; i++)
+        {
+            rules[i] = new List<RoomGenerationRule>[4];
+            for (int j = 0; j < 4; j++)
+            {
+                rules[i][j] = new List<RoomGenerationRule>();
+            }
+        }
+
+        //Regeln erstellen
+        foreach (Direction dir in Enum.GetValues(typeof(Direction)))
+        {
+            foreach (RoomType addTo in Enum.GetValues(typeof(RoomType)))
+            {
+                //An Räumen mit nur einer Tür kann kein neuer Raum generiert werden 
+                if (addTo != RoomType.Boss && addTo != RoomType.Loot && addTo != RoomType.Enemy1)
+                {
+                    //Der Bossraum kann nicht am Startraum generiert werden
+                    if (addTo != RoomType.Start)
+                    {
+                        //Bossraumregel hinzufügen
+                        rules[(int)addTo][(int)dir].Add(new AddBossRoom(addTo, dir));
+                    }
+                    //Lootraumregel hinzufügen
+                    rules[(int)addTo][(int)dir].Add(new AddLootRoom(addTo, dir));
+                    foreach (RoomType toAdd in Enum.GetValues(typeof(RoomType)))
+                    {
+                        //Starträume können nicht generiert werden, Boss und Loot haben Sonderregeln
+                        if (toAdd != RoomType.Start && toAdd != RoomType.Boss && toAdd != RoomType.Loot)
+                        {
+                            //Gegnerraumregel hinzufügen
+                            rules[(int)addTo][(int)dir].Add(new AddNonSpecialRoom(addTo, toAdd, dir));
+                        }
+                    }
+                }
+                //Verschieben von Räumen um Situationen aufzubrechen in denen kein weiterer Raum mehr generiert werden kann. 
+                foreach (RoomType replaceWith in Enum.GetValues(typeof(RoomType)))
+                {
+                    if (RoomNode.MaxDoors(replaceWith) <= RoomNode.MaxDoors(addTo))
+                    {
+                        continue;
+                    }
+                    //Der Bossraum kann nur an das Ende von Gängen verschoben werden.
+                    if (addTo == RoomType.Boss)
+                    {
+                        if (replaceWith == RoomType.Enemy2)
+                        {
+                            rules[(int)addTo][(int)dir].Add(new MoveSingleRoom(addTo, replaceWith, dir));
+                        }
+                    }
+                    else
+                    {
+                        rules[(int)addTo][(int)dir].Add(new MoveSingleRoom(addTo, replaceWith, dir));
+                    }
+                }
+            }
+        }
+
+        //LayoutGenerator in den Regeln anmelden
+        foreach (List<RoomGenerationRule>[] i in rules)
+        {
+            foreach (List<RoomGenerationRule> j in i)
+            {
+                foreach (RoomGenerationRule rule in j)
+                {
+                    rule.Lg = this;
+                }
+            }
         }
     }
-
 }
