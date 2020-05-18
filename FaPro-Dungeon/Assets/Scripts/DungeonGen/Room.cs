@@ -37,21 +37,20 @@ public class Room : MonoBehaviour
         foreach (Door d in ds)
         {
             doors.Add(d);
-            if (d.doorType == Door.DoorType.right)
+            switch (d.doorType)
             {
-                rightDoor = d;
-            }
-            if(d.doorType == Door.DoorType.left)
-            {
-                leftDoor = d;
-            }
-            if(d.doorType == Door.DoorType.top)
-            {
-                topDoor = d;
-            }
-            if(d.doorType == Door.DoorType.bottom)
-            {
-                bottomDoor = d;
+                case Door.DoorType.right:
+                    rightDoor = d;
+                    break;
+                case Door.DoorType.left:
+                    leftDoor = d;
+                    break;
+                case Door.DoorType.top:
+                    topDoor = d;
+                    break;
+                case Door.DoorType.bottom:
+                    bottomDoor = d;
+                    break;
             }
         }
 
@@ -72,33 +71,24 @@ public class Room : MonoBehaviour
     {
         foreach(Door door in doors)
         {
-            if (door.doorType == Door.DoorType.right)
+            switch (door.doorType)
             {
-                if(GetRight() == null)
-                {
-                    door.gameObject.SetActive(false);
-                }
-            }
-            if (door.doorType == Door.DoorType.left)
-            {
-                if (GetLeft() == null)
-                {
-                    door.gameObject.SetActive(false);
-                }
-            }
-            if (door.doorType == Door.DoorType.top)
-            {
-                if (GetTop() == null)
-                {
-                    door.gameObject.SetActive(false);
-                }
-            }
-            if (door.doorType == Door.DoorType.bottom)
-            {
-                if (GetBottom() == null)
-                {
-                    door.gameObject.SetActive(false);
-                }
+                case Door.DoorType.right:
+                    if (GetRight() == null)
+                        door.gameObject.SetActive(false);
+                    break;
+                case Door.DoorType.left:
+                    if (GetLeft() == null)
+                        door.gameObject.SetActive(false);
+                    break;
+                case Door.DoorType.top:
+                    if (GetTop() == null)
+                        door.gameObject.SetActive(false);
+                    break;
+                case Door.DoorType.bottom:
+                    if (GetBottom() == null)
+                        door.gameObject.SetActive(false);
+                    break;
             }
         }
     }

@@ -20,8 +20,8 @@ public class GridController : MonoBehaviour
     void Awake()
     {
         room = GetComponentInParent<Room>();
-        grid.columns = room.Width - 2;
-        grid.rows = room.Height - 2;
+        grid.columns = room.Width - 1;
+        grid.rows = room.Height - 1;
         GenerateGrid();
     }
 
@@ -38,11 +38,10 @@ public class GridController : MonoBehaviour
                 go.GetComponent<Transform>().position = new Vector2(x - (grid.columns - grid.horizontalOffset), y - (grid.rows - grid.verticalOffset));
                 go.name = "X: " + x + ", Y: " + y;
                 availablePoints.Add(go.transform.position);
-                go.SetActive(false);
+                //go.SetActive(false);
             }
         }
 
         GetComponentInParent<ObjectRoomSpawner>().InitialiseObjectSpawning();
     }
-
 }

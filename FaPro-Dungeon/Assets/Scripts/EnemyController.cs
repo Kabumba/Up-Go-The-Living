@@ -27,9 +27,9 @@ public class EnemyController : MonoBehaviour
 
     public EnemyType enemyType;
 
-    public float range = 5;
+    public float range = 5f;
 
-    public float speed = 3;
+    public float speed = 3f;
 
     public float attackRange;
 
@@ -59,9 +59,6 @@ public class EnemyController : MonoBehaviour
     {
         switch (currentState)
         {
-            case (EnemyState.Idle):
-                Idle();
-                break;
             case (EnemyState.Wander):
                 Wander();
                 break;
@@ -78,10 +75,10 @@ public class EnemyController : MonoBehaviour
 
         if (!notInRoom)
         {
-            if (IsPlayerInRange() && currentState != EnemyState.Die)
+            if (IsPlayerInRange(range) && currentState != EnemyState.Die)
             {
                 currentState = EnemyState.Follow;
-            } else if (!IsPlayerInRange() && currentState != EnemyState.Die)
+            } else if (!IsPlayerInRange(range) && currentState != EnemyState.Die)
             {
                 currentState = EnemyState.Wander;
             }
@@ -96,7 +93,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private bool IsPlayerInRange()
+    private bool IsPlayerInRange(float range)
     {
         return Vector3.Distance(transform.position, player.transform.position) <= range;
     }
@@ -105,15 +102,10 @@ public class EnemyController : MonoBehaviour
     {
         chooseDir = true;
         yield return new WaitForSeconds(Random.Range(1f, 3f)); //wählt in zufälligen Abständen neue Richtung
-        Vector3 randomDir = new Vector3(0, 0, Random.Range(0, 360)); //wählt zufällige Richtung
+        randomDir = new Vector3(0, 0, Random.Range(0, 360)); //wählt zufällige Richtung
         Quaternion nextRotation = Quaternion.Euler(randomDir);
         transform.rotation = Quaternion.Lerp(transform.rotation, nextRotation, Random.Range(0.5f, 2.5f)); //dreht sich über eine zufällige Zeit in diese Richtung
         chooseDir = false;
-    }
-
-    void Idle()
-    {
-        ;
     }
 
     //bewegt sich ziellos herum
@@ -124,7 +116,7 @@ public class EnemyController : MonoBehaviour
             StartCoroutine(ChooseDirection());
         }
         transform.position += -transform.right * speed * Time.deltaTime;
-        if (IsPlayerInRange())
+        if (IsPlayerInRange(range))
         {
             currentState = EnemyState.Follow;
         }
