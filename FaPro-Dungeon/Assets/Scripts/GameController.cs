@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
 
     private static float fireRate = 0.5f;
 
-    private static float range = 7f;
+    private static float range = 23.75f;
 
     private static float bulletSpeed = 7f;
 
