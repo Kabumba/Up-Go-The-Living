@@ -62,7 +62,7 @@ public class Room : MonoBehaviour
     {
         if(name.Contains("End") && !updatedDoors)
         {
-            RemoveUnconnectedDoors();
+            //RemoveUnconnectedDoors();
             updatedDoors = true;
         }
     }

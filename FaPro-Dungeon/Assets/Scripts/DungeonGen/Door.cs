@@ -14,7 +14,7 @@ public class Door : MonoBehaviour
 
     private GameObject player;
 
-    private float widthOffset = 4f;
+    private float widthOffset = 1f;
 
     public GameObject doorCollider;
 

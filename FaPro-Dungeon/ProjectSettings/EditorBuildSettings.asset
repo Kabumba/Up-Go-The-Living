@@ -6,21 +6,99 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Rooms/Basement1.unity
+    path: Assets/Scenes/Rooms/1 Door/Basement1.unity
+    guid: ca08762735a4eee499fbc7d4ef06625e
+  - enabled: 1
+    path: Assets/Scenes/Rooms/1 Door/Basement2.unity
+    guid: 3f92f7a9af4873b4db8c8628437a51c0
+  - enabled: 1
+    path: Assets/Scenes/Rooms/1 Door/Basement3.unity
+    guid: e8f2d05506dbed342b99fb6d0ceb341a
+  - enabled: 1
+    path: Assets/Scenes/Rooms/1 Door/Basement4.unity
+    guid: 678240c1f0cb85a44a6619bc9d36e0ba
+  - enabled: 1
+    path: Assets/Scenes/Rooms/2 Doors/Basement5.unity
+    guid: 3882513699acd0f49b39199b65f401b3
+  - enabled: 1
+    path: Assets/Scenes/Rooms/2 Doors/Basement6.unity
+    guid: f5c0b6b71d980904a8b984037036d092
+  - enabled: 1
+    path: Assets/Scenes/Rooms/3 Doors/Basement7.unity
+    guid: 456cdaec5d6cb2141bf2647a322609d3
+  - enabled: 1
+    path: Assets/Scenes/Rooms/3 Doors/Basement8.unity
+    guid: 25dff076267b2084e869a23a44ec3118
+  - enabled: 1
+    path: Assets/Scenes/Rooms/3 Doors/Basement9.unity
+    guid: aeba5f4372a24e54aa2927703d432b4b
+  - enabled: 1
+    path: Assets/Scenes/Rooms/3 Doors/Basement10.unity
+    guid: 31d8b85040bc7334da375c2c98ac1ae0
+  - enabled: 1
+    path: Assets/Scenes/Rooms/4 Doors/Basement11.unity
     guid: 9a06fc25a85530d4f9219c8c83306910
   - enabled: 1
-    path: Assets/Scenes/Rooms/Basement2.unity
-    guid: 3e5e2f3f63f01f0459d0cc73d0e94af7
-  - enabled: 1
-    path: Assets/Scenes/Rooms/Basement3.unity
-    guid: 47b497e688a9e004a8727e4b8d1220e2
-  - enabled: 1
-    path: Assets/Scenes/Rooms/Basement4.unity
-    guid: 5e014f7f9f5fbb74c877105977106c26
-  - enabled: 1
     path: Assets/Scenes/Rooms/BasementEnd.unity
-    guid: c6ecd48a909cb2d41a89935539a9a506
+    guid: e83637ba30e3e844a9966658ff616bea
   - enabled: 1
     path: Assets/Scenes/Rooms/BasementStart.unity
-    guid: 631b9baa2d40fbb49854789f85655163
+    guid: 59d04032d7e622b4d96e8ed7b12a59d4
+  - enabled: 1
+    path: Assets/Scenes/Rooms/2 Doors/Basement12.unity
+    guid: accf7becd1854d4479a0d44a949f8317
+  - enabled: 1
+    path: Assets/Scenes/Rooms/2 Doors/Basement13.unity
+    guid: 064ae98e799d60e488ef33a09e3d6ad2
+  - enabled: 1
+    path: Assets/Scenes/Rooms/2 Doors/Basement14.unity
+    guid: 37e33865f5bb2c24b975a50a7d9a1ba9
+  - enabled: 1
+    path: Assets/Scenes/Rooms/2 Doors/Basement15.unity
+    guid: ecdccecd27c7a124ca5d339c96b8a8b7
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StartRooms/BasementStart1.unity
+    guid: afb5482fcb04f7b448d66ec347690690
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StartRooms/BasementStart2.unity
+    guid: d00ffbde02a01f94ca957d675e19f0a6
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StartRooms/BasementStart3.unity
+    guid: f8691a31aae6f80499bfacd3533674fd
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StartRooms/BasementStart4.unity
+    guid: 3fc921f063280514785ed36cf180c4c4
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StartRooms/BasementStart5.unity
+    guid: 32889f16110802f4098b4d20f23917b1
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StartRooms/BasementStart6.unity
+    guid: 330963cc22f1c7244963ce5dd2356d4c
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StartRooms/BasementStart7.unity
+    guid: 898a12084e4e3d74d93db05d7942693e
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StartRooms/BasementStart8.unity
+    guid: 4494da21d37f2be42a8cdb723ffe6d00
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StartRooms/BasementStart9.unity
+    guid: dc6c36d651690a74c9f208956023a997
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StartRooms/BasementStart10.unity
+    guid: 96f44794e9b11e74e88e08c8fef7e43d
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StartRooms/BasementStart11.unity
+    guid: 7a52d0141a50ef74f948ce9cc29c1b22
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StartRooms/BasementStart12.unity
+    guid: c7e8027d22babfc4a8f800b284036b7c
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StartRooms/BasementStart13.unity
+    guid: 89294c42b50e1764598d450f4bb65a8b
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StartRooms/BasementStart14.unity
+    guid: 78d6db37a795d644cb83a9eadc125f04
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StartRooms/BasementStart15.unity
+    guid: 335ce845b53712640acc1db9fdc0e4a3
   m_configObjects: {}
