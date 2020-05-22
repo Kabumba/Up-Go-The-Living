@@ -99,10 +99,7 @@ public class RoomNode
         }
         return count;
     }
-
-
     
-
     //Erzeugt einen neuen Raum vom Typ t in Richtung dir vom ausrufenden Raum aus.
     public RoomNode Create(RoomType t, Direction dir)
     {
@@ -211,6 +208,7 @@ public class RoomNode
                 break;
         }
     }
+
     public List<Direction> GetDoorlessWalls()
     {
         List<Direction> doorlessWalls = new List<Direction>();
@@ -262,10 +260,10 @@ public class LayoutGenerator : MonoBehaviour
         InitializeRooms();
         InitializeRules();
         GenerateLayout();
-        printLayout();
+        //printLayout();
     }
 
-    public void StartroomError()
+    private void StartroomError()
     {
         int x = 0;
    
@@ -282,7 +280,7 @@ public class LayoutGenerator : MonoBehaviour
         }
     }
 
-    public void printLayout()
+    private void printLayout()
     {
         print("printig Layout:");
         
@@ -333,6 +331,11 @@ public class LayoutGenerator : MonoBehaviour
     private void GenerateLayout()
     {
         List<RoomGenerationRule> applicableRules;
+        RoomNode randomRoom;
+        Direction randomDirection;
+        List<RoomGenerationRule> narrowedRules;
+        float totalweights;
+        float randomWeight;
         List<RoomNode> workableRooms = new List<RoomNode>();
         RoomGenerationRule randomRule;
         foreach (RoomNode rn in roomList)
@@ -341,18 +344,20 @@ public class LayoutGenerator : MonoBehaviour
         }
         while (roomList.Count < maxNumberOfRooms && workableRooms.Count > 0)
         {
-            RoomNode randomRoom = workableRooms[Mathf.RoundToInt(UnityEngine.Random.Range(-0.5f, workableRooms.Count - 0.5f))];
+            totalweights = 0;
+            randomRoom = workableRooms[Mathf.RoundToInt(UnityEngine.Random.Range(-0.5f, workableRooms.Count - 0.5f))];
             applicableRules = new List<RoomGenerationRule>();
             List<Direction> doorlessWalls = randomRoom.GetDoorlessWalls();
             if (doorlessWalls.Count != 0)
             {
-                Direction randomDirection = doorlessWalls[Mathf.RoundToInt(UnityEngine.Random.Range(-0.5f, doorlessWalls.Count - 0.5f))];
-                List<RoomGenerationRule> narrowedRules = rules[(int)randomRoom.Type][(int)randomDirection];
+                randomDirection = doorlessWalls[Mathf.RoundToInt(UnityEngine.Random.Range(-0.5f, doorlessWalls.Count - 0.5f))];
+                narrowedRules = rules[(int)randomRoom.Type][(int)randomDirection];
                 foreach (RoomGenerationRule rule in narrowedRules)
                 {
                     if (rule.IsApplicable(randomRoom))
                     {
                         applicableRules.Add(rule);
+                        totalweights += rule.weight;
                     }
                 }
             }
@@ -362,7 +367,15 @@ public class LayoutGenerator : MonoBehaviour
             }
             else
             {
-                randomRule = applicableRules[Mathf.RoundToInt(UnityEngine.Random.Range(-0.5f, applicableRules.Count - 0.5f))];
+                randomWeight = UnityEngine.Random.Range(0f, totalweights);
+                float weightCounter = 0f;
+                int ruleCounter = -1;
+                while (weightCounter <= randomWeight)
+                {
+                    ruleCounter++;
+                    weightCounter += applicableRules[ruleCounter].weight;
+                }
+                randomRule = applicableRules[ruleCounter];
                 randomRule.Apply(randomRoom);
                 //print(randomRule.ToString());
                 //print("numberOfnonspecialRooms: " + numberOfNonSpecialRooms);
