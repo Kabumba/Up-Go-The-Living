@@ -226,6 +226,7 @@ public class RoomNode
 
 }
 
+
 public class LayoutGenerator : MonoBehaviour
 {
 
@@ -261,6 +262,33 @@ public class LayoutGenerator : MonoBehaviour
         InitializeRooms();
         InitializeRules();
         GenerateLayout();
+        //printLayout();
+    }
+
+    public void StartroomError()
+    {
+        int x = 0;
+   
+        foreach(RoomNode rn in roomList)
+        {
+            if (rn.Type == RoomType.Start)
+            {
+                x++;
+            }
+        }
+        if (x > 1)
+        {
+            print("Achtung! Es gibt " + x + " Starträume!");
+        }
+    }
+
+    public void printLayout()
+    {
+        print("printig Layout:");
+        foreach(RoomNode rn in roomList)
+        {
+            print(rn.Position + " " + rn.Type);
+        }
     }
 
     private int MaxNumberOfNonSpecialRooms()
@@ -278,12 +306,13 @@ public class LayoutGenerator : MonoBehaviour
         };
         rooms.Add(new Vector2Int(0, 0), start);
         roomList.Add(start);
+        StartroomError();
         numberOfNonSpecialRooms++;
     }
 
-    public Dictionary<Vector2Int, RoomNode> GetLayout()
+    public List<RoomNode> GetLayout()
     {
-        return rooms;
+        return roomList;
     }
 
     /*
@@ -399,7 +428,10 @@ public class LayoutGenerator : MonoBehaviour
                     }
                     else
                     {
-                        rules[(int)addTo][(int)dir].Add(new MoveSingleRoom(addTo, replaceWith, dir));
+                        if(addTo != RoomType.Start)
+                        {
+                            rules[(int)addTo][(int)dir].Add(new MoveSingleRoom(addTo, replaceWith, dir));
+                        }
                     }
                 }
             }

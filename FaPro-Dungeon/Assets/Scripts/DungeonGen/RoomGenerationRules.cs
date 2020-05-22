@@ -8,6 +8,8 @@ public abstract class RoomGenerationRule
 
     public int weight;
 
+    public RoomNode roomNode;
+
     public abstract void Apply(RoomNode rn);
 
     public abstract bool IsApplicable(RoomNode rn);
@@ -35,6 +37,7 @@ class AddSingleRoom : RoomGenerationRule
     public override void Apply(RoomNode rn)
     {
         rn.Create(toAdd, dir);
+        roomNode = rn;
     }
 
     public override bool IsApplicable(RoomNode rn)
@@ -44,12 +47,12 @@ class AddSingleRoom : RoomGenerationRule
 
     public bool CanAddSingleRoom(RoomNode rn)
     {
-        return Lg.roomList.Count < Lg.maxNumberOfRooms && rn.DoorCount() < RoomNode.MaxDoors(rn.Type) && rn.Type == addTo && rn.Get(dir) == null && !Lg.rooms.ContainsKey(rn.Position + directionMovementMap[dir]);
+        return Lg.roomList.Count < Lg.maxNumberOfRooms && rn.DoorCount() < RoomNode.MaxDoors(rn.Type) && rn.Type == addTo && rn.Get(dir) == null && !Lg.rooms.ContainsKey(rn.Position + directionMovementMap[dir]) && toAdd!=RoomType.Start;
     }
 
     public override string ToString()
     {
-        return "addTo: " + addTo + ", toAdd: " + toAdd + ", dir: " + dir;
+        return "AddSingleRoom: addTo: " + addTo + " at " + roomNode.Position + ", toAdd: " + toAdd + ", dir: " + dir;
     }
 
 }
@@ -60,8 +63,8 @@ class MoveSingleRoom : AddSingleRoom
 
     public override void Apply(RoomNode rn)
     {
-        rn.Create(toAdd, dir);
-        switch (toAdd)
+        rn.Create(addTo, dir);
+        switch (addTo)
         {
             case RoomType.Loot:
                 Lg.numberOfLootRooms--;
@@ -86,6 +89,7 @@ class MoveSingleRoom : AddSingleRoom
                 Lg.numberOfNonSpecialRooms++;
                 break;
         }
+        roomNode = rn;
     }
 
     public override bool IsApplicable(RoomNode rn)
@@ -100,7 +104,7 @@ class MoveSingleRoom : AddSingleRoom
 
     public override string ToString()
     {
-        return "addTo: " + addTo + ", replaceWith: " + replaceWith + ", dir: " + dir;
+        return "MoveSingleRoom: addTo: " + addTo + " at " + roomNode.Position + ", replaceWith: " + replaceWith + ", dir: " + dir;
     }
 
     public MoveSingleRoom(RoomType aT, RoomType rW, Direction d)
@@ -131,6 +135,7 @@ class AddLootRoom : AddSingleRoom
     public override void Apply(RoomNode rn)
     {
         rn.Create(RoomType.Loot, dir);
+        roomNode = rn;
     }
 
     public override bool IsApplicable(RoomNode rn)
@@ -139,7 +144,7 @@ class AddLootRoom : AddSingleRoom
     }
     public override string ToString()
     {
-        return "addTo: " + addTo + ", toAdd: Loot"+ ", dir: " + dir;
+        return "AddSingleRoom: addTo: " + addTo + " at " + roomNode.Position + ", toAdd: Loot, dir: " + dir;
     }
     public AddLootRoom(RoomType aT, Direction d)
     {
@@ -154,6 +159,7 @@ class AddBossRoom : AddSingleRoom
     public override void Apply(RoomNode rn)
     {
         rn.Create(RoomType.Boss, dir);
+        roomNode = rn;
     }
 
     public override bool IsApplicable(RoomNode rn)
@@ -162,7 +168,7 @@ class AddBossRoom : AddSingleRoom
     }
     public override string ToString()
     {
-        return "addTo: " + addTo + ", toAdd: Boss" + ", dir: " + dir;
+        return "AddSingleRoom: addTo: " + addTo + " at " + roomNode.Position + ", toAdd: Boss, dir: " + dir;
     }
     public AddBossRoom(RoomType aT, Direction d)
     {
