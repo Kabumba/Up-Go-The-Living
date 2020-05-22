@@ -355,8 +355,8 @@ public class LayoutGenerator : MonoBehaviour
             {
                 randomRule = applicableRules[Mathf.RoundToInt(UnityEngine.Random.Range(-0.5f, applicableRules.Count - 0.5f))];
                 randomRule.Apply(randomRoom);
-                print(randomRule.ToString());
-                print("numberOfnonspecialRooms: " + numberOfNonSpecialRooms);
+                //print(randomRule.ToString());
+                //print("numberOfnonspecialRooms: " + numberOfNonSpecialRooms);
                 workableRooms = new List<RoomNode>();
                 foreach (RoomNode rn in roomList)
                 {

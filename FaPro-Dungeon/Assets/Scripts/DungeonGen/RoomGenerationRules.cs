@@ -47,7 +47,7 @@ class AddSingleRoom : RoomGenerationRule
 
     public bool CanAddSingleRoom(RoomNode rn)
     {
-        return Lg.roomList.Count < Lg.maxNumberOfRooms && rn.DoorCount() < RoomNode.MaxDoors(rn.Type) && rn.Type == addTo && rn.Get(dir) == null && !Lg.rooms.ContainsKey(rn.Position + directionMovementMap[dir]) && toAdd!=RoomType.Start;
+        return Lg.roomList.Count < Lg.maxNumberOfRooms && rn.DoorCount() <RoomNode.MaxDoors(rn.Type) && rn.Type == addTo && rn.Get(dir) == null && !Lg.rooms.ContainsKey(rn.Position + directionMovementMap[dir]) && toAdd!=RoomType.Start;
     }
 
     public override string ToString()
