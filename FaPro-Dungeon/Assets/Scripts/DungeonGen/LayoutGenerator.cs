@@ -150,7 +150,7 @@ public class RoomNode
                             RoomNode connectTo = Lg.rooms[randomPostion];
                             if (connectTo.Get(Directions.opposite[randomDirection]) == null && MaxDoors(connectTo.Type) > connectTo.DoorCount())
                             {
-                                Set(randomDirection, connectTo);
+                                newR.Set(randomDirection, connectTo);
                                 connectTo.Set(Directions.opposite[randomDirection], newR);
                                 break;
                             }
@@ -262,7 +262,7 @@ public class LayoutGenerator : MonoBehaviour
         InitializeRooms();
         InitializeRules();
         GenerateLayout();
-        //printLayout();
+        printLayout();
     }
 
     public void StartroomError()
@@ -285,10 +285,19 @@ public class LayoutGenerator : MonoBehaviour
     public void printLayout()
     {
         print("printig Layout:");
-        foreach(RoomNode rn in roomList)
+        
+        foreach (RoomNode rn in roomList)
         {
             print(rn.Position + " " + rn.Type);
+            foreach (Direction dir in Enum.GetValues(typeof(Direction)))
+            {
+                if (rn.Get(dir) != null)
+                {
+                    print(dir);
+                }
+            }
         }
+        
     }
 
     private int MaxNumberOfNonSpecialRooms()
