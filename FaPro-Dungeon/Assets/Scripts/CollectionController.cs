@@ -4,7 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 
-public class Item
+public abstract class Item
 {
     public string name;
 
@@ -12,6 +12,29 @@ public class Item
 
     public Sprite itemImage;
 
+    //Aus der Klasse erben um festzulegen was passieren soll wenn das Item aufgesammelt wird.
+    public virtual void OnPickup()
+    {
+        //CollectionController.Destroy(gameObject);
+    }
+
+    //Aus der Klasse erben um festzulegen was das Item machen soll wenn man einen Schuss abfeuert.
+    public virtual void OnFire()
+    {
+
+    }
+
+    //Aus der Klasse erben um festzulegen was das Item bei jedem Frameupdate machen soll.
+    public virtual void OnUpdate()
+    {
+
+    }
+
+    //Aus der Klasse erben um festzulegen was das Item machen soll, wenn der Spieler Schaden kriegt.
+    public virtual void OnDamageTaken()
+    {
+
+    }
 }
 
 
@@ -33,12 +56,12 @@ public class CollectionController : MonoBehaviour
     public float fireRateChange;
 
     public float rangeChange;
-    
+
     public float bulletSpeedChange;
 
     public float bulletSizeChange;
 
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,11 +70,12 @@ public class CollectionController : MonoBehaviour
         Destroy(GetComponent<PolygonCollider2D>());
         gameObject.AddComponent<PolygonCollider2D>();
     }
-    
+
     //Statuswertänderungen wenn das Item eingesammelt wird.
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Player")
+        item.OnPickup();
+        if (collision.tag == "Player")
         {
             GameController.HealPlayer(healthChange);
             GameController.ChangeMaxHealth(maxHealthChange);

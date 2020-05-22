@@ -44,6 +44,8 @@ public class GameController : MonoBehaviour
 
     public static float BulletSize { get => bulletSize; set => bulletSize = value; }
 
+    public static List<Item> items;
+
     public Text healthText;
 
     public Text coinText;
@@ -55,6 +57,7 @@ public class GameController : MonoBehaviour
         {
             instance = this;
         }
+        items = new List<Item>();
     }
 
     // Update is called once per frame
@@ -62,6 +65,15 @@ public class GameController : MonoBehaviour
     {
         healthText.text = "Health: " + health;
         coinText.text = "Coins: " + coins;
+        UpdateItems();
+    }
+
+    void UpdateItems()
+    {
+        foreach(Item item in items)
+        {
+            item.OnUpdate();
+        }
     }
 
     public static void DamagePlayer(int damage)

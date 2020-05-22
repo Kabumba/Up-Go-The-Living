@@ -9,6 +9,8 @@ public enum EnemyState
     Follow,
     Die,
     Attack,
+    Freeze,
+    Flee,
 };
 
 public enum EnemyType
