@@ -24,63 +24,63 @@ public class DungeonGenerator : MonoBehaviour
         {
             if (room.Up != null && room.Right == null && room.Down == null && room.Left == null)
             {
-                RoomController.instance.LoadRoom("4", room.Position.x, room.Position.y);
+                RoomController.instance.LoadRoom("U", room.Position.x, room.Position.y);
             }
             if (room.Up == null && room.Right != null && room.Down == null && room.Left == null)
             {
-                RoomController.instance.LoadRoom("1", room.Position.x, room.Position.y);
+                RoomController.instance.LoadRoom("R", room.Position.x, room.Position.y);
             }
             if (room.Up == null && room.Right == null && room.Down != null && room.Left == null)
             {
-                RoomController.instance.LoadRoom("3", room.Position.x, room.Position.y);
+                RoomController.instance.LoadRoom("D", room.Position.x, room.Position.y);
             }
             if (room.Up == null && room.Right == null && room.Down == null && room.Left != null)
             {
-                RoomController.instance.LoadRoom("2", room.Position.x, room.Position.y);
+                RoomController.instance.LoadRoom("L", room.Position.x, room.Position.y);
             }
             if (room.Up != null && room.Right != null && room.Down != null && room.Left != null)
             {
-                RoomController.instance.LoadRoom("11", room.Position.x, room.Position.y);
+                RoomController.instance.LoadRoom("URDL", room.Position.x, room.Position.y);
             }
             if (room.Up != null && room.Right != null && room.Down == null && room.Left != null)
             {
-                RoomController.instance.LoadRoom("7", room.Position.x, room.Position.y);
+                RoomController.instance.LoadRoom("URL", room.Position.x, room.Position.y);
             }
             if (room.Up == null && room.Right != null && room.Down != null && room.Left != null)
             {
-                RoomController.instance.LoadRoom("8", room.Position.x, room.Position.y);
+                RoomController.instance.LoadRoom("RDL", room.Position.x, room.Position.y);
             }
             if (room.Up != null && room.Right == null && room.Down != null && room.Left != null)
             {
-                RoomController.instance.LoadRoom("9", room.Position.x, room.Position.y);
+                RoomController.instance.LoadRoom("UDL", room.Position.x, room.Position.y);
             }
             if (room.Up != null && room.Right != null && room.Down != null && room.Left == null)
             {
-                RoomController.instance.LoadRoom("10", room.Position.x, room.Position.y);
+                RoomController.instance.LoadRoom("URD", room.Position.x, room.Position.y);
             }
             if (room.Up != null && room.Right == null && room.Down != null && room.Left == null)
             {
-                RoomController.instance.LoadRoom("6", room.Position.x, room.Position.y);
+                RoomController.instance.LoadRoom("UD", room.Position.x, room.Position.y);
             }
             if (room.Up == null && room.Right != null && room.Down == null && room.Left != null)
             {
-                RoomController.instance.LoadRoom("5", room.Position.x, room.Position.y);
+                RoomController.instance.LoadRoom("RL", room.Position.x, room.Position.y);
             }
             if (room.Up == null && room.Right != null && room.Down != null && room.Left == null)
             {
-                RoomController.instance.LoadRoom("13", room.Position.x, room.Position.y);
+                RoomController.instance.LoadRoom("RD", room.Position.x, room.Position.y);
             }
             if (room.Up == null && room.Right == null && room.Down != null && room.Left != null)
             {
-                RoomController.instance.LoadRoom("14", room.Position.x, room.Position.y);
+                RoomController.instance.LoadRoom("DL", room.Position.x, room.Position.y);
             }
             if (room.Up != null && room.Right == null && room.Down == null && room.Left != null)
             {
-                RoomController.instance.LoadRoom("15", room.Position.x, room.Position.y);
+                RoomController.instance.LoadRoom("UL", room.Position.x, room.Position.y);
             }
             if (room.Up != null && room.Right != null && room.Down == null && room.Left == null)
             {
-                RoomController.instance.LoadRoom("12", room.Position.x, room.Position.y);
+                RoomController.instance.LoadRoom("UR", room.Position.x, room.Position.y);
             }
         }
     }
@@ -90,63 +90,63 @@ public class DungeonGenerator : MonoBehaviour
         RoomNode startRoom = rooms[0];
         if (startRoom.Up != null && startRoom.Right == null && startRoom.Down == null && startRoom.Left == null)
         {
-            RoomController.instance.LoadRoom("Start4", 0, 0);
+            RoomController.instance.LoadRoom("StartU", 0, 0);
         }
         if (startRoom.Up == null && startRoom.Right != null && startRoom.Down == null && startRoom.Left == null)
         {
-            RoomController.instance.LoadRoom("Start1", 0, 0);
+            RoomController.instance.LoadRoom("StartR", 0, 0);
         }
         if (startRoom.Up == null && startRoom.Right == null && startRoom.Down != null && startRoom.Left == null)
         {
-            RoomController.instance.LoadRoom("Start3", 0, 0);
+            RoomController.instance.LoadRoom("StartD", 0, 0);
         }
         if (startRoom.Up == null && startRoom.Right == null && startRoom.Down == null && startRoom.Left != null)
         {
-            RoomController.instance.LoadRoom("Start2", 0, 0);
+            RoomController.instance.LoadRoom("StartL", 0, 0);
         }
         if (startRoom.Up != null && startRoom.Right != null && startRoom.Down != null && startRoom.Left != null)
         {
-            RoomController.instance.LoadRoom("Start11", 0, 0);
+            RoomController.instance.LoadRoom("StartURDL", 0, 0);
         }
         if (startRoom.Up != null && startRoom.Right != null && startRoom.Down == null && startRoom.Left != null)
         {
-            RoomController.instance.LoadRoom("Start7", 0, 0);
+            RoomController.instance.LoadRoom("StartURL", 0, 0);
         }
         if (startRoom.Up == null && startRoom.Right != null && startRoom.Down != null && startRoom.Left != null)
         {
-            RoomController.instance.LoadRoom("Start8", 0, 0);
+            RoomController.instance.LoadRoom("StartRDL", 0, 0);
         }
         if (startRoom.Up != null && startRoom.Right == null && startRoom.Down != null && startRoom.Left != null)
         {
-            RoomController.instance.LoadRoom("Start9", 0, 0);
+            RoomController.instance.LoadRoom("StartUDL", 0, 0);
         }
         if (startRoom.Up != null && startRoom.Right != null && startRoom.Down != null && startRoom.Left == null)
         {
-            RoomController.instance.LoadRoom("Start10", 0, 0);
+            RoomController.instance.LoadRoom("StartURD", 0, 0);
         }
         if (startRoom.Up != null && startRoom.Right == null && startRoom.Down != null && startRoom.Left == null)
         {
-            RoomController.instance.LoadRoom("Start6", 0, 0);
+            RoomController.instance.LoadRoom("StartUD", 0, 0);
         }
         if (startRoom.Up == null && startRoom.Right != null && startRoom.Down == null && startRoom.Left != null)
         {
-            RoomController.instance.LoadRoom("Start5", 0, 0);
+            RoomController.instance.LoadRoom("StartRL", 0, 0);
         }
         if (startRoom.Up == null && startRoom.Right != null && startRoom.Down != null && startRoom.Left == null)
         {
-            RoomController.instance.LoadRoom("Start13", 0, 0);
+            RoomController.instance.LoadRoom("StartRD", 0, 0);
         }
         if (startRoom.Up == null && startRoom.Right == null && startRoom.Down != null && startRoom.Left != null)
         {
-            RoomController.instance.LoadRoom("Start14", 0, 0);
+            RoomController.instance.LoadRoom("StartDL", 0, 0);
         }
         if (startRoom.Up != null && startRoom.Right == null && startRoom.Down == null && startRoom.Left != null)
         {
-            RoomController.instance.LoadRoom("Start15", 0, 0);
+            RoomController.instance.LoadRoom("StartUL", 0, 0);
         }
         if (startRoom.Up != null && startRoom.Right != null && startRoom.Down == null && startRoom.Left == null)
         {
-            RoomController.instance.LoadRoom("Start12", 0, 0);
+            RoomController.instance.LoadRoom("StartUR", 0, 0);
         }
     }
 }
