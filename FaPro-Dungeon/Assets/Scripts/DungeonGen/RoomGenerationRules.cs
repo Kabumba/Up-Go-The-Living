@@ -6,7 +6,7 @@ public abstract class RoomGenerationRule
 {
     public LayoutGenerator Lg { set; get; }
 
-    public int weight;
+    public float weight = 1f;
 
     public RoomNode roomNode;
 
@@ -112,6 +112,35 @@ class MoveSingleRoom : AddSingleRoom
         addTo = aT;
         replaceWith = rW;
         dir = d;
+        switch (replaceWith)
+        {
+            case RoomType.Enemy2:
+                weight = 2f;
+                break;
+            case RoomType.Enemy4:
+                weight = 0.7f;
+                break;
+            default:
+                break;
+        }
+        switch (addTo)
+        {
+            case RoomType.Enemy1:
+                weight *= 1f/3f;
+                break;
+            case RoomType.Loot:
+                weight *= 1f / 3f;
+                break;
+            case RoomType.Boss:
+                weight *= 1f / 3f;
+                break;
+            case RoomType.Enemy2:
+                weight *= 2f / 3f;
+                break;
+            default:
+                break;
+        }
+        weight *= 0.4f;
     }
 }
 
@@ -127,6 +156,17 @@ class AddNonSpecialRoom : AddSingleRoom
         addTo = aT;
         toAdd = tA;
         dir = d;
+        switch (toAdd)
+        {
+            case RoomType.Enemy2:
+                weight = 2f;
+                break;
+            case RoomType.Enemy4:
+                weight = 0.7f;
+                break;
+            default:
+                break;
+        }
     }
 }
 
@@ -151,6 +191,7 @@ class AddLootRoom : AddSingleRoom
         addTo = aT;
         toAdd = RoomType.Loot;
         dir = d;
+        weight = 0.5f;
     }
 }
 
@@ -175,5 +216,6 @@ class AddBossRoom : AddSingleRoom
         addTo = aT;
         toAdd = RoomType.Boss;
         dir = d;
+        weight = 0.2f;
     }
 }
