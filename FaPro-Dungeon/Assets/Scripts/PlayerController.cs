@@ -14,7 +14,11 @@ public class PlayerController : MonoBehaviour
 
     public float fireDelay;
 
+    public int lastShooter;
+
     private float velocityAddedToBullet = 0.3f;
+
+    public List<GameObject> bulletShooters;
 
     Rigidbody2D rigidbody;
 
@@ -22,6 +26,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        bulletShooters = new List<GameObject>();
+        bulletShooters.Add(GameObject.Find("BulletShooter"));
     }
 
     // Update is called once per frame
@@ -54,24 +60,36 @@ public class PlayerController : MonoBehaviour
             }
             else
                 if (shootHorizontal != 0)
-                {
-                    Shoot(shootHorizontal, 0);
-                }
+            {
+                Shoot(shootHorizontal, 0);
+            }
         }
     }
 
     //Schießt ein Projektil in richtung x,y vom spieler aus
     void Shoot(float x, float y)
     {
-        GameObject bullet = Instantiate(bulletPrefab,transform.position,transform.rotation) as GameObject;
-        bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
         float fixedX = (x < 0) ? Mathf.Floor(x) : Mathf.Ceil(x);
         float fixedY = (y < 0) ? Mathf.Floor(y) : Mathf.Ceil(y);
+        if (x != 0 || y != 0)
+        {
+            if (x == 0)
+            {
+                transform.rotation = Quaternion.Euler(0,0,90f - 90f * fixedY);
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 0, -90f * fixedX);
+            }
+        }
+        GameObject bullet = Instantiate(bulletPrefab, bulletShooters[lastShooter].transform.position, transform.rotation) as GameObject;
+        bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(
             fixedX * bulletSpeed + velocityAddedToBullet * rigidbody.velocity.x,
             fixedY * bulletSpeed + velocityAddedToBullet * rigidbody.velocity.y,
             0
             );
         lastFire = Time.time;
+        lastShooter = lastShooter + 1 % bulletShooters.Count;
     }
 }
