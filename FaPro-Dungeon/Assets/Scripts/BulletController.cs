@@ -69,6 +69,7 @@ public class BulletController : MonoBehaviour
         if ("Enemy".Equals(collision.tag) && !isEnemyBullet)
         {
             collision.gameObject.GetComponent<EnemyController>().DamageEnemy(damage);
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(gameObject.GetComponent<Rigidbody2D>().velocity*5);
             Destroy(gameObject);
         }
 
