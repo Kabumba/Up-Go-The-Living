@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 134891666}
   - component: {fileID: 134891667}
   m_Layer: 0
-  m_Name: BulletShooter
+  m_Name: BulletShooterLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134891665}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: -0.25, y: 0.433, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1183684412}
@@ -164,6 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8944400255ec7a243bba3ad1290eb36d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5473610484710109101, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
+    type: 3}
   fireTimeDelay: 0
   fireShotDelay: 1
   playerController: {fileID: 1183684408}
@@ -933,7 +935,7 @@ GameObject:
   - component: {fileID: 1333844866}
   - component: {fileID: 1333844867}
   m_Layer: 0
-  m_Name: BulletShooter2
+  m_Name: BulletShooterRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -946,13 +948,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333844865}
-  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 0.35, y: 0.35, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.25, y: 0.433, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1183684412}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1333844867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -965,6 +967,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8944400255ec7a243bba3ad1290eb36d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5473610484710109101, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
+    type: 3}
   fireTimeDelay: 0
   fireShotDelay: 1
   playerController: {fileID: 1183684408}
