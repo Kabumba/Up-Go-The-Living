@@ -8,6 +8,8 @@ public class BulletShooter : MonoBehaviour
 
     private int lastFireShot;
 
+    public GameObject bulletPrefab;
+
     public float fireTimeDelay;
 
     public int fireShotDelay;
@@ -32,7 +34,7 @@ public class BulletShooter : MonoBehaviour
                 float rand = Random.Range(0f, 1);
                 if (rand < fireChance)
                 {
-                    GameObject bullet = Instantiate(playerController.bulletPrefab, transform.position, transform.rotation) as GameObject;
+                    GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation) as GameObject;
                     bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
                     bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(
                         transform.up.x * playerController.bulletSpeed + playerController.velocityAddedToBullet * playerController.rb.velocity.x,
