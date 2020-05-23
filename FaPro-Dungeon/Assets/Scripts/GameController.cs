@@ -16,7 +16,9 @@ public class GameController : MonoBehaviour
 
     private static float damage = 3.5f;
 
-    private static float moveSpeed = 4;
+    private static float moveSpeed = 4f;
+
+    private static float maxMoveSpeed;
 
     private static float fireRate = 0.5f;
 
@@ -25,6 +27,12 @@ public class GameController : MonoBehaviour
     private static float bulletSpeed = 7f;
 
     private static float bulletSize = 0.5f;
+
+    private static float invincibleAfterHit = 1f;
+
+    private static float lasthit;
+
+    private static bool invincible = false;
 
     public static int Health { get => health; set => health = value; }
 
@@ -43,6 +51,8 @@ public class GameController : MonoBehaviour
     public static float BulletSpeed { get => bulletSpeed; set => bulletSpeed = value; }
 
     public static float BulletSize { get => bulletSize; set => bulletSize = value; }
+
+    public static float InvincibleAfterHit { get => invincibleAfterHit; set => invincibleAfterHit = value; }
 
     public static List<Item> items;
 
@@ -66,27 +76,51 @@ public class GameController : MonoBehaviour
         healthText.text = "Health: " + health;
         coinText.text = "Coins: " + coins;
         UpdateItems();
+        if(Time.time > lasthit + invincibleAfterHit)
+        {
+            invincible = false;
+        }
     }
 
-    void UpdateItems()
+    public void UpdateItems()
     {
-        foreach(Item item in items)
+        foreach (Item item in items)
         {
             item.OnUpdate();
         }
     }
 
-    public static void DamagePlayer(int damage)
+    public static void OnFireItems()
     {
-        health = Mathf.Max(0, health-damage);
-        if(Health <= 0)
-        {
-            KillPlayer();
-        }
         foreach (Item item in items)
         {
-            item.OnDamageTaken();
+            item.OnFire();
         }
+    }
+
+    public static void DamagePlayer(int damage)
+    {
+        if (!invincible)
+        {
+            health = Mathf.Max(0, health - damage);
+            foreach (Item item in items)
+            {
+                item.OnDamageTaken();
+            }
+            if (Health <= 0)
+            {
+                KillPlayer();
+            }
+            lasthit = Time.time;
+            invincible = true;
+        }
+    }
+
+    IEnumerator InvincibilityDelay()
+    {
+        invincible = true;
+        yield return new WaitForSeconds(invincibleAfterHit);
+        invincible = false;
     }
 
     public static void HealPlayer(int healAmount)

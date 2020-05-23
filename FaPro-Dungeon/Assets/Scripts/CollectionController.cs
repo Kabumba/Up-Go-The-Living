@@ -74,9 +74,9 @@ public class CollectionController : MonoBehaviour
     //Statuswertänderungen wenn das Item eingesammelt wird.
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        item.OnPickup();
         if (collision.tag == "Player")
         {
+            item.OnPickup();
             GameController.HealPlayer(healthChange);
             GameController.ChangeMaxHealth(maxHealthChange);
             GameController.ChangeCoins(coinChange);

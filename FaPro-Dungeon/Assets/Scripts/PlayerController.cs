@@ -14,8 +14,6 @@ public class PlayerController : MonoBehaviour
 
     public float fireDelay;
 
-    public int lastShooter;
-
     public float velocityAddedToBullet = 0.3f;
 
     public List<BulletShooter> bulletShooters;
@@ -30,7 +28,6 @@ public class PlayerController : MonoBehaviour
             bs.playerController = this;
             bs.fireTimeDelay = fireDelay;
         }
-        lastShooter = 0;
     }
 
     private void Awake()
@@ -86,14 +83,14 @@ public class PlayerController : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0, 0, -90f * fixedX);
             }
-            Shoot();
+            TryShoot();
         }
 
 
     }
 
-    //Schießt ein Projektil in richtung x,y vom spieler aus
-    void Shoot()
+    //Versucht Projektile in die Richtung zu schießen, in die der Spieler gerade schaut.
+    void TryShoot()
     {
         foreach(BulletShooter bs in bulletShooters)
         {

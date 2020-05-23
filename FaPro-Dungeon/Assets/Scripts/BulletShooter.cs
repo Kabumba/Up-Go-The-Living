@@ -41,6 +41,7 @@ public class BulletShooter : MonoBehaviour
                         transform.up.y * playerController.bulletSpeed + playerController.velocityAddedToBullet * playerController.rb.velocity.y,
                         0
                         );
+                    GameController.OnFireItems();
                 }
                 lastFireShot = fireShotOffset;
             }

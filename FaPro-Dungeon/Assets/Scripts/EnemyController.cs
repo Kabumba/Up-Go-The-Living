@@ -29,6 +29,10 @@ public class EnemyController : MonoBehaviour
 
     public EnemyType enemyType;
 
+    public float health = 10;
+
+    private float maxHealth = 10;
+
     public float range = 5f;
 
     public float speed = 3f;
@@ -149,9 +153,7 @@ public class EnemyController : MonoBehaviour
                     StartCoroutine(CoolDown());
                     break;
             }
-            
         }
-        
     }
 
     //Verarbeitet den Angriffscooldown
@@ -166,5 +168,14 @@ public class EnemyController : MonoBehaviour
     {
         RoomController.instance.StartCoroutine(RoomController.instance.RoomCoroutine());
         Destroy(gameObject);
+    }
+
+    public void DamageEnemy(float damage)
+    {
+        health = Mathf.Max(0, health - damage);
+        if (health <= 0)
+        {
+            Death();
+        }
     }
 }
