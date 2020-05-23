@@ -83,6 +83,10 @@ public class GameController : MonoBehaviour
         {
             KillPlayer();
         }
+        foreach (Item item in items)
+        {
+            item.OnDamageTaken();
+        }
     }
 
     public static void HealPlayer(int healAmount)

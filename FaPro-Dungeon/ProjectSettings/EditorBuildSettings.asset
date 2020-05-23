@@ -84,7 +84,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Rooms/StartRooms/BasementStartRD.unity
     guid: 89294c42b50e1764598d450f4bb65a8b
   - enabled: 1
-    path: Assets/Scenes/Rooms/StartRooms/BasementDL.unity
+    path: Assets/Scenes/Rooms/StartRooms/BasementStartDL.unity
     guid: 78d6db37a795d644cb83a9eadc125f04
   - enabled: 1
     path: Assets/Scenes/Rooms/StartRooms/BasementStartUL.unity
@@ -98,4 +98,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Rooms/StartRooms/BasementStartR.unity
     guid: 5b12298bd7486b34bbc029de12c5bc4a
+  - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: bdaa422a23bf66f428e28e75625e9bb9
   m_configObjects: {}

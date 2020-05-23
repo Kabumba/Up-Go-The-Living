@@ -16,18 +16,27 @@ public class PlayerController : MonoBehaviour
 
     public int lastShooter;
 
-    private float velocityAddedToBullet = 0.3f;
+    public float velocityAddedToBullet = 0.3f;
 
-    public List<GameObject> bulletShooters;
+    public List<BulletShooter> bulletShooters;
 
-    Rigidbody2D rigidbody;
+    public Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
-        bulletShooters = new List<GameObject>();
-        bulletShooters.Add(GameObject.Find("BulletShooter"));
+        foreach (BulletShooter bs in bulletShooters)
+        {
+            bs.playerController = this;
+            bs.fireTimeDelay = fireDelay;
+        }
+        lastShooter = 0;
+    }
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        bulletShooters = new List<BulletShooter>();
     }
 
     // Update is called once per frame
@@ -49,47 +58,46 @@ public class PlayerController : MonoBehaviour
 
         float unadjustedSpeed = Mathf.Sqrt(horizontal * horizontal + vertical * vertical);
         float speedfactor = unadjustedSpeed == 0 ? 0 : speed / unadjustedSpeed;
-        rigidbody.velocity = new Vector3(horizontal * speedfactor, vertical * speedfactor, 0);
+        rb.velocity = new Vector3(horizontal * speedfactor, vertical * speedfactor, 0);
 
+        float x = 0;
+        float y = 0;
+        
         //Schüsse nur Vertikal oder Horizontal
-        if (Time.time > lastFire + fireDelay)
+        if (shootVertical != 0)
         {
-            if (shootVertical != 0)
-            {
-                Shoot(0, shootVertical);
-            }
-            else
-                if (shootHorizontal != 0)
-            {
-                Shoot(shootHorizontal, 0);
-            }
+            y = shootVertical;
         }
-    }
+        else
+            if (shootHorizontal != 0)
+        {
+            x = shootHorizontal;
+        }
 
-    //Schießt ein Projektil in richtung x,y vom spieler aus
-    void Shoot(float x, float y)
-    {
         float fixedX = (x < 0) ? Mathf.Floor(x) : Mathf.Ceil(x);
         float fixedY = (y < 0) ? Mathf.Floor(y) : Mathf.Ceil(y);
-        if (x != 0 || y != 0)
+        if (fixedX != 0 || fixedY != 0)
         {
-            if (x == 0)
+            if (fixedX == 0)
             {
-                transform.rotation = Quaternion.Euler(0,0,90f - 90f * fixedY);
+                transform.rotation = Quaternion.Euler(0, 0, 90f - 90f * fixedY);
             }
             else
             {
                 transform.rotation = Quaternion.Euler(0, 0, -90f * fixedX);
             }
+            Shoot();
         }
-        GameObject bullet = Instantiate(bulletPrefab, bulletShooters[lastShooter].transform.position, transform.rotation) as GameObject;
-        bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
-        bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(
-            fixedX * bulletSpeed + velocityAddedToBullet * rigidbody.velocity.x,
-            fixedY * bulletSpeed + velocityAddedToBullet * rigidbody.velocity.y,
-            0
-            );
-        lastFire = Time.time;
-        lastShooter = lastShooter + 1 % bulletShooters.Count;
+
+
+    }
+
+    //Schießt ein Projektil in richtung x,y vom spieler aus
+    void Shoot()
+    {
+        foreach(BulletShooter bs in bulletShooters)
+        {
+            bs.Shoot();
+        }
     }
 }
