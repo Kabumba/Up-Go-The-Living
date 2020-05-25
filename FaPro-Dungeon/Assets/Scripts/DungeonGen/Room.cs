@@ -12,17 +12,18 @@ public class Room : MonoBehaviour
     public int X;
 
     public int Y;
-    public Room(int x, int y)
-    {
-        X = x;
-        Y = y;
-    }
 
     private bool updatedDoors = false;
 
     public Door leftDoor, rightDoor, topDoor, bottomDoor;
 
     public List<Door> doors = new List<Door>();
+
+    public Room(int x, int y)
+    {
+        X = x;
+        Y = y;
+    }
 
     // Start is called before the first frame update
     void Start()
