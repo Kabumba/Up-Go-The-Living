@@ -34,12 +34,20 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         bulletShooters = new List<BulletShooter>();
+        foreach(BulletShooter bs in gameObject.GetComponentsInChildren<BulletShooter>())
+        {
+            bulletShooters.Add(bs);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         fireDelay = GameController.FireRate;
+        foreach (BulletShooter bs in bulletShooters)
+        {
+            bs.fireTimeDelay = fireDelay;
+        }
         speed = GameController.MoveSpeed;
         bulletSpeed = GameController.BulletSpeed;
 

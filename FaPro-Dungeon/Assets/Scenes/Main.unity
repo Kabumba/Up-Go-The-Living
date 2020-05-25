@@ -166,7 +166,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5473610484710109101, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
     type: 3}
-  fireTimeDelay: 0
+  fireTimeDelay: 0.5
   fireShotDelay: 1
   playerController: {fileID: 1183684408}
   fireShotOffset: 0
@@ -817,7 +817,6 @@ MonoBehaviour:
     type: 3}
   bulletSpeed: 7
   fireDelay: 0.5
-  lastShooter: 0
   velocityAddedToBullet: 0.3
   bulletShooters: []
   rb: {fileID: 0}
@@ -969,7 +968,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 5473610484710109101, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
     type: 3}
-  fireTimeDelay: 0
+  fireTimeDelay: 0.5
   fireShotDelay: 1
   playerController: {fileID: 1183684408}
   fireShotOffset: 1

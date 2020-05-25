@@ -20,10 +20,6 @@ public class BulletShooter : MonoBehaviour
 
     public float fireChance;
 
-    public void Start()
-    {
-        playerController.bulletShooters.Add(this);
-    }
 
     public void Shoot()
     {
