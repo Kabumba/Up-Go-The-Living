@@ -12,13 +12,13 @@ public class BulletShooter : MonoBehaviour
 
     public float fireTimeDelay;
 
-    public int fireShotDelay;
+    public int fireShotDelay = 0;
 
     public PlayerController playerController;
 
-    public int fireShotOffset;
+    public int fireShotOffset = 0;
 
-    public float fireChance;
+    public float fireChance = 1;
 
 
     public void Shoot()

@@ -23,11 +23,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        foreach (BulletShooter bs in bulletShooters)
-        {
-            bs.playerController = this;
-            bs.fireTimeDelay = fireDelay;
-        }
+        InitializeBulletshooters();
     }
 
     private void Awake()
@@ -37,6 +33,16 @@ public class PlayerController : MonoBehaviour
         foreach(BulletShooter bs in gameObject.GetComponentsInChildren<BulletShooter>())
         {
             bulletShooters.Add(bs);
+        }
+    }
+
+    public void InitializeBulletshooters()
+    {
+        foreach (BulletShooter bs in bulletShooters)
+        {
+            bs.playerController = this;
+            bs.fireTimeDelay = fireDelay;
+            bs.bulletPrefab = bulletPrefab;
         }
     }
 

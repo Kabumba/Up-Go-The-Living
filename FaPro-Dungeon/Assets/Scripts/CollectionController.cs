@@ -4,9 +4,9 @@ using UnityEngine;
 
 [System.Serializable]
 
-public abstract class Item
+public abstract class Item : MonoBehaviour
 {
-    public string name;
+    public new string name;
 
     public string description;
 
@@ -67,8 +67,9 @@ public class CollectionController : MonoBehaviour
     void Start()
     {
         GetComponent<SpriteRenderer>().sprite = item.itemImage;
-        Destroy(GetComponent<PolygonCollider2D>());
+        /*Destroy(GetComponent<PolygonCollider2D>());
         gameObject.AddComponent<PolygonCollider2D>();
+        GetComponent<PolygonCollider2D>().isTrigger = true;*/
     }
 
     //Statuswertänderungen wenn das Item eingesammelt wird.
@@ -77,6 +78,7 @@ public class CollectionController : MonoBehaviour
         if (collision.tag == "Player")
         {
             item.OnPickup();
+            /* 
             GameController.HealPlayer(healthChange);
             GameController.ChangeMaxHealth(maxHealthChange);
             GameController.ChangeCoins(coinChange);
@@ -85,8 +87,11 @@ public class CollectionController : MonoBehaviour
             GameController.ChangeFireRate(fireRateChange);
             GameController.ChangeRange(rangeChange);
             GameController.ChangeBulletSpeed(bulletSpeedChange);
-            GameController.ChangeBulletSize(bulletSizeChange);
+            GameController.ChangeBulletSize(bulletSizeChange); 
+            */
             Destroy(gameObject);
         }
     }
 }
+
+
