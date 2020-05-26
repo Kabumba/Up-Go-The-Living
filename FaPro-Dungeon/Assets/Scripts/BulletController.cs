@@ -11,6 +11,8 @@ public class BulletController : MonoBehaviour
 
     public float lifeTime;
 
+    public float knockback = 20f;
+
     public bool isEnemyBullet = false;
 
     private Vector3 startPosition;
@@ -69,7 +71,7 @@ public class BulletController : MonoBehaviour
         if ("Enemy".Equals(collision.tag) && !isEnemyBullet)
         {
             collision.gameObject.GetComponent<EnemyController>().DamageEnemy(damage);
-            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(gameObject.GetComponent<Rigidbody2D>().velocity*5);
+            collision.gameObject.GetComponent<Rigidbody2D>().AddForce(gameObject.GetComponent<Rigidbody2D>().velocity*knockback, ForceMode2D.Impulse);
             Destroy(gameObject);
         }
 

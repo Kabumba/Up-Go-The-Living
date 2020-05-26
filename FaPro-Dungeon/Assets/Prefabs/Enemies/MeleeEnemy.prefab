@@ -96,7 +96,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -135,10 +135,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 1
   enemyType: 1
+  health: 10
   range: 5
   speed: 3
+  accelerationValue: 0.3
+  acceleration: {x: 0, y: 0}
+  desiredVelocity: {x: 0, y: 0}
   attackRange: 0
   coolDown: 0
-  notInRoom: 0
+  notInRoom: 1
   bulletPrefab: {fileID: 5473610484710109101, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
     type: 3}

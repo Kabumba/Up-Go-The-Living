@@ -37,6 +37,12 @@ public class EnemyController : MonoBehaviour
 
     public float speed = 3f;
 
+    public float accelerationValue = 0.1f;
+
+    public Vector2 acceleration;
+
+    public Vector2 desiredVelocity;
+
     public float attackRange;
 
     public float coolDown;
@@ -53,11 +59,17 @@ public class EnemyController : MonoBehaviour
 
     private Vector3 randomDir;
 
-    
+    private Rigidbody2D rb;
+
+    public bool isFlying = false;
+
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        currentState = EnemyState.Idle;
+        rb.freezeRotation = true;
     }
 
     // Update is called once per frame
@@ -77,14 +89,17 @@ public class EnemyController : MonoBehaviour
             case (EnemyState.Attack):
                 Attack();
                 break;
+            case (EnemyState.Idle):
+                Idle();
+                break;
         }
-
         if (!notInRoom)
         {
             if (IsPlayerInRange(range) && currentState != EnemyState.Die)
             {
                 currentState = EnemyState.Follow;
-            } else if (!IsPlayerInRange(range) && currentState != EnemyState.Die)
+            }
+            else if (!IsPlayerInRange(range) && currentState != EnemyState.Die)
             {
                 currentState = EnemyState.Wander;
             }
@@ -107,10 +122,8 @@ public class EnemyController : MonoBehaviour
     private IEnumerator ChooseDirection()
     {
         chooseDir = true;
-        yield return new WaitForSeconds(Random.Range(1f, 3f)); //wählt in zufälligen Abständen neue Richtung
-        randomDir = new Vector3(0, 0, Random.Range(0, 360)); //wählt zufällige Richtung
-        Quaternion nextRotation = Quaternion.Euler(randomDir);
-        transform.rotation = Quaternion.Lerp(transform.rotation, nextRotation, Random.Range(0.5f, 2.5f)); //dreht sich über eine zufällige Zeit in diese Richtung
+        yield return new WaitForSeconds(Random.Range(1f, 3f)); //wählt in zufälligen Abständen neue Richtung //wählt zufällige Richtung
+        rb.rotation = Random.Range(0f, 360f);
         chooseDir = false;
     }
 
@@ -121,17 +134,65 @@ public class EnemyController : MonoBehaviour
         {
             StartCoroutine(ChooseDirection());
         }
-        transform.position += -transform.right * speed * Time.deltaTime;
+        MoveForward();
         if (IsPlayerInRange(range))
         {
             currentState = EnemyState.Follow;
         }
     }
 
+    void Idle()
+    {
+        rb.velocity = new Vector2(0, 0);
+    }
+
+    void MoveForward()
+    {
+        float angle = rb.rotation * Mathf.Deg2Rad;
+        acceleration = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * accelerationValue;
+        desiredVelocity = acceleration.normalized * speed;
+        if (rb.velocity.magnitude == 0)
+        {
+            rb.velocity = acceleration;
+        }
+        else
+        {
+            if (rb.velocity != desiredVelocity)
+            {
+                rb.velocity += acceleration;
+            }
+            if (rb.velocity.magnitude > speed)
+            {
+
+                rb.velocity = speed * rb.velocity.normalized;
+            }
+        }
+    }
+
+    void SlowDown()
+    {
+        float angle = rb.rotation * Mathf.Deg2Rad;
+        acceleration = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * accelerationValue;
+        desiredVelocity = new Vector2(0, 0);
+        if (rb.velocity != desiredVelocity)
+        {
+            Vector2 vchange = accelerationValue * rb.velocity;
+            if (vchange.magnitude <= rb.velocity.magnitude)
+            {
+                rb.velocity -= accelerationValue * rb.velocity;
+            }
+            else
+            {
+                rb.velocity = desiredVelocity;
+            }
+        }
+    }
+
     //Bewegt sich auf den spieler zu
     void Follow()
     {
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        rb.rotation = Vector2.SignedAngle(new Vector2(1, 0), player.transform.position - transform.position);
+        MoveForward();
     }
 
     //Fügt dem Spieler Schaden zu
@@ -153,6 +214,10 @@ public class EnemyController : MonoBehaviour
                     StartCoroutine(CoolDown());
                     break;
             }
+        }
+        else
+        {
+            SlowDown();
         }
     }
 
