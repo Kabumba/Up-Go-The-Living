@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BulletShooter : MonoBehaviour
 {
+    //Konvention: Die Namen der gameobjekte mit bulletshooter die den Hauptangriff darstellen beginnen mit Main
+
     private float lastFireTime;
 
     private int lastFireShot;

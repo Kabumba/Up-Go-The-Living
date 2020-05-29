@@ -12,21 +12,29 @@ public class Prismabrille : Item
         PlayerController pc = player.GetComponent<PlayerController>();
         foreach(BulletShooter bs in pc.bulletShooters)
         {
-            GameObject.Destroy(bs.gameObject);
+            if (bs.gameObject.name.StartsWith("Main"))
+            {
+                pc.bulletShooters.Remove(bs);
+                GameObject.Destroy(bs.gameObject);
+            }
         }
-        pc.bulletShooters = new List<BulletShooter>();
 
-        GameObject left = new GameObject("Bulletshooter left");
-        GameObject right = new GameObject("Bulletshooter right");
+        GameObject left = new GameObject("Main Left");
+        GameObject right = new GameObject("Main Right");
 
         left.transform.parent = player.transform;
         right.transform.parent = player.transform;
+
+        Quaternion rotationBefore = player.transform.rotation;
+        player.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         left.transform.position = new Vector3(player.transform.position.x + -0.25f, player.transform.position.y + 0.433f, 0f);
         right.transform.position = new Vector3(player.transform.position.x + 0.25f, player.transform.position.y + 0.433f, 0f);
 
         left.transform.rotation = Quaternion.Euler(0, 0, 45);
         right.transform.rotation = Quaternion.Euler(0, 0, -45);
+
+        player.transform.rotation = rotationBefore;
 
         left.AddComponent<BulletShooter>();
         right.AddComponent<BulletShooter>();

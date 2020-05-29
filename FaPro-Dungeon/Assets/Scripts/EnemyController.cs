@@ -19,13 +19,30 @@ public enum EnemyType
     Ranged,
 };
 
+public abstract class State
+{
+    protected EnemyController character;
+
+    public abstract void OnUpdate();
+
+    public virtual void OnStateEnter() { }
+    public virtual void OnStateExit() { }
+
+    public State(EnemyController character)
+    {
+        this.character = character;
+    }
+}
+
 
 public class EnemyController : MonoBehaviour
 {
 
     GameObject player;
 
-    public EnemyState currentState = EnemyState.Idle;
+    public EnemyState curState = EnemyState.Idle;
+
+    public State currentState;
 
     public EnemyType enemyType;
 
@@ -59,7 +76,7 @@ public class EnemyController : MonoBehaviour
 
     private Vector3 randomDir;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     public bool isFlying = false;
 
@@ -68,14 +85,15 @@ public class EnemyController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = gameObject.GetComponent<Rigidbody2D>();
-        currentState = EnemyState.Idle;
+        curState = EnemyState.Idle;
         rb.freezeRotation = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (currentState)
+        currentState.OnUpdate();
+        switch (curState)
         {
             case (EnemyState.Wander):
                 Wander();
@@ -95,22 +113,22 @@ public class EnemyController : MonoBehaviour
         }
         if (!notInRoom)
         {
-            if (IsPlayerInRange(range) && currentState != EnemyState.Die)
+            if (IsPlayerInRange(range) && curState != EnemyState.Die)
             {
-                currentState = EnemyState.Follow;
+                curState = EnemyState.Follow;
             }
-            else if (!IsPlayerInRange(range) && currentState != EnemyState.Die)
+            else if (!IsPlayerInRange(range) && curState != EnemyState.Die)
             {
-                currentState = EnemyState.Wander;
+                curState = EnemyState.Wander;
             }
             if (Vector3.Distance(transform.position, player.transform.position) <= attackRange)
             {
-                currentState = EnemyState.Attack;
+                curState = EnemyState.Attack;
             }
         }
         else
         {
-            currentState = EnemyState.Idle;
+            curState = EnemyState.Idle;
         }
     }
 
@@ -137,7 +155,22 @@ public class EnemyController : MonoBehaviour
         MoveForward();
         if (IsPlayerInRange(range))
         {
-            currentState = EnemyState.Follow;
+            curState = EnemyState.Follow;
+        }
+    }
+
+    public void SetState(State state)
+    {
+        if (currentState != null)
+        {
+            currentState.OnStateExit();
+        }
+
+        currentState = state;
+
+        if (currentState != null)
+        {
+            currentState.OnStateEnter();
         }
     }
 
@@ -146,7 +179,7 @@ public class EnemyController : MonoBehaviour
         rb.velocity = new Vector2(0, 0);
     }
 
-    void MoveForward()
+    public void MoveForward()
     {
         float angle = rb.rotation * Mathf.Deg2Rad;
         acceleration = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * accelerationValue;

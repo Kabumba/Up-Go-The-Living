@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
 
     private static float moveSpeed = 4f;
 
-    private static float maxMoveSpeed;
+    private static float maxMoveSpeed = 8f;
 
     private static float fireRate = 0.5f;
 
@@ -150,7 +150,7 @@ public class GameController : MonoBehaviour
 
     public static void ChangeMoveSpeed(float moveSpeedChange)
     {
-        moveSpeed += moveSpeedChange;
+        moveSpeed = Mathf.Max(0.2f, Mathf.Min(moveSpeedChange + moveSpeed, maxMoveSpeed));
     }
 
     public static void ChangeFireRate(float fireRateChange)
