@@ -7,7 +7,6 @@ public enum EnemyState
     Idle,
     Wander,
     Follow,
-    Die,
     Attack,
     Freeze,
     Flee,
@@ -19,9 +18,12 @@ public enum EnemyType
     Ranged,
 };
 
+
 public abstract class State
 {
     protected EnemyController character;
+
+    public string name;
 
     public abstract void OnUpdate();
 
@@ -34,15 +36,55 @@ public abstract class State
     }
 }
 
+public abstract class AI : MonoBehaviour
+{
+    protected EnemyController character;
+
+    public State currentState;
+
+    //Legt fest wann unter welchen Umständen in welchen Zustand gewechselt werden soll
+    public abstract void StateChanges();
+
+    public void Awake()
+    {
+        this.character = gameObject.GetComponent<EnemyController>();
+        currentState = new Idle(character);
+    }
+
+    //Wechselt in einen neuen Zustand
+    public void SetState(State state)
+    {
+        if (currentState != null)
+        {
+            if (currentState.name.Equals(state.name))
+            {
+                return;
+            }
+            currentState.OnStateExit();
+        }
+
+        currentState = state;
+
+        if (currentState != null)
+        {
+            currentState.OnStateEnter();
+        }
+    }
+
+    private void Update()
+    {
+        currentState.OnUpdate();
+        StateChanges();
+    }
+}
+
 
 public class EnemyController : MonoBehaviour
 {
 
-    GameObject player;
+    public GameObject player;
 
     public EnemyState curState = EnemyState.Idle;
-
-    public State currentState;
 
     public EnemyType enemyType;
 
@@ -64,17 +106,17 @@ public class EnemyController : MonoBehaviour
 
     public float coolDown;
 
-    private bool coolDownAttack = false;
+    public bool inCollisionRange = false;
+
+    public bool coolDownAttack = false;
 
     private bool chooseDir = false;
 
-    private bool dead = false;
-
     public bool notInRoom = false;
 
-    public GameObject bulletPrefab;
+    public bool dealContactDamage = true;
 
-    private Vector3 randomDir;
+    public GameObject bulletPrefab;
 
     public Rigidbody2D rb;
 
@@ -87,52 +129,16 @@ public class EnemyController : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         curState = EnemyState.Idle;
         rb.freezeRotation = true;
+        inCollisionRange = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentState.OnUpdate();
-        switch (curState)
-        {
-            case (EnemyState.Wander):
-                Wander();
-                break;
-            case (EnemyState.Follow):
-                Follow();
-                break;
-            case (EnemyState.Die):
-                Death();
-                break;
-            case (EnemyState.Attack):
-                Attack();
-                break;
-            case (EnemyState.Idle):
-                Idle();
-                break;
-        }
-        if (!notInRoom)
-        {
-            if (IsPlayerInRange(range) && curState != EnemyState.Die)
-            {
-                curState = EnemyState.Follow;
-            }
-            else if (!IsPlayerInRange(range) && curState != EnemyState.Die)
-            {
-                curState = EnemyState.Wander;
-            }
-            if (Vector3.Distance(transform.position, player.transform.position) <= attackRange)
-            {
-                curState = EnemyState.Attack;
-            }
-        }
-        else
-        {
-            curState = EnemyState.Idle;
-        }
+        ContactDamage();
     }
 
-    private bool IsPlayerInRange(float range)
+    public bool IsPlayerInRange()
     {
         return Vector3.Distance(transform.position, player.transform.position) <= range;
     }
@@ -144,41 +150,7 @@ public class EnemyController : MonoBehaviour
         rb.rotation = Random.Range(0f, 360f);
         chooseDir = false;
     }
-
-    //bewegt sich ziellos herum
-    void Wander()
-    {
-        if (!chooseDir)
-        {
-            StartCoroutine(ChooseDirection());
-        }
-        MoveForward();
-        if (IsPlayerInRange(range))
-        {
-            curState = EnemyState.Follow;
-        }
-    }
-
-    public void SetState(State state)
-    {
-        if (currentState != null)
-        {
-            currentState.OnStateExit();
-        }
-
-        currentState = state;
-
-        if (currentState != null)
-        {
-            currentState.OnStateEnter();
-        }
-    }
-
-    void Idle()
-    {
-        rb.velocity = new Vector2(0, 0);
-    }
-
+    
     public void MoveForward()
     {
         float angle = rb.rotation * Mathf.Deg2Rad;
@@ -202,7 +174,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void SlowDown()
+    public void SlowDown()
     {
         float angle = rb.rotation * Mathf.Deg2Rad;
         acceleration = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * accelerationValue;
@@ -220,42 +192,10 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-
-    //Bewegt sich auf den spieler zu
-    void Follow()
-    {
-        rb.rotation = Vector2.SignedAngle(new Vector2(1, 0), player.transform.position - transform.position);
-        MoveForward();
-    }
-
-    //Fügt dem Spieler Schaden zu
-    void Attack()
-    {
-        if (!coolDownAttack)
-        {
-            switch (enemyType)
-            {
-                case (EnemyType.Melee):
-                    GameController.DamagePlayer(1);
-                    StartCoroutine(CoolDown());
-                    break;
-                case (EnemyType.Ranged):
-                    GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity) as GameObject;
-                    bullet.GetComponent<BulletController>().GetPlayer(player.transform);
-                    bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
-                    bullet.GetComponent<BulletController>().isEnemyBullet = true;
-                    StartCoroutine(CoolDown());
-                    break;
-            }
-        }
-        else
-        {
-            SlowDown();
-        }
-    }
+   
 
     //Verarbeitet den Angriffscooldown
-    private IEnumerator CoolDown()
+    public IEnumerator CoolDown()
     {
         coolDownAttack = true;
         yield return new WaitForSeconds(coolDown);
@@ -275,5 +215,27 @@ public class EnemyController : MonoBehaviour
         {
             Death();
         }
+    }
+
+    public void ContactDamage()
+    {
+        if (dealContactDamage && inCollisionRange)
+        {
+            GameController.DamagePlayer(1);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            inCollisionRange = true;
+            ContactDamage();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        inCollisionRange = false;
     }
 }

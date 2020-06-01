@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2696955392005806660}
   - component: {fileID: 2696955392005806667}
   - component: {fileID: 2696955392005806666}
+  - component: {fileID: 3477940481755264154}
+  - component: {fileID: -8583087001238524310}
   m_Layer: 0
   m_Name: MeleeEnemy
   m_TagString: Enemy
@@ -96,7 +98,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -104,7 +106,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &2696955392005806667
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -115,7 +117,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -133,7 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5137f6cf01ac98643a9a90e27b5350d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 1
+  player: {fileID: 0}
+  curState: 0
   enemyType: 1
   health: 10
   range: 5
@@ -143,6 +146,38 @@ MonoBehaviour:
   desiredVelocity: {x: 0, y: 0}
   attackRange: 0
   coolDown: 0
+  coolDownAttack: 0
   notInRoom: 1
+  dealContactDamage: 1
   bulletPrefab: {fileID: 5473610484710109101, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
     type: 3}
+  rb: {fileID: 0}
+  isFlying: 0
+--- !u!114 &3477940481755264154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696955392005806665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1365aa80969acdc4b91465c4c863e714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &-8583087001238524310
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696955392005806665}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.51

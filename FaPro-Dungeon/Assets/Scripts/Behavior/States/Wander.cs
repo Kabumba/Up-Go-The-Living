@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Wander : State
 {
+
     private bool chooseDir = false;
 
     public Wander(EnemyController character) : base(character)
     {
+        name = "Wander";
     }
 
     public override void OnUpdate()

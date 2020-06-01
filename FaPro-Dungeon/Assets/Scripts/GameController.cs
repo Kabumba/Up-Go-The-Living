@@ -76,7 +76,7 @@ public class GameController : MonoBehaviour
         healthText.text = "Health: " + health;
         coinText.text = "Coins: " + coins;
         UpdateItems();
-        if(Time.time > lasthit + invincibleAfterHit)
+        if (Time.time > lasthit + invincibleAfterHit)
         {
             invincible = false;
         }

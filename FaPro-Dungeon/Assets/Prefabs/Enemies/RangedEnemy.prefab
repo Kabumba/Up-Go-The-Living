@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3006069647624691924}
   - component: {fileID: 3006069647624691927}
   - component: {fileID: 3006069647624691926}
+  - component: {fileID: -2653874758224808747}
+  - component: {fileID: 3878615197869221917}
   m_Layer: 0
   m_Name: RangedEnemy
   m_TagString: Enemy
@@ -96,9 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5137f6cf01ac98643a9a90e27b5350d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
+  player: {fileID: 0}
+  curState: 0
   enemyType: 1
-  health: 10
+  health: 8
   range: 10
   speed: 3
   accelerationValue: 0.1
@@ -106,9 +109,14 @@ MonoBehaviour:
   desiredVelocity: {x: 0, y: 0}
   attackRange: 6
   coolDown: 3
+  inCollisionRange: 0
+  coolDownAttack: 0
   notInRoom: 1
+  dealContactDamage: 1
   bulletPrefab: {fileID: 5473610484710109101, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
     type: 3}
+  rb: {fileID: 0}
+  isFlying: 0
 --- !u!50 &3006069647624691927
 Rigidbody2D:
   serializedVersion: 4
@@ -129,7 +137,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &3006069647624691926
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -146,3 +154,31 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-2653874758224808747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006069647624691921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7779141e290faf44fb472ddb025122f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &3878615197869221917
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006069647624691921}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.51

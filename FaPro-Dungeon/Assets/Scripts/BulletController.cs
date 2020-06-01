@@ -15,51 +15,22 @@ public class BulletController : MonoBehaviour
 
     public bool isEnemyBullet = false;
 
-    private Vector3 startPosition;
-
-    private Vector2 lastPosition;
-
-    private Vector2 currentPosition;
-
-    private Vector2 playerPosition;
-
     // Start is called before the first frame update
     void Start()
     {
-        damage = GameController.Damage;
-        range = GameController.Range;
-        lifeTime = range / 30f;
-        StartCoroutine(DeathDelay());
         if (!isEnemyBullet)
         {
+            damage = GameController.Damage;
+            range = GameController.Range;
+            lifeTime = range / 30f;
             transform.localScale = new Vector2(GameController.BulletSize, GameController.BulletSize);
+            StartCoroutine(DeathDelay());
         }
-
-        startPosition = gameObject.transform.position;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (isEnemyBullet)
-        {
-            currentPosition = transform.position;
-            transform.position = Vector2.MoveTowards(transform.position, playerPosition, 5f * Time.deltaTime);
-            if (currentPosition == lastPosition)
-            {
-                Destroy(gameObject);
-            }
-            lastPosition = currentPosition;
-        }
-    }
-
-    public void GetPlayer(Transform player)
-    {
-        playerPosition = player.position;
+        
     }
 
     //Sorgt dafür, dass das Projektil zerstört wird, wenn es sich zu weit von seiner startpostion entfernt hat
-    IEnumerator DeathDelay()
+    public IEnumerator DeathDelay()
     {
         yield return new WaitForSeconds(lifeTime);
         Destroy(gameObject);
@@ -68,6 +39,11 @@ public class BulletController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.isTrigger)
+        {
+            return;
+        }
+
         if ("Enemy".Equals(collision.tag))
         {
             if (isEnemyBullet)
