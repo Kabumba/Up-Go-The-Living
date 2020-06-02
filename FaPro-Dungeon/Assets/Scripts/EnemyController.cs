@@ -3,22 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public enum EnemyState
-{
-    Idle,
-    Wander,
-    Follow,
-    Attack,
-    Freeze,
-    Flee,
-};
-
-public enum EnemyType
-{
-    Melee,
-    Ranged,
-};
-
 
 public abstract class State
 {
@@ -85,10 +69,6 @@ public class EnemyController : MonoBehaviour
 
     public GameObject player;
 
-    public EnemyState curState = EnemyState.Idle;
-
-    public EnemyType enemyType;
-
     public float health = 10;
 
     private float maxHealth = 10;
@@ -129,7 +109,6 @@ public class EnemyController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = gameObject.GetComponent<Rigidbody2D>();
-        curState = EnemyState.Idle;
         rb.freezeRotation = true;
         inCollisionRange = false;
     }
@@ -232,16 +211,16 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             inCollisionRange = true;
             ContactDamage();
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
         inCollisionRange = false;
     }
