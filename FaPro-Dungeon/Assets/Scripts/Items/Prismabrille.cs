@@ -10,13 +10,18 @@ public class Prismabrille : Item
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerController pc = player.GetComponent<PlayerController>();
-        foreach(BulletShooter bs in pc.bulletShooters)
+        List<GameObject> toRemove = new List<GameObject>();
+        foreach (BulletShooter bs in pc.bulletShooters)
         {
             if (bs.gameObject.name.StartsWith("Main"))
             {
-                pc.bulletShooters.Remove(bs);
-                GameObject.Destroy(bs.gameObject);
+                toRemove.Add(bs.gameObject);
             }
+        }
+        foreach (GameObject bs in toRemove)
+        {
+            pc.bulletShooters.Remove(bs.GetComponent<BulletShooter>());
+            GameObject.Destroy(bs);
         }
 
         GameObject left = new GameObject("Main Left");
