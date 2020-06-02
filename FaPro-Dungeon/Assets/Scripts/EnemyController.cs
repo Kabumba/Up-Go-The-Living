@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public enum EnemyState
@@ -122,6 +123,9 @@ public class EnemyController : MonoBehaviour
 
     public bool isFlying = false;
 
+    public static int count = 0;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -130,6 +134,11 @@ public class EnemyController : MonoBehaviour
         curState = EnemyState.Idle;
         rb.freezeRotation = true;
         inCollisionRange = false;
+    }
+
+    public void Awake()
+    {
+        count++;
     }
 
     // Update is called once per frame
@@ -204,8 +213,8 @@ public class EnemyController : MonoBehaviour
 
     public void Death()
     {
-        RoomController.instance.StartCoroutine(RoomController.instance.RoomCoroutine());
         Destroy(gameObject);
+        count--;
     }
 
     public void DamageEnemy(float damage)

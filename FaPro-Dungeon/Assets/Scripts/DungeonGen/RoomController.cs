@@ -13,6 +13,7 @@ public class RoomInfo
     public int X;
 
     public int Y;
+
 }
 
 public class RoomController : MonoBehaviour
@@ -22,7 +23,7 @@ public class RoomController : MonoBehaviour
 
     string currentWorldName = "Basement";
 
-    RoomInfo currentLoadRoomData;
+    public RoomInfo currentLoadRoomData;
 
     Room currRoom;
 
@@ -31,10 +32,6 @@ public class RoomController : MonoBehaviour
     public List<Room> loadedRooms = new List<Room>();
 
     bool isLoadingRoom = false;
-
-    bool spawnedBossRoom = false;
-
-    bool updatedRooms = false;
 
     void Awake()
     {
@@ -67,20 +64,6 @@ public class RoomController : MonoBehaviour
 
         if(loadRoomQueue.Count == 0)
         {
-            if(!spawnedBossRoom)
-            {
-                StartCoroutine(SpawnBossRoom());
-            }
-            else if (spawnedBossRoom && !updatedRooms)
-            {/*
-                 foreach(Room room in loadedRooms)
-                {
-                    room.RemoveUnconnectedDoors();
-                }
-                */
-                UpdateRooms();
-                updatedRooms = true;
-            }
             return;
         }
 
@@ -88,21 +71,6 @@ public class RoomController : MonoBehaviour
         isLoadingRoom = true;
 
         StartCoroutine(LoadRoomRoutine(currentLoadRoomData));
-    }
-
-    IEnumerator SpawnBossRoom()
-    {
-        spawnedBossRoom = true;
-        yield return new WaitForSeconds(0.5f);
-        if(loadRoomQueue.Count == 0)
-        {
-            Room bossRoom = loadedRooms[loadedRooms.Count - 1];
-            Room tempRoom = new Room(bossRoom.X, bossRoom.Y);
-            Destroy(bossRoom.gameObject);
-            var roomToRemove = loadedRooms.Single(r => r.X == tempRoom.X && r.Y == tempRoom.Y);
-            loadedRooms.Remove(roomToRemove);
-            LoadRoom("End", tempRoom.X, tempRoom.Y);
-        }
     }
 
     //Erstelle noch nicht vorhandenen Raum und füge ihn einer Queue hinzu
@@ -146,9 +114,9 @@ public class RoomController : MonoBehaviour
 
             room.X = currentLoadRoomData.X;
             room.Y = currentLoadRoomData.Y;
-            room.name = currentWorldName + "-" + currentLoadRoomData.name + " " + room.X + ", " + room.Y;
+            room.name = currentWorldName + "-" + currentLoadRoomData.name;
 
-            //Ermöglicht hierachische Unterordnung von generierten Räumen zu RoomController in Szenenliste
+            //Fügt Raum in den RoomController ein
             room.transform.parent = transform;
 
             isLoadingRoom = false;
@@ -179,73 +147,10 @@ public class RoomController : MonoBehaviour
     {
         CameraController.instance.currRoom = room;
         currRoom = room;
-
-        StartCoroutine(RoomCoroutine());
     }
 
     public Room FindRoom(int x, int y)
     {
         return loadedRooms.Find(item => item.X == x && item.Y == y);
-    }
-
-    public IEnumerator RoomCoroutine()
-    {
-        yield return new WaitForSeconds(0.2f);
-        UpdateRooms();
-    }
-
-    public void UpdateRooms()
-    {
-        foreach(Room room in loadedRooms)
-        {
-            if(currRoom != room)
-            {
-                EnemyController[] enemies = room.GetComponentsInChildren<EnemyController>();
-                if(enemies != null)
-                {
-                    foreach(EnemyController enemy in enemies)
-                    {
-                        enemy.notInRoom = true;
-                        //Debug.Log("Not in room");
-                    }
-
-                    foreach(Door door in room.GetComponentsInChildren<Door>())
-                    {
-                        door.doorCollider.SetActive(false);
-                    }
-                }
-                else
-                {
-                    foreach(Door door in room.GetComponentsInChildren<Door>())
-                    {
-                        door.doorCollider.SetActive(false);
-                    }
-                }
-            }
-            else
-            {
-                EnemyController[] enemies = room.GetComponentsInChildren<EnemyController>();
-                if (enemies.Length > 0)
-                {
-                    foreach (EnemyController enemy in enemies)
-                    {
-                        enemy.notInRoom = false;
-                        Debug.Log("In room");
-                    }
-
-                    foreach(Door door in room.GetComponentsInChildren<Door>())
-                    {
-                        door.doorCollider.SetActive(true);
-                    }
-                }
-                else
-                {
-                    foreach (Door door in room.GetComponentsInChildren<Door>())
-                    {
-                        door.doorCollider.SetActive(false);
-                    }
-                }
-            }
-        }
     }
 }
