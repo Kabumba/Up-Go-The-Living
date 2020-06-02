@@ -165,7 +165,8 @@ MonoBehaviour:
   rightDoor: {fileID: 0}
   topDoor: {fileID: 0}
   bottomDoor: {fileID: 0}
-  doors: []
+  presets:
+  - {fileID: 1926261019346604373, guid: 03a3aa185fc8fb54e9735fd1060de6e3, type: 3}
 --- !u!4 &80285609
 Transform:
   m_ObjectHideFlags: 0
