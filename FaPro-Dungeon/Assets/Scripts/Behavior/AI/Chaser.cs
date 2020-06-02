@@ -6,13 +6,6 @@ public class Chaser : AI
 {
     public override void StateChanges()
     {
-        if (!character.notInRoom)
-        {
-            SetState(new Follow(character, character.player));
-        }
-        else
-        {
-            SetState(new Idle(character));
-        }
+        SetState(new Follow(character, character.player));
     }
 }

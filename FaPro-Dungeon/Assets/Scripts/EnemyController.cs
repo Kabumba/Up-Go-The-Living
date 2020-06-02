@@ -113,8 +113,6 @@ public class EnemyController : MonoBehaviour
 
     private bool chooseDir = false;
 
-    public bool notInRoom = false;
-
     public bool dealContactDamage = true;
 
     public GameObject bulletPrefab;

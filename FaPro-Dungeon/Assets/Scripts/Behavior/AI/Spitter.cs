@@ -6,27 +6,20 @@ public class Spitter : AI
 {
     public override void StateChanges()
     {
-        if (!character.notInRoom)
+        if (character.IsPlayerInRange())
         {
-            if (character.IsPlayerInRange())
+            if (Vector3.Distance(transform.position, character.player.transform.position) <= character.attackRange)
             {
-                if (Vector3.Distance(transform.position, character.player.transform.position) <= character.attackRange)
-                {
-                    SetState(new RangeAttack(character));
-                }
-                else
-                {
-                    SetState(new Follow(character, character.player));
-                }
+                SetState(new RangeAttack(character));
             }
             else
             {
-                SetState(new Wander(character));
+                SetState(new Follow(character, character.player));
             }
         }
         else
         {
-            SetState(new Idle(character));
+            SetState(new Wander(character));
         }
     }
 }
