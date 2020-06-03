@@ -13,15 +13,15 @@ public class Prismabrille : Item
         List<GameObject> toRemove = new List<GameObject>();
         foreach (BulletShooter bs in pc.bulletShooters)
         {
-            if (bs.gameObject.name.StartsWith("Main"))
+            switch (bs.gameObject.name)
             {
-                toRemove.Add(bs.gameObject);
+                case ("Main Left"):
+                    toRemove.Add(bs.gameObject);
+                    break;
+                case ("Main Right"):
+                    toRemove.Add(bs.gameObject);
+                    break;
             }
-        }
-        foreach (GameObject bs in toRemove)
-        {
-            pc.bulletShooters.Remove(bs.GetComponent<BulletShooter>());
-            GameObject.Destroy(bs);
         }
 
         GameObject left = new GameObject("Main Left");
@@ -53,6 +53,22 @@ public class Prismabrille : Item
 
         pc.bulletShooters.Add(leftShoot);
         pc.bulletShooters.Add(rightShoot);
+
+
+        foreach (GameObject bs in toRemove)
+        {
+            switch (bs.gameObject.name)
+            {
+                case ("Main Left"):
+                    leftShoot.bulletEffects = bs.gameObject.GetComponent<BulletShooter>().bulletEffects;
+                    break;
+                case ("Main Right"):
+                    rightShoot.bulletEffects = bs.gameObject.GetComponent<BulletShooter>().bulletEffects;
+                    break;
+            }
+            pc.bulletShooters.Remove(bs.GetComponent<BulletShooter>());
+            GameObject.Destroy(bs);
+        }
 
         pc.InitializeBulletshooters();
     }
