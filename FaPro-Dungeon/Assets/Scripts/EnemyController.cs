@@ -87,8 +87,6 @@ public class EnemyController : MonoBehaviour
 
     public float coolDown;
 
-    public bool inCollisionRange = false;
-
     public bool coolDownAttack = false;
 
     private bool chooseDir = false;
@@ -110,19 +108,13 @@ public class EnemyController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
-        inCollisionRange = false;
     }
 
     public void Awake()
     {
         count++;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        ContactDamage();
-    }
+    
 
     public bool IsPlayerInRange()
     {
@@ -205,23 +197,18 @@ public class EnemyController : MonoBehaviour
 
     public void ContactDamage()
     {
-        if (dealContactDamage && inCollisionRange)
+        if (dealContactDamage)
         {
             GameController.DamagePlayer(1);
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            inCollisionRange = true;
             ContactDamage();
         }
     }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        inCollisionRange = false;
-    }
+    
 }

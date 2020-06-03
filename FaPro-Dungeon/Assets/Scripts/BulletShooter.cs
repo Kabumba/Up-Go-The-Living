@@ -22,6 +22,7 @@ public class BulletShooter : MonoBehaviour
 
     public float fireChance = 1;
 
+    public List<BulletEffect> bulletEffects;
 
     public void Shoot()
     {
@@ -33,7 +34,13 @@ public class BulletShooter : MonoBehaviour
                 if (rand < fireChance)
                 {
                     GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation) as GameObject;
-                    bullet.AddComponent<Rigidbody2D>().gravityScale = 0;
+                    if (bulletEffects != null)
+                    {
+                        foreach(BulletEffect be in bulletEffects)
+                        {
+                            bullet.GetComponent<BulletController>().bulletEffects.Add(be);
+                        }
+                    }
                     bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(
                         transform.up.x * playerController.bulletSpeed + playerController.velocityAddedToBullet * playerController.rb.velocity.x,
                         transform.up.y * playerController.bulletSpeed + playerController.velocityAddedToBullet * playerController.rb.velocity.y,

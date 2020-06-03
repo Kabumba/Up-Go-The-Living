@@ -19,7 +19,7 @@ public class RangeAttack : State
         {
             GameObject bullet = EnemyController.Instantiate(character.bulletPrefab, character.transform.position, character.transform.rotation) as GameObject;
             BulletController bc = bullet.GetComponent<BulletController>();
-            Rigidbody2D rb = bullet.AddComponent<Rigidbody2D>();
+            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.gravityScale = 0;
             bc.isEnemyBullet = true;
             bc.lifeTime = range / 30f;

@@ -2,6 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public abstract class BulletEffect
+{
+    BulletController bulletController;
+
+    //Wird aufgerufen wenn das Projektil einen nicht-freundlichen Spieler trifft.
+    public virtual void OnPlayerHit(Collider2D collision)
+    {
+
+    }
+
+    //Wird aufgerufen wenn das Projektil einen nicht-freundlichen Gegner trifft.
+    public virtual void OnEnemyHit(Collider2D collision)
+    {
+
+    }
+
+    //Wird aufgerufen wenn das Projektil ein anderes nicht-freundliches Projektil trifft
+    public virtual void OnProjectileHit(Collider2D collision)
+    {
+
+    }
+
+    //Wird aufgerufen wenn das Projektil ein Hindernis trifft.
+    public virtual void OnObstacleHit(Collider2D collision)
+    {
+
+    }
+
+    //Wird aufgerufen wenn das Projektil zerstört wird.
+    public virtual void OnDestroy()
+    {
+
+    }
+
+    //Wird in jedem Frame einmal aufgerufen
+    public virtual void Tick()
+    {
+
+    }
+}
+
 public class BulletController : MonoBehaviour
 {
 
@@ -15,6 +57,8 @@ public class BulletController : MonoBehaviour
 
     public bool isEnemyBullet = false;
 
+    public List<BulletEffect> bulletEffects;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,59 +67,87 @@ public class BulletController : MonoBehaviour
             damage = GameController.Damage;
             range = GameController.Range;
             lifeTime = range / 30f;
-            transform.localScale = new Vector2(GameController.BulletSize, GameController.BulletSize);
             StartCoroutine(DeathDelay());
         }
-        
+    }
+
+    private void Awake()
+    {
+        transform.localScale = new Vector2(GameController.BulletSize, GameController.BulletSize);
+        bulletEffects = new List<BulletEffect>();
     }
 
     //Sorgt dafür, dass das Projektil zerstört wird, wenn es sich zu weit von seiner startpostion entfernt hat
     public IEnumerator DeathDelay()
     {
         yield return new WaitForSeconds(lifeTime);
+        Destroy();
+    }
+
+    private void Update()
+    {
+        foreach (BulletEffect be in bulletEffects)
+        {
+            be.Tick();
+        }
+    }
+
+    public void Destroy()
+    {
+        foreach (BulletEffect be in bulletEffects)
+        {
+            be.OnDestroy();
+        }
         Destroy(gameObject);
     }
 
-
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.isTrigger)
+        if (collision.GetComponent<Collider2D>().isTrigger)
         {
             return;
         }
-
-        if ("Enemy".Equals(collision.tag))
+        switch (collision.tag)
         {
-            if (isEnemyBullet)
-            {
-            }
-            else
-            {
-                collision.gameObject.GetComponent<EnemyController>().DamageEnemy(damage);
-                collision.gameObject.GetComponent<Rigidbody2D>().AddForce(gameObject.GetComponent<Rigidbody2D>().velocity * knockback, ForceMode2D.Impulse);
-
-                Destroy(gameObject);
-            }
-        }
-        if ("Player".Equals(collision.tag))
-        {
-            if (!isEnemyBullet)
-            {
-            }
-            else
-            {
-                GameController.DamagePlayer(1);
-                Destroy(gameObject);
-            }
-        }
-        if ("Projectile".Equals(collision.tag))
-        {
-            if (isEnemyBullet == collision.GetComponent<BulletController>().isEnemyBullet)
-            {
-            }
-            else
-            {
-            }
+            case ("Enemy"):
+                if (!isEnemyBullet)
+                {
+                    foreach (BulletEffect be in bulletEffects)
+                    {
+                        be.OnEnemyHit(collision);
+                    }
+                    collision.GetComponent<EnemyController>().DamageEnemy(damage);
+                    collision.GetComponent<Rigidbody2D>().AddForce(gameObject.GetComponent<Rigidbody2D>().velocity * knockback, ForceMode2D.Impulse);
+                    Destroy();
+                }
+                break;
+            case ("Player"):
+                if (isEnemyBullet)
+                {
+                    foreach (BulletEffect be in bulletEffects)
+                    {
+                        be.OnPlayerHit(collision);
+                    }
+                    GameController.DamagePlayer(1);
+                    Destroy();
+                }
+                break;
+            case ("Projectile"):
+                if (isEnemyBullet != collision.GetComponent<BulletController>().isEnemyBullet)
+                {
+                    foreach (BulletEffect be in bulletEffects)
+                    {
+                        be.OnProjectileHit(collision);
+                    }
+                }
+                break;
+            default:
+                foreach (BulletEffect be in bulletEffects)
+                {
+                    be.OnObstacleHit(collision);
+                }
+                Destroy();
+                break;
         }
     }
 }
