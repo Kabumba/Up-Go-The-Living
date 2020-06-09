@@ -7,6 +7,15 @@ public abstract class BulletEffect
 {
     BulletController bulletController;
 
+    //Soll das Projektil nach den Bulleteffects das normale Verhalten aufweisen, z.B. Schaden verursachen und zerstört werden?
+    public bool defaultPlayerHit = true;
+
+    public bool defaultEnemyHit = true;
+
+    public bool defaultProjectileHit = true;
+
+    public bool defaultObstacleHit = true;
+
     //Wird aufgerufen wenn das Projektil einen nicht-freundlichen Spieler trifft.
     public virtual void OnPlayerHit(Collider2D collision)
     {
@@ -107,6 +116,7 @@ public class BulletController : MonoBehaviour
         {
             return;
         }
+        bool defaultBehavior = true;
         switch (collision.tag)
         {
             case ("Enemy"):
@@ -115,10 +125,14 @@ public class BulletController : MonoBehaviour
                     foreach (BulletEffect be in bulletEffects)
                     {
                         be.OnEnemyHit(collision);
+                        defaultBehavior = defaultBehavior && be.defaultEnemyHit;
                     }
-                    collision.GetComponent<EnemyController>().DamageEnemy(damage);
-                    collision.GetComponent<Rigidbody2D>().AddForce(gameObject.GetComponent<Rigidbody2D>().velocity * knockback, ForceMode2D.Impulse);
-                    Destroy();
+                    if (defaultBehavior)
+                    {
+                        collision.GetComponent<EnemyController>().DamageEnemy(damage);
+                        collision.GetComponent<Rigidbody2D>().AddForce(gameObject.GetComponent<Rigidbody2D>().velocity * knockback, ForceMode2D.Impulse);
+                        Destroy();
+                    }
                 }
                 break;
             case ("Player"):
@@ -127,9 +141,13 @@ public class BulletController : MonoBehaviour
                     foreach (BulletEffect be in bulletEffects)
                     {
                         be.OnPlayerHit(collision);
+                        defaultBehavior = defaultBehavior && be.defaultPlayerHit;
                     }
-                    GameController.DamagePlayer(1);
-                    Destroy();
+                    if (defaultBehavior)
+                    {
+                        GameController.DamagePlayer(1);
+                        Destroy();
+                    }
                 }
                 break;
             case ("Projectile"):
@@ -138,6 +156,10 @@ public class BulletController : MonoBehaviour
                     foreach (BulletEffect be in bulletEffects)
                     {
                         be.OnProjectileHit(collision);
+                        defaultBehavior = defaultBehavior && be.defaultProjectileHit;
+                    }
+                    if (defaultBehavior)
+                    {
                     }
                 }
                 break;
@@ -145,8 +167,13 @@ public class BulletController : MonoBehaviour
                 foreach (BulletEffect be in bulletEffects)
                 {
                     be.OnObstacleHit(collision);
+                    defaultBehavior = defaultBehavior && be.defaultObstacleHit;
                 }
-                Destroy();
+                if (defaultBehavior)
+                {
+                    Destroy();
+                }
+
                 break;
         }
     }
