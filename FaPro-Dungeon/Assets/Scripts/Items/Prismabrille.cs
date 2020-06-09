@@ -9,9 +9,9 @@ public class Prismabrille : Item
     public override void OnPickup()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        PlayerController pc = player.GetComponent<PlayerController>();
+        ShooterController shc = player.GetComponent<ShooterController>();
         List<GameObject> toRemove = new List<GameObject>();
-        foreach (BulletShooter bs in pc.bulletShooters)
+        foreach (BulletShooter bs in shc.bulletShooters)
         {
             switch (bs.gameObject.name)
             {
@@ -51,8 +51,8 @@ public class Prismabrille : Item
         rightShoot.fireShotDelay = 1;
         rightShoot.fireShotOffset = 1;
 
-        pc.bulletShooters.Add(leftShoot);
-        pc.bulletShooters.Add(rightShoot);
+        shc.bulletShooters.Add(leftShoot);
+        shc.bulletShooters.Add(rightShoot);
 
 
         foreach (GameObject bs in toRemove)
@@ -66,11 +66,11 @@ public class Prismabrille : Item
                     rightShoot.bulletEffects = bs.gameObject.GetComponent<BulletShooter>().bulletEffects;
                     break;
             }
-            pc.bulletShooters.Remove(bs.GetComponent<BulletShooter>());
+            shc.bulletShooters.Remove(bs.GetComponent<BulletShooter>());
             GameObject.Destroy(bs);
         }
 
-        pc.InitializeBulletshooters();
+        shc.InitializeBulletshooters();
     }
 }
 

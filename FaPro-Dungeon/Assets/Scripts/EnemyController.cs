@@ -73,27 +73,13 @@ public class EnemyController : MonoBehaviour
 
     private float maxHealth = 10;
 
-    public float range = 5f;
-
-    public float speed = 3f;
-
-    public float accelerationValue = 0.1f;
-
-    public Vector2 acceleration;
-
-    public Vector2 desiredVelocity;
+    public float range;
 
     public float attackRange;
-
-    public float coolDown;
-
-    public bool coolDownAttack = false;
 
     private bool chooseDir = false;
 
     public bool dealContactDamage = true;
-
-    public GameObject bulletPrefab;
 
     public Rigidbody2D rb;
 
@@ -101,21 +87,26 @@ public class EnemyController : MonoBehaviour
 
     public static int count = 0;
 
+    public MovementController mvc;
+
+    public ShooterController shc;
+
     
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = gameObject.GetComponent<Rigidbody2D>();
+        mvc = gameObject.GetComponent<MovementController>();
         rb.freezeRotation = true;
+        shc = gameObject.GetComponent<ShooterController>();
     }
 
     public void Awake()
     {
         count++;
     }
-    
-
+   
     public bool IsPlayerInRange()
     {
         return Vector3.Distance(transform.position, player.transform.position) <= range;
@@ -129,61 +120,10 @@ public class EnemyController : MonoBehaviour
         chooseDir = false;
     }
     
-    public void MoveForward()
-    {
-        float angle = rb.rotation * Mathf.Deg2Rad;
-        acceleration = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * accelerationValue;
-        desiredVelocity = acceleration.normalized * speed;
-        if (rb.velocity.magnitude == 0)
-        {
-            rb.velocity = acceleration;
-        }
-        else
-        {
-            if (rb.velocity != desiredVelocity)
-            {
-                rb.velocity += acceleration;
-            }
-            if (rb.velocity.magnitude > speed)
-            {
-
-                rb.velocity = speed * rb.velocity.normalized;
-            }
-        }
-    }
-
-    public void SlowDown()
-    {
-        float angle = rb.rotation * Mathf.Deg2Rad;
-        acceleration = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * accelerationValue;
-        desiredVelocity = new Vector2(0, 0);
-        if (rb.velocity != desiredVelocity)
-        {
-            Vector2 vchange = accelerationValue * rb.velocity;
-            if (vchange.magnitude <= rb.velocity.magnitude)
-            {
-                rb.velocity -= accelerationValue * rb.velocity;
-            }
-            else
-            {
-                rb.velocity = desiredVelocity;
-            }
-        }
-    }
-   
-
-    //Verarbeitet den Angriffscooldown
-    public IEnumerator CoolDown()
-    {
-        coolDownAttack = true;
-        yield return new WaitForSeconds(coolDown);
-        coolDownAttack = false;
-    }
-
     public void Death()
     {
-        Destroy(gameObject);
         count--;
+        Destroy(gameObject);
     }
 
     public void DamageEnemy(float damage)

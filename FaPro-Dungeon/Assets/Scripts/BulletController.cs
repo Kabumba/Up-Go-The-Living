@@ -64,9 +64,11 @@ public class BulletController : MonoBehaviour
 
     public float knockback = 5f;
 
-    public bool isEnemyBullet = false;
+    public bool isEnemyBullet;
 
     public List<BulletEffect> bulletEffects;
+
+    public MovementController mvc;
 
     // Start is called before the first frame update
     void Start()
@@ -76,8 +78,9 @@ public class BulletController : MonoBehaviour
             damage = GameController.Damage;
             range = GameController.Range;
             lifeTime = range / 30f;
-            StartCoroutine(DeathDelay());
         }
+        mvc = gameObject.GetComponent<MovementController>();
+        StartCoroutine(DeathDelay());
     }
 
     private void Awake()

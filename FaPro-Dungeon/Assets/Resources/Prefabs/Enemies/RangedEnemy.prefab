@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 3006069647624691927}
   - component: {fileID: 3006069647624691926}
   - component: {fileID: -2653874758224808747}
-  - component: {fileID: 3878615197869221917}
+  - component: {fileID: 4577716362895644905}
+  - component: {fileID: 6163656324173728335}
   m_Layer: 0
   m_Name: RangedEnemy
   m_TagString: Enemy
@@ -32,7 +33,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.11, y: -1.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2455466466314583673}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -99,24 +101,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  curState: 0
-  enemyType: 1
   health: 8
   range: 10
-  speed: 3
-  accelerationValue: 0.1
-  acceleration: {x: 0, y: 0}
-  desiredVelocity: {x: 0, y: 0}
   attackRange: 6
   coolDown: 3
-  inCollisionRange: 0
   coolDownAttack: 0
-  notInRoom: 1
   dealContactDamage: 1
-  bulletPrefab: {fileID: 5473610484710109101, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
-    type: 3}
   rb: {fileID: 0}
   isFlying: 0
+  mvc: {fileID: 0}
+  shc: {fileID: 0}
 --- !u!50 &3006069647624691927
 Rigidbody2D:
   serializedVersion: 4
@@ -166,19 +160,88 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7779141e290faf44fb472ddb025122f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &3878615197869221917
-CircleCollider2D:
+--- !u!114 &4577716362895644905
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3006069647624691921}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.51
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5190a9f3bee2bee42addb16954e78b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: {x: 0, y: 0}
+  desiredVelocity: {x: 0, y: 0}
+  speed: 1
+  accelerationValue: 0.1
+  rb: {fileID: 3006069647624691927}
+--- !u!114 &6163656324173728335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006069647624691921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43ab51d5e6ef0df45b43a952a0a2f8bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 4804322774364924742, guid: 16a68ce4fdab9e54688ac37ffdf92aea,
+    type: 3}
+  bulletSpeed: 7
+  fireDelay: 3
+  velocityAddedToBullet: 0
+  rb: {fileID: 3006069647624691927}
+  bulletShooters: []
+--- !u!1 &5730066281255364813
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2455466466314583673}
+  - component: {fileID: 4232928028597752002}
+  m_Layer: 0
+  m_Name: MainAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2455466466314583673
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5730066281255364813}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3006069647624691946}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4232928028597752002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5730066281255364813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8944400255ec7a243bba3ad1290eb36d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 0}
+  fireTimeDelay: 3
+  fireShotDelay: 0
+  shooterController: {fileID: 0}
+  fireShotOffset: 0
+  fireChance: 1

@@ -5,57 +5,26 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
-
-    public GameObject bulletPrefab;
-
-    public float bulletSpeed;
-
-    private float lastFire;
-
-    public float fireDelay;
-
-    public float velocityAddedToBullet = 0.3f;
-
-    public List<BulletShooter> bulletShooters;
+    
+    public ShooterController shc;
 
     public Rigidbody2D rb;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        InitializeBulletshooters();
-    }
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        bulletShooters = new List<BulletShooter>();
-        foreach(BulletShooter bs in gameObject.GetComponentsInChildren<BulletShooter>())
-        {
-            bulletShooters.Add(bs);
-        }
+        shc = gameObject.GetComponent<ShooterController>();
+        
     }
-
-    public void InitializeBulletshooters()
-    {
-        foreach (BulletShooter bs in bulletShooters)
-        {
-            bs.playerController = this;
-            bs.fireTimeDelay = fireDelay;
-            bs.bulletPrefab = bulletPrefab;
-        }
-    }
-
+    
     // Update is called once per frame
     void Update()
     {
-        fireDelay = GameController.FireRate;
-        foreach (BulletShooter bs in bulletShooters)
-        {
-            bs.fireTimeDelay = fireDelay;
-        }
+        shc.fireDelay = GameController.FireRate;
         speed = GameController.MoveSpeed;
-        bulletSpeed = GameController.BulletSpeed;
+        shc.bulletSpeed = GameController.BulletSpeed;
 
         //Inputs
         float horizontal = Input.GetAxis("Horizontal");
@@ -97,18 +66,9 @@ public class PlayerController : MonoBehaviour
             {
                 transform.rotation = Quaternion.Euler(0, 0, -90f * fixedX);
             }
-            TryShoot();
+            shc.TryShoot();
         }
 
 
-    }
-
-    //Versucht Projektile in die Richtung zu schießen, in die der Spieler gerade schaut.
-    void TryShoot()
-    {
-        foreach(BulletShooter bs in bulletShooters)
-        {
-            bs.Shoot();
-        }
     }
 }

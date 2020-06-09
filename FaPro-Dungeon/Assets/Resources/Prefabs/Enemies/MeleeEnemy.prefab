@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2696955392005806667}
   - component: {fileID: 2696955392005806666}
   - component: {fileID: 3477940481755264154}
-  - component: {fileID: -8583087001238524310}
+  - component: {fileID: 6538331775876773904}
   m_Layer: 0
   m_Name: MeleeEnemy
   m_TagString: Enemy
@@ -137,20 +137,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   health: 10
-  range: 5
-  speed: 3
-  accelerationValue: 0.3
-  acceleration: {x: 0, y: 0}
-  desiredVelocity: {x: 0, y: 0}
+  range: 4
   attackRange: 0
   coolDown: 0
-  inCollisionRange: 0
   coolDownAttack: 0
   dealContactDamage: 1
-  bulletPrefab: {fileID: 5473610484710109101, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
-    type: 3}
   rb: {fileID: 0}
   isFlying: 0
+  mvc: {fileID: 0}
+  shc: {fileID: 0}
 --- !u!114 &3477940481755264154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,19 +158,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1365aa80969acdc4b91465c4c863e714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &-8583087001238524310
-CircleCollider2D:
+--- !u!114 &6538331775876773904
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2696955392005806665}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.49
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5190a9f3bee2bee42addb16954e78b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: {x: 0, y: 0}
+  desiredVelocity: {x: 0, y: 0}
+  speed: 4.3
+  accelerationValue: 0.2
+  rb: {fileID: 2696955392005806660}

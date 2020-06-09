@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class BulletShooter : MonoBehaviour
 {
     //Konvention: Die Namen der gameobjekte mit bulletshooter die den Hauptangriff darstellen beginnen mit Main
@@ -16,7 +18,7 @@ public class BulletShooter : MonoBehaviour
 
     public int fireShotDelay = 0;
 
-    public PlayerController playerController;
+    public ShooterController shooterController;
 
     public int fireShotOffset = 0;
 
@@ -42,8 +44,8 @@ public class BulletShooter : MonoBehaviour
                         }
                     }
                     bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(
-                        transform.up.x * playerController.bulletSpeed + playerController.velocityAddedToBullet * playerController.rb.velocity.x,
-                        transform.up.y * playerController.bulletSpeed + playerController.velocityAddedToBullet * playerController.rb.velocity.y,
+                        transform.up.x * shooterController.bulletSpeed + shooterController.velocityAddedToBullet * shooterController.rb.velocity.x,
+                        transform.up.y * shooterController.bulletSpeed + shooterController.velocityAddedToBullet * shooterController.rb.velocity.y,
                         0
                         );
                     GameController.OnFireItems();
