@@ -39,13 +39,7 @@ public class RoomController : MonoBehaviour
     }
     // Start is called before the first frame update
     void Start()
-    {/* Testräume ohne Randomgenerierung
-        LoadRoom("Start", 0, 0);
-        LoadRoom("Empty", 0, 1);
-        LoadRoom("Empty", 0, -1);
-        LoadRoom("Empty", 1, 0);
-        LoadRoom("Empty", -1, 0);
-        */
+    {
     }
 
     // Update is called once per frame

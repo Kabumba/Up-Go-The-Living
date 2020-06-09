@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using UnityEditor.Presets;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Room : MonoBehaviour
 {
@@ -17,6 +19,8 @@ public class Room : MonoBehaviour
     public Door leftDoor, rightDoor, topDoor, bottomDoor;
 
     public GameObject[] presets;
+
+    public Tilemap closedDoorTilemap;
 
     public Room(int x, int y)
     {
@@ -61,7 +65,15 @@ public class Room : MonoBehaviour
 
     public void SpawnPreset()
     {
-        int rand = UnityEngine.Random.Range(0, presets.Length);
-        GameObject preset = Instantiate(presets[rand], transform) as GameObject;
+        if (presets.Length > 0)
+        {
+            int rand = UnityEngine.Random.Range(0, presets.Length);
+            GameObject preset = Instantiate(presets[rand], transform) as GameObject;
+        }
+    }
+
+    public Tilemap GetTileMap()
+    {
+        return closedDoorTilemap;
     }
 }
