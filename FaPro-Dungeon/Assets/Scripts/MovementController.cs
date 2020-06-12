@@ -19,28 +19,41 @@ public class MovementController : MonoBehaviour
     //RigisBody that is controlled by this
     public Rigidbody2D rb;
 
+    public bool bounceOff;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     //Returns a normalized Vector pointing in the current forward direction of the Rigidbody
-    public Vector2 Rotation()
+    public Vector2 GetRotation()
     {
-        float angle = (rb.rotation+90) * Mathf.Deg2Rad;
+        float angle = (rb.rotation + 90) * Mathf.Deg2Rad;
         return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+    }
+
+    public void SetRotation(Vector2 setTo)
+    {
+        float angle = (rb.rotation + 90) * Mathf.Deg2Rad;
+        rb.rotation = Vector2.SignedAngle(new Vector2(0, 1), setTo);
+    }
+
+    public void RotateTowards(GameObject towards)
+    {
+        SetRotation(towards.transform.position - transform.position);
     }
 
     public void MoveForward()
     {
-        acceleration = Rotation() * accelerationValue;
+        acceleration = GetRotation() * accelerationValue;
         desiredVelocity = acceleration.normalized * speed;
         if (rb.velocity.magnitude == 0)
         {
@@ -62,7 +75,7 @@ public class MovementController : MonoBehaviour
 
     public void SlowDown()
     {
-        acceleration = Rotation() * accelerationValue;
+        acceleration = GetRotation() * accelerationValue;
         desiredVelocity = new Vector2(0, 0);
         if (rb.velocity != desiredVelocity)
         {
@@ -75,6 +88,45 @@ public class MovementController : MonoBehaviour
             {
                 rb.velocity = desiredVelocity;
             }
+        }
+    }
+
+    public void Dash(float dashSpeed, float dashTime)
+    {
+        
+        Vector2 dash = GetRotation() * dashSpeed;
+        rb.velocity = dash;
+        StartCoroutine(DashSlowDown(dash, dashTime));
+    }
+
+    IEnumerator DashSlowDown(Vector2 dash, float dashTime)
+    {
+        Vector2 vel = dash;
+        float StartTime = Time.time;
+        float EndTime = StartTime + dashTime;
+        while (Time.time <= EndTime)
+        {
+            vel = GetRotation() * vel.magnitude;
+            rb.velocity = vel * (EndTime - Time.time) / dashTime;
+            yield return null;
+        }
+        rb.velocity = new Vector2(0, 0);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Player": break; 
+            case "Enemy": return;
+            case "Projectile": return;
+        }
+        if (bounceOff)
+        {
+            Vector2 n = collision.GetContact(0).normal;
+            Vector2 d = GetRotation();
+            Vector2 r = d - 2 * Vector2.Dot(d, n) * n;
+            SetRotation(r);
         }
     }
 }

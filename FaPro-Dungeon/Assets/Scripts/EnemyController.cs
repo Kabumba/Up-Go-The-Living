@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
+public abstract class DeathEvent : MonoBehaviour
+{
+    public abstract void OnDeath();
+}
 
 public abstract class State
 {
@@ -123,6 +127,10 @@ public class EnemyController : MonoBehaviour
     public void Death()
     {
         count--;
+        foreach(DeathEvent de in gameObject.GetComponents<DeathEvent>())
+        {
+            de.OnDeath();
+        }
         Destroy(gameObject);
     }
 

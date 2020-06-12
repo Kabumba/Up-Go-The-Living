@@ -54,6 +54,7 @@ public class CollectionController : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            GameController.items.Add(item);
             item.OnPickup();
             Destroy(gameObject);
         }

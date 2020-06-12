@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class RangeAttack : State
 {
-    public float bulletSpeed = 7f;
-    public float range = 30f;
     private MovementController mvc;
     private ShooterController shc;
 
@@ -18,7 +16,7 @@ public class RangeAttack : State
 
     public override void OnUpdate()
     {
-        character.rb.rotation = Vector2.SignedAngle(new Vector2(0, 1), character.player.transform.position - character.transform.position);
+        mvc.RotateTowards(character.player);
         shc.TryShoot();
         mvc.SlowDown();
     }
