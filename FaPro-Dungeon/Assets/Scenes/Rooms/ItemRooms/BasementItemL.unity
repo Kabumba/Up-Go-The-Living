@@ -161,6 +161,7 @@ MonoBehaviour:
   bottomDoor: {fileID: 0}
   presets:
   - {fileID: 7250691441136813878, guid: 1ae09711e6f509549ae5fdd1dc07c032, type: 3}
+  - {fileID: 3232093426103280066, guid: 0c3caea297bcf3d4680aa0399f714552, type: 3}
   closedDoorTilemap: {fileID: 0}
 --- !u!4 &80285609
 Transform:

@@ -172,6 +172,8 @@ MonoBehaviour:
   - {fileID: 4091571243272630731, guid: de9cefaaddd64db4dbc0e48c1f814af7, type: 3}
   - {fileID: 5022386837695802478, guid: af7cda2fd490ccf4f8d2d64a6044c2e7, type: 3}
   - {fileID: 7143948531445121261, guid: 39bd63eba6a753b4cacec88f8356efaa, type: 3}
+  - {fileID: 3714349021202346799, guid: 24f5c43a61b02b444a058494c976efe3, type: 3}
+  - {fileID: 7938660110854748341, guid: 4f97bd176a31079439d48e9c23d2ab38, type: 3}
   closedDoorTilemap: {fileID: 1457182928}
 --- !u!4 &80285609
 Transform:

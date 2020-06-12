@@ -111,7 +111,6 @@ MonoBehaviour:
   coolDown: 3
   inCollisionRange: 0
   coolDownAttack: 0
-  notInRoom: 1
   dealContactDamage: 1
   bulletPrefab: {fileID: 5473610484710109101, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
     type: 3}
@@ -153,7 +152,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
 --- !u!114 &-2653874758224808747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,4 +180,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.51
+  m_Radius: 0.41
