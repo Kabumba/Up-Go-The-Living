@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class EnemySpawn : MonoBehaviour
 {
     public GameObject[] enemies;
     public List<Transform> enemyPos = new List<Transform>();
+    public Tilemap closedDoorTilemap;
     // Start is called before the first frame update
     void Start()
     {
-        
+        closedDoorTilemap = gameObject.GetComponentInParent<Room>().GetTileMap();
     }
 
     private void Update()
@@ -32,6 +35,7 @@ public class EnemySpawn : MonoBehaviour
         foreach(Door door in room.GetComponentsInChildren<Door>())
         {
             door.doorCollider.SetActive(false);
+            closedDoorTilemap.GetComponent<TilemapRenderer>().enabled = false;
         }
         
     }
@@ -43,6 +47,7 @@ public class EnemySpawn : MonoBehaviour
         foreach(Door door in room.GetComponentsInChildren<Door>())
         {
             door.doorCollider.SetActive(true);
+            closedDoorTilemap.GetComponent<TilemapRenderer>().enabled = true;
         }
     }
 
@@ -65,5 +70,10 @@ public class EnemySpawn : MonoBehaviour
             Instantiate(enemies[e], enemyPos[p].position, enemyPos[p].rotation);
             enemyPos.RemoveAt(p);
         }
+    }
+
+    public Vector3Int ToInt3(Vector3 v)
+    {
+        return new Vector3Int((int)v.x, (int)v.y, (int)v.z);
     }
 }
