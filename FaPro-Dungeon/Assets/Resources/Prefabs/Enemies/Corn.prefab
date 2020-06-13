@@ -10,8 +10,13 @@ PrefabInstance:
     - target: {fileID: 2154381200821688411, guid: 97ca3e35e80318d459ce0b95a1fb77aa,
         type: 3}
       propertyPath: m_Name
-      value: Corn Variant
+      value: Corn
       objectReference: {fileID: 0}
+    - target: {fileID: 2154381200821688412, guid: 97ca3e35e80318d459ce0b95a1fb77aa,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 7658a6c1fc045ba43a8bb775c7834fd2, type: 2}
     - target: {fileID: 2154381200821688415, guid: 97ca3e35e80318d459ce0b95a1fb77aa,
         type: 3}
       propertyPath: m_Color.r

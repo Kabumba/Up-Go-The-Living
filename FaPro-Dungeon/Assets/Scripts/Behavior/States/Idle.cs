@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class Idle : State
 {
-    bool idle;
-
     public  Idle(EnemyController character) : base(character)
     {
         name = "Idle";
-        idle = false;
+    }
+
+    public override void OnStateEnter()
+    {
+        character.rb.velocity = new Vector2(0, 0);
     }
 
     public override void OnUpdate()
     {
-        if (!idle)
-        {
-            character.rb.velocity = new Vector2(0, 0);
-        }
+        character.mvc.SlowDown();
     }
 }
