@@ -118,7 +118,7 @@ public class MovementController : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "Player": return; 
-            case "Enemy": return;
+            case "Enemy": break;
             case "Projectile": return;
         }
         if (bounceOff)
