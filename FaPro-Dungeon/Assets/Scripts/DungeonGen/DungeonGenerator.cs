@@ -11,6 +11,11 @@ public class DungeonGenerator : MonoBehaviour
 
     private void Start()
     {
+        NewFloor();
+    }
+
+    public void NewFloor()
+    {
         Lg.Initialize();
         rooms = Lg.GetLayout();
         SpawnRooms(rooms);
