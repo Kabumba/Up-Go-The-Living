@@ -48,15 +48,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 363503399267798447}
-  healthChange: 0
-  maxHealthChange: 0
-  coinChange: 0
-  damageChange: 0
-  moveSpeedChange: 0
-  fireRateChange: 0
-  rangeChange: 0
-  bulletSpeedChange: 0
-  bulletSizeChange: 0
 --- !u!114 &363503399267798447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +76,7 @@ PolygonCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}

@@ -253,6 +253,7 @@ MonoBehaviour:
   velocityAddedToBullet: 0
   rb: {fileID: 3006069647624691927}
   bulletShooters: []
+  damage: 3.5
 --- !u!1 &5730066281255364813
 GameObject:
   m_ObjectHideFlags: 0

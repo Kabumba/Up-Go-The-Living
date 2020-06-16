@@ -162,7 +162,6 @@ MonoBehaviour:
   presets:
   - {fileID: 3428019783310533026, guid: 4b61cfd40ca6a8c4f99da3e1f5df45f9, type: 3}
   - {fileID: 3698415234490335529, guid: f8df492641a81d24d984308c805125e9, type: 3}
-  - {fileID: 2593659437881158427, guid: 3017751fb128a4d4b962cec65d7c377b, type: 3}
   - {fileID: 948213765811809829, guid: 8dbfb6ee15c6c8749b518bcba7bca836, type: 3}
   - {fileID: 5047041878456997324, guid: 1f2c73edb3dc67342a1509dfdbefefc3, type: 3}
   - {fileID: 1333081018142477534, guid: 50b0a7eb22953e74a87c797d18fb2638, type: 3}

@@ -695,7 +695,7 @@ GameObject:
   - component: {fileID: 737827309}
   - component: {fileID: 737827308}
   m_Layer: 0
-  m_Name: BottomDoor
+  m_Name: TopDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -753,7 +753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c7195f49249a854ead4d6e3f29bc513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorType: 3
+  doorType: 2
   doorCollider: {fileID: 1379728164}
 --- !u!1 &1315039760
 GameObject:
@@ -812,7 +812,7 @@ GameObject:
   - component: {fileID: 1379728167}
   - component: {fileID: 1379728165}
   m_Layer: 0
-  m_Name: dCollBottom
+  m_Name: dCollTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -852,7 +852,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379728164}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 80285609}
