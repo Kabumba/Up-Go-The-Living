@@ -170,6 +170,7 @@ MonoBehaviour:
   fireShotDelay: 1
   shooterController: {fileID: 0}
   fireShotOffset: 0
+  fireTimeOffset: 0
   fireChance: 1
 --- !u!1 &365087943
 GameObject:
@@ -989,6 +990,7 @@ MonoBehaviour:
   fireShotDelay: 1
   shooterController: {fileID: 0}
   fireShotOffset: 1
+  fireTimeOffset: 0
   fireChance: 1
 --- !u!1 &1364892174
 GameObject:

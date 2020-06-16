@@ -22,6 +22,8 @@ public class BulletShooter : MonoBehaviour
 
     public int fireShotOffset = 0;
 
+    public float fireTimeOffset = 0;
+
     public float fireChance = 1;
 
     public List<BulletEffect> bulletEffects;
@@ -30,6 +32,7 @@ public class BulletShooter : MonoBehaviour
     {
         if (Time.time > lastFireTime + fireTimeDelay)
         {
+            StartCoroutine(Wait(fireTimeOffset));
             if (lastFireShot >= fireShotDelay + fireShotOffset)
             {
                 float rand = Random.Range(0f, 1);
@@ -38,7 +41,7 @@ public class BulletShooter : MonoBehaviour
                     GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation) as GameObject;
                     if (bulletEffects != null)
                     {
-                        foreach(BulletEffect be in bulletEffects)
+                        foreach (BulletEffect be in bulletEffects)
                         {
                             bullet.GetComponent<BulletController>().bulletEffects.Add(be);
                         }
@@ -60,8 +63,14 @@ public class BulletShooter : MonoBehaviour
         }
     }
 
+    private IEnumerator Wait(float s)
+    {
+        yield return new WaitForSeconds(s);
+    }
+
     public void setFireShotDelay(int fireShotDelay)
     {
         this.fireShotDelay = fireShotDelay;
     }
 }
+
