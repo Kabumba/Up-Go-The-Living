@@ -16,6 +16,8 @@ public class ShooterController : MonoBehaviour
 
     public List<BulletShooter> bulletShooters;
 
+    public float damage = GameController.Damage;
+
     private void Start()
     {
         InitializeBulletshooters();
@@ -35,6 +37,7 @@ public class ShooterController : MonoBehaviour
         {
             bs.fireTimeDelay = fireDelay;
         }
+        damage = GameController.Damage;
     }
 
     public void TryShoot()
