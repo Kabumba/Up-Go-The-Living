@@ -80,8 +80,7 @@ public class EnemyController : MonoBehaviour
     public float range;
 
     public float attackRange;
-
-    private bool chooseDir = false;
+    
 
     public bool dealContactDamage = true;
 
@@ -114,14 +113,6 @@ public class EnemyController : MonoBehaviour
     public bool IsPlayerInRange()
     {
         return Vector3.Distance(transform.position, player.transform.position) <= range;
-    }
-
-    private IEnumerator ChooseDirection()
-    {
-        chooseDir = true;
-        yield return new WaitForSeconds(Random.Range(1f, 3f)); //wählt in zufälligen Abständen neue Richtung //wählt zufällige Richtung
-        rb.rotation = Random.Range(0f, 360f);
-        chooseDir = false;
     }
     
     public void Death()
