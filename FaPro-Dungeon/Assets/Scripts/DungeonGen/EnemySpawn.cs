@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public GameObject[] enemies;
+    private List<EnemyController> enemies;
     public List<Transform> enemyPos = new List<Transform>();
     public Tilemap closedDoorTilemap;
     // Start is called before the first frame update
@@ -62,13 +63,13 @@ public class EnemySpawn : MonoBehaviour
 
     void EnemySpawner()
     {
-        int ep = UnityEngine.Random.Range(1, enemyPos.Count);
-        for (int i = 0; i < ep; i++)
+        foreach (Transform ep in enemyPos.ToList<Transform>())
         {
-            int p = UnityEngine.Random.Range(0, enemyPos.Count);
-            int e = UnityEngine.Random.Range(0, enemies.Length);
-            Instantiate(enemies[e], enemyPos[p].position, enemyPos[p].rotation);
-            enemyPos.RemoveAt(p);
+            EnemySpecifics enemySpecific = ep.GetComponent<EnemySpecifics>();
+            enemies = enemySpecific.enemies;
+            int e = UnityEngine.Random.Range(1, enemies.Count);
+            Instantiate(enemies[e], ep.position, ep.rotation);
+            enemyPos.Remove(ep);
         }
     }
 
