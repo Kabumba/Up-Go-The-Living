@@ -139,9 +139,6 @@ MonoBehaviour:
   health: 10
   range: 4
   attackRange: 0
-  coolDown: 0
-  inCollisionRange: 0
-  coolDownAttack: 0
   dealContactDamage: 1
   rb: {fileID: 0}
   isFlying: 0

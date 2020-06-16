@@ -59,4 +59,9 @@ public class BulletShooter : MonoBehaviour
             lastFireTime = Time.time;
         }
     }
+
+    public void setFireShotDelay(int fireShotDelay)
+    {
+        this.fireShotDelay = fireShotDelay;
+    }
 }

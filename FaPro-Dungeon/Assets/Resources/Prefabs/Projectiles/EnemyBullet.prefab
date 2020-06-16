@@ -22,6 +22,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyBullet
       objectReference: {fileID: 0}
+    - target: {fileID: 5473610484710109101, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6425665841988272902, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
         type: 3}
       propertyPath: m_Color.r
@@ -36,6 +41,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 0.16794232
+      objectReference: {fileID: 0}
+    - target: {fileID: 6425665841988272902, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6995528662292228353, guid: 1cfc9c1821aa77646a7d6ba17cda96a4,
         type: 3}
