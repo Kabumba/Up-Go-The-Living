@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour
 
     private static float damage = 3.5f;
 
+    private static float damageMultiplier = 1f;
+
     private static float moveSpeed = 4f;
 
     private static float maxMoveSpeed = 8f;
@@ -54,7 +56,11 @@ public class GameController : MonoBehaviour
 
     public static float InvincibleAfterHit { get => invincibleAfterHit; set => invincibleAfterHit = value; }
 
+    public static float DamageMultiplier { get => damageMultiplier; set => damageMultiplier = value; }
+
     public static List<Item> items;
+
+    public int floorNumber = 1;
 
     public Text healthText;
 

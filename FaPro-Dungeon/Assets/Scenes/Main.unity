@@ -764,6 +764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff030e6121c600f4987c83ca3700711a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floorNumber: 1
   healthText: {fileID: 1364892177}
   coinText: {fileID: 365591994}
 --- !u!4 &1159579210
