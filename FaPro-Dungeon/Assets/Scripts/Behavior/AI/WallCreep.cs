@@ -9,7 +9,7 @@ public class WallCreep : AI
     public float wanderTime;
 
     public float shootTime;
-
+    
     public override void StateChanges()
     {
         if (Time.time >= lastshoot + wanderTime)

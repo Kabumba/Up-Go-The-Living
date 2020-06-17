@@ -172,6 +172,8 @@ MonoBehaviour:
   fireShotOffset: 0
   fireTimeOffset: 0
   fireChance: 1
+  barrageCount: 1
+  barrageTimeDelay: 0
 --- !u!1 &365087943
 GameObject:
   m_ObjectHideFlags: 0
@@ -992,6 +994,8 @@ MonoBehaviour:
   fireShotOffset: 1
   fireTimeOffset: 0
   fireChance: 1
+  barrageCount: 1
+  barrageTimeDelay: 0
 --- !u!1 &1364892174
 GameObject:
   m_ObjectHideFlags: 0

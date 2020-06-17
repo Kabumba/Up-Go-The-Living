@@ -49,7 +49,10 @@ MonoBehaviour:
   fireShotDelay: 0
   shooterController: {fileID: 0}
   fireShotOffset: 0
+  fireTimeOffset: 0
   fireChance: 1
+  barrageCount: 1
+  barrageTimeDelay: 0
 --- !u!1 &2274447674403721400
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,7 +102,10 @@ MonoBehaviour:
   fireShotDelay: 0
   shooterController: {fileID: 0}
   fireShotOffset: 0
+  fireTimeOffset: 0
   fireChance: 1
+  barrageCount: 1
+  barrageTimeDelay: 0
 --- !u!1 &3319398209186200164
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +155,10 @@ MonoBehaviour:
   fireShotDelay: 0
   shooterController: {fileID: 0}
   fireShotOffset: 0
+  fireTimeOffset: 0
   fireChance: 1
+  barrageCount: 1
+  barrageTimeDelay: 0
 --- !u!1 &4646800655788360126
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +237,10 @@ MonoBehaviour:
   speed: 1
   accelerationValue: 0.1
   rb: {fileID: 4646800655788360120}
-  bounceOff: 1
+  bounceOffObstacle: 1
+  bounceOffPlayer: 0
+  bounceOffEnemy: 0
+  bounceOffProjectile: 0
 --- !u!58 &4646800655788360121
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -335,6 +347,7 @@ MonoBehaviour:
   velocityAddedToBullet: 0
   rb: {fileID: 4646800655788360120}
   bulletShooters: []
+  damage: 3.5
 --- !u!114 &6372857301328280495
 MonoBehaviour:
   m_ObjectHideFlags: 0
