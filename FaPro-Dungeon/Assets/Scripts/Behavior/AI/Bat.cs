@@ -8,15 +8,26 @@ public class Bat : AI
 
     public float dashTime;
 
+    private float lastDashtime;
+
     public override void StateChanges()
     {
         if (Vector3.Distance(transform.position, character.player.transform.position) <= character.attackRange)
         {
-            SetState(new Dash(character, Target.Player, dashSpeed, dashTime));
+
+            if (Time.time >= lastDashtime + dashTime)
+            {
+                SetState(new Dash(character, Target.Player, dashSpeed, dashTime));
+                lastDashtime = Time.time;
+            }
+
         }
         else
         {
-            SetState(new Follow(character, character.player));
+            if (Time.time >= lastDashtime + dashTime)
+            {
+                SetState(new Follow(character, character.player));
+            }
         }
     }
 }
