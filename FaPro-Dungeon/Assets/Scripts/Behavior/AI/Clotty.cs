@@ -18,9 +18,5 @@ public class Clotty : AI
             SetState(new Wander(character, false));
         }
     }
-
-    private void Start()
-    {
-        //gameObject.transform.rotation = Quaternion.Euler(0, 0, -45);
-    }
+    
 }
