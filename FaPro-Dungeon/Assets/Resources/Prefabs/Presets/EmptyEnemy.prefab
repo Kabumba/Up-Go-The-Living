@@ -132,6 +132,7 @@ MonoBehaviour:
   - {fileID: 1817263052769861380}
   - {fileID: 384151660072262745}
   closedDoorTilemap: {fileID: 0}
+  dropPos: {fileID: 8144117919567158132, guid: 605d6fffb54cbb44e9de80b02556d415, type: 3}
 --- !u!61 &7650072715432625124
 BoxCollider2D:
   m_ObjectHideFlags: 0

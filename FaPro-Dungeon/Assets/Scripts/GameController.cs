@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
 
     private static int coins = 0;
 
-    private static float damage = 3.5f;
+    private static float damage = 1000f;
 
     private static float damageMultiplier = 1f;
 
@@ -22,7 +22,7 @@ public class GameController : MonoBehaviour
 
     private static float maxMoveSpeed = 8f;
 
-    private static float fireRate = 0.5f;
+    private static float fireRate = 0.1f;
 
     private static float range = 23.75f;
 

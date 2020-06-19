@@ -196,6 +196,7 @@ MonoBehaviour:
   - {fileID: 1367577176615287703}
   - {fileID: 1262371926392755786}
   closedDoorTilemap: {fileID: 0}
+  dropPos: {fileID: 6509002373807110035}
 --- !u!61 &5996971324081067192
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -222,6 +223,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 13, y: 7}
   m_EdgeRadius: 0
+--- !u!1 &8524941938412304472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6509002373807110035}
+  m_Layer: 0
+  m_Name: dropPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6509002373807110035
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8524941938412304472}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9144192880171478242}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9144192878121816892
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +832,7 @@ Transform:
   - {fileID: 8488487764973280697}
   - {fileID: 1262371926392755786}
   - {fileID: 2233635286982605577}
+  - {fileID: 6509002373807110035}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

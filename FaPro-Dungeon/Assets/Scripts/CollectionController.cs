@@ -35,6 +35,22 @@ public abstract class Item : MonoBehaviour
     {
 
     }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+
+        Item i = obj as Item;
+        if((object)i == null)
+        {
+            return false;
+        }
+
+        return (name.Equals(i.name));
+    }
 }
 
 

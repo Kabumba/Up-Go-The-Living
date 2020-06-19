@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageUp : Item
+public class Heart : Item
 {
     public override void OnPickup()
     {
-        GameController.ChangeDamage(GameController.Damage);
+        GameController.HealPlayer(2);
     }
 }

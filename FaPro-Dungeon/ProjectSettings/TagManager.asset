@@ -8,6 +8,7 @@ TagManager:
   - Item
   - Projectile
   - SpawnPoint
+  - BlackScreen
   layers:
   - Default
   - TransparentFX
@@ -56,4 +57,7 @@ TagManager:
     locked: 0
   - name: Wall
     uniqueID: 2074613523
+    locked: 0
+  - name: BlackScreen
+    uniqueID: 150528155
     locked: 0
