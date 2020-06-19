@@ -8,28 +8,40 @@ public class GameController : MonoBehaviour
 
     public static GameController instance;
 
+    //Default: 6
     private static int health = 6;
 
+    //Default: 6
     private static int maxHealth = 6;
 
+    //Default: 0
     private static int coins = 0;
 
-    private static float damage = 1000f;
+    //Default: 3.5
+    private static float damage = 3.5f;
 
+    //Default: 1
     private static float damageMultiplier = 1f;
 
+    //Default: 4
     private static float moveSpeed = 4f;
 
+    //Default: 8
     private static float maxMoveSpeed = 8f;
 
-    private static float fireRate = 0.1f;
+    //Default: 0.5
+    private static float fireRate = 0.5f;
 
+    //Default: 23.75
     private static float range = 23.75f;
 
+    //Default: 7
     private static float bulletSpeed = 7f;
 
+    //Default: 0.5
     private static float bulletSize = 0.5f;
 
+    //Default: 1
     private static float invincibleAfterHit = 1f;
 
     private static float lasthit;
