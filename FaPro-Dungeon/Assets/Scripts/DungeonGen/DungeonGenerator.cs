@@ -9,6 +9,8 @@ public class DungeonGenerator : MonoBehaviour
 
     private List<RoomNode> rooms;
 
+    public GameObject player;
+
     private void Start()
     {
         NewFloor();

@@ -591,7 +591,7 @@ Tilemap:
       - {fileID: 1081073082336996511, guid: 2ed55001c4073b14280d309232dc7fa9, type: 3}
       - {fileID: 2399728964753873812, guid: 2ed55001c4073b14280d309232dc7fa9, type: 3}
       - {fileID: -1493605134265938726, guid: 2ed55001c4073b14280d309232dc7fa9, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: -4, y: 2, z: 0}
@@ -651,7 +651,7 @@ Tilemap:
       - {fileID: 1081073082336996511, guid: 2ed55001c4073b14280d309232dc7fa9, type: 3}
       - {fileID: 2399728964753873812, guid: 2ed55001c4073b14280d309232dc7fa9, type: 3}
       - {fileID: -1493605134265938726, guid: 2ed55001c4073b14280d309232dc7fa9, type: 3}
-      m_AnimationSpeed: 10
+      m_AnimationSpeed: 10.000001
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 5, y: 2, z: 0}
@@ -897,11 +897,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 1547677662119242756, guid: 5edd4e4a2b60ee34299793c5e126e45d, type: 3}
+  - {fileID: 8157665340148771865, guid: f50700b157ed8fe4b8f99ba11c153c06, type: 3}
   - {fileID: 6835263671432383297, guid: 39558284fe2040b4abfc7abdf5b97502, type: 3}
   - {fileID: 8464084434223576611, guid: c386979c00fdc5246b7ca603e38877e4, type: 3}
   - {fileID: 3272087340152119618, guid: 98a373906bf3a2c4b9c7a55c4ecea64b, type: 3}
   - {fileID: 363503399267798447, guid: 8652389d70272e7458d59d54d2167a5f, type: 3}
   - {fileID: -2212815561349976593, guid: 46bbfd812cba5e5468535901df7723b7, type: 3}
   - {fileID: 2969463405523957427, guid: 7872f9fb557f0114bb717d1e1064a589, type: 3}
-  - {fileID: 8157665340148771865, guid: f50700b157ed8fe4b8f99ba11c153c06, type: 3}
+  pickedupItems: []
   itemPos: {fileID: 6290289800293170533}

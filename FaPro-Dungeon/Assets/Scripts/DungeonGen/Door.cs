@@ -20,12 +20,12 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Player")
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (other.tag == "Player")
         {
             switch(doorType)
             {
@@ -39,7 +39,7 @@ public class Door : MonoBehaviour
                     player.transform.position = new Vector2(transform.position.x + widthOffset, transform.position.y);
                     break;
                 case DoorType.top:
-                    player.transform.position = new Vector2(transform.position.x, transform.position.y + widthOffset);
+                    player.transform.position = new Vector2(transform.position.x, transform.position.y + 1.5f);
                     break;
             }
         }

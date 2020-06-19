@@ -13,7 +13,6 @@ public class RoomInfo
     public int X;
 
     public int Y;
-
 }
 
 public class RoomController : MonoBehaviour
@@ -93,6 +92,8 @@ public class RoomController : MonoBehaviour
         {
             yield return null;
         }
+
+        SceneManager.UnloadSceneAsync(roomName);
     }
 
     public void RegisterRoom(Room room)

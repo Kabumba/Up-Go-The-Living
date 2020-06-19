@@ -7,6 +7,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -7095730258533686616, guid: 97ca3e35e80318d459ce0b95a1fb77aa,
+        type: 3}
+      propertyPath: heartPrefab
+      value: 
+      objectReference: {fileID: 8144117919567158134, guid: 605d6fffb54cbb44e9de80b02556d415,
+        type: 3}
     - target: {fileID: 2154381200821688411, guid: 97ca3e35e80318d459ce0b95a1fb77aa,
         type: 3}
       propertyPath: m_Name

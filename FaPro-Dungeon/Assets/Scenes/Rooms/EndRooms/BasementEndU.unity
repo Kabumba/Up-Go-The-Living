@@ -159,7 +159,8 @@ MonoBehaviour:
   rightDoor: {fileID: 0}
   topDoor: {fileID: 0}
   bottomDoor: {fileID: 0}
-  presets: []
+  presets:
+  - {fileID: 918276291544822268, guid: afed8a016205caa4c866403325bab7dd, type: 3}
   closedDoorTilemap: {fileID: 1457182928}
 --- !u!4 &80285609
 Transform:
