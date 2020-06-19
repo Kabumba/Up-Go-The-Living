@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spitter : AI
+public class Clotty : AI
 {
     public override void StateChanges()
     {
@@ -10,11 +10,7 @@ public class Spitter : AI
         {
             if (Vector3.Distance(transform.position, character.player.transform.position) <= character.attackRange)
             {
-                SetState(new RangeAttack(character,Target.Player));
-            }
-            else
-            {
-                SetState(new Follow(character, character.player));
+                SetState(new Wander(character, true));
             }
         }
         else
@@ -22,4 +18,5 @@ public class Spitter : AI
             SetState(new Wander(character, false));
         }
     }
+    
 }

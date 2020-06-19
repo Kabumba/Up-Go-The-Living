@@ -19,7 +19,10 @@ public class MovementController : MonoBehaviour
     //RigisBody that is controlled by this
     public Rigidbody2D rb;
 
-    public bool bounceOff;
+    public bool bounceOffObstacle;
+    public bool bounceOffPlayer;
+    public bool bounceOffEnemy;
+    public bool bounceOffProjectile;
 
     // Start is called before the first frame update
     void Start()
@@ -115,11 +118,21 @@ public class MovementController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        bool bounceOff = false;
         switch (collision.gameObject.tag)
         {
-            case "Player": return; 
-            case "Enemy": return;
-            case "Projectile": return;
+            case "Player":
+                bounceOff = bounceOff || bounceOffPlayer;
+                break;
+            case "Enemy":
+                bounceOff = bounceOff || bounceOffEnemy;
+                break;
+            case "Projectile":
+                bounceOff = bounceOff || bounceOffProjectile;
+                break;
+            default:
+                bounceOff = bounceOff || bounceOffObstacle;
+                break;
         }
         if (bounceOff)
         {

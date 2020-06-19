@@ -91,7 +91,10 @@ MonoBehaviour:
   speed: 1
   accelerationValue: 0.1
   rb: {fileID: 8893839153068640793}
-  bounceOff: 1
+  bounceOffObstacle: 1
+  bounceOffPlayer: 0
+  bounceOffEnemy: 0
+  bounceOffProjectile: 0
 --- !u!58 &8893839153068640792
 CircleCollider2D:
   m_ObjectHideFlags: 0

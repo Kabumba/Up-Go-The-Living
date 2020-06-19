@@ -26,7 +26,7 @@ public class Dingle : AI
                 else
                 {
                     character.mvc.RotateTowards(character.player);
-                    SetState(new RangeAttack(character));
+                    SetState(new RangeAttack(character, Target.Player));
                 }
                 break;
             case 2:

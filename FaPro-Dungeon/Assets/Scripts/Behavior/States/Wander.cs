@@ -7,11 +7,17 @@ public class Wander : State
 
     private bool chooseDir = false;
     private MovementController mvc;
+    private ShooterController shc;
 
-    public Wander(EnemyController character) : base(character)
+    public Wander(EnemyController character, bool shoot) : base(character)
     {
         name = "Wander";
         mvc = character.mvc;
+        if (shoot)
+        {
+            shc = character.shc;
+            name += "true";
+        }
     }
 
     public override void OnUpdate()
@@ -19,6 +25,10 @@ public class Wander : State
         if (!chooseDir)
         {
             character.StartCoroutine(ChooseDirection());
+        }
+        if (shc != null)
+        {
+            shc.TryShoot();
         }
         mvc.MoveForward();
     }
