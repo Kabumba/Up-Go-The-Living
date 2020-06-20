@@ -21,7 +21,7 @@ public class Dasher : AI
     private void Start()
     {
         lastDashTime = Time.time - dashTime;
-        randomIdleTime = Random.Range(idleTime - randomrange * idleTime, idleTime + randomrange * idleTime);
+        randomIdleTime = 0; //Random.Range(idleTime - randomrange * idleTime, idleTime + randomrange * idleTime);
     }
 
     public override void StateChanges()

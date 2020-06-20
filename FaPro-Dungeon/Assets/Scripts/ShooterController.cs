@@ -29,6 +29,7 @@ public class ShooterController : MonoBehaviour
         {
             Add(bs);
         }
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     private void Update()

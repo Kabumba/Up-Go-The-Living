@@ -36,7 +36,7 @@ public class WanderCardinal : State
     {
         chooseDir = true;
         character.rb.rotation = 90 * Mathf.RoundToInt(Random.Range(-1.5f, 2.5f));
-        yield return new WaitForSeconds(Mathf.RoundToInt(Random.Range(0.5f, 3.5f)) / mvc.speed);
+        yield return new WaitForSeconds(Mathf.RoundToInt(Random.Range(1.5f, 3.5f)) / mvc.speed);
         chooseDir = false;
     }
 }

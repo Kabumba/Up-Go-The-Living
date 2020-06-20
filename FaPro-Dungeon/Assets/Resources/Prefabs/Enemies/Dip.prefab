@@ -70,6 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0f4fcdabf56dd45ab82c0bb416cccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentStateName: 
   dashSpeed: 4
   dashTime: 1
   idleTime: 2
@@ -93,7 +94,7 @@ MonoBehaviour:
   rb: {fileID: 2154381200821688413}
   bounceOffObstacle: 1
   bounceOffPlayer: 0
-  bounceOffEnemy: 0
+  bounceOffEnemy: 1
   bounceOffProjectile: 0
 --- !u!58 &2154381200821688412
 CircleCollider2D:
