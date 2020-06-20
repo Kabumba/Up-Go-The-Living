@@ -47,6 +47,7 @@ public class MovementController : MonoBehaviour
     {
         float angle = (rb.rotation + 90) * Mathf.Deg2Rad;
         rb.rotation = Vector2.SignedAngle(new Vector2(0, 1), setTo);
+        transform.rotation = Quaternion.Euler(new Vector3(0,0,rb.rotation));
     }
 
     public void RotateTowards(GameObject towards)
@@ -74,6 +75,11 @@ public class MovementController : MonoBehaviour
                 rb.velocity = speed * rb.velocity.normalized;
             }
         }
+    }
+
+    public void MoveForwardFixedSpeed()
+    {
+        rb.velocity = speed * GetRotation();
     }
 
     public void SlowDown()

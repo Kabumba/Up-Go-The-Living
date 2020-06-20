@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bat : AI
 {
-    public float dashSpeed;
+    public float chargeSpeed;
 
     public float dashTime;
 
@@ -12,22 +12,30 @@ public class Bat : AI
 
     public override void StateChanges()
     {
-        if (Vector3.Distance(transform.position, character.player.transform.position) <= character.attackRange)
+        if ("Charge".Equals(currentState.name))
         {
-
-            if (Time.time >= lastDashtime + dashTime)
-            {
-                SetState(new Dash(character, Target.Player, dashSpeed, dashTime));
-                lastDashtime = Time.time;
-            }
 
         }
         else
         {
-            if (Time.time >= lastDashtime + dashTime)
+            if (Vector3.Distance(transform.position, character.player.transform.position) <= character.attackRange)
+            {
+                character.mvc.RotateTowards(character.player);
+                SetState(new Charge(character, chargeSpeed));
+
+            }
+            else
             {
                 SetState(new Follow(character, character.player));
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Untagged"))
+        {
+            SetState(new Follow(character, character.player));
         }
     }
 }

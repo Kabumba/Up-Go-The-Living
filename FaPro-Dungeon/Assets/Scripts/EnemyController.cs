@@ -31,6 +31,8 @@ public abstract class AI : MonoBehaviour
 
     public State currentState;
 
+    public string currentStateName;
+
     //Legt fest wann unter welchen Umständen in welchen Zustand gewechselt werden soll
     public abstract void StateChanges();
 
@@ -53,6 +55,7 @@ public abstract class AI : MonoBehaviour
         }
 
         currentState = state;
+        currentStateName = currentState.name;
 
         if (currentState != null)
         {

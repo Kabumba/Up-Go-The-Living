@@ -51,7 +51,7 @@ MonoBehaviour:
   player: {fileID: 0}
   health: 20
   range: 10
-  attackRange: 5
+  attackRange: 3
   dealContactDamage: 1
   rb: {fileID: 2643065254014758074}
   isFlying: 1
@@ -72,7 +72,7 @@ MonoBehaviour:
   acceleration: {x: 0, y: 0}
   desiredVelocity: {x: 0, y: 0}
   speed: 2
-  accelerationValue: 0.1
+  accelerationValue: 0.2
   rb: {fileID: 2643065254014758074}
   bounceOffObstacle: 0
   bounceOffPlayer: 0
@@ -177,5 +177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfc9c0ad08761144694cbf8a3fe1f45b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashSpeed: 8
+  currentStateName: 
+  chargeSpeed: 6
   dashTime: 1.8

@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wander : State
+public class WanderCardinal : State
 {
     private bool chooseDir = false;
     private MovementController mvc;
     private ShooterController shc;
 
-    public Wander(EnemyController character, bool shoot) : base(character)
+    public WanderCardinal(EnemyController character, bool shoot) : base(character)
     {
-        name = "Wander";
+        name = "WanderCardinal";
         mvc = character.mvc;
         if (shoot)
         {
@@ -29,14 +29,14 @@ public class Wander : State
         {
             shc.TryShoot();
         }
-        mvc.MoveForward();
+        mvc.MoveForwardFixedSpeed();
     }
 
     private IEnumerator ChooseDirection()
     {
         chooseDir = true;
-        yield return new WaitForSeconds(Random.Range(0.2f, 1f)); //wählt in zufälligen Abständen neue Richtung //wählt zufällige Richtung
-        character.rb.rotation = Random.Range(0f, 360f);
+        character.rb.rotation = 90 * Mathf.RoundToInt(Random.Range(-1.5f, 2.5f));
+        yield return new WaitForSeconds(Mathf.RoundToInt(Random.Range(0.5f, 3.5f)) / mvc.speed);
         chooseDir = false;
     }
 }
