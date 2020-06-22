@@ -72,7 +72,10 @@ public class CollectionController : MonoBehaviour
         {
             GameController.items.Add(item);
             item.OnPickup();
-            Destroy(gameObject);
+            if (!item.name.Equals("Heart"))
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

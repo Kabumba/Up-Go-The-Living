@@ -208,8 +208,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0.000013351}
-  m_SizeDelta: {x: 200, y: 62.338654}
+  m_AnchoredPosition: {x: -360, y: 190}
+  m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &365087945
 MonoBehaviour:
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3545a31d53629c547963b40d638a4967, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6e8eef62bcfda5248a92ba846070f934, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -463,8 +463,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -273, y: 174.61}
-  m_SizeDelta: {x: 200, y: 62.338623}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &464677257
 MonoBehaviour:
@@ -478,7 +478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f39940a648883434db74faed25125d8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartContainer: {fileID: 522091212}
+  heartContainer: {fileID: 8523736224605974934, guid: 4463d4e049df2d44ba136998789d8f2f,
+    type: 3}
 --- !u!222 &464677258
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -689,8 +690,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.00021362, y: -0.000030518}
-  m_SizeDelta: {x: 200.00043, y: 62.338684}
+  m_AnchoredPosition: {x: -360, y: 190}
+  m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &522091214
 MonoBehaviour:
@@ -711,7 +712,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5226ebbac4615a1449a4e25739503346, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6bea8674bf17eeb4dbf5cc9f94f92b2e, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1

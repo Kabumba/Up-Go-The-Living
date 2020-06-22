@@ -123,10 +123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff5c75b7ce67e34c9784ac045823436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartPrefab: {fileID: 8144117919567158134, guid: 605d6fffb54cbb44e9de80b02556d415,
+    type: 3}
+  dropPos: {fileID: 5340923531360864329}
   enemyPos:
   - {fileID: 7084281101100107412}
   closedDoorTilemap: {fileID: 0}
-  dropPos: {fileID: 5340923531360864329}
 --- !u!61 &7084281101585723471
 BoxCollider2D:
   m_ObjectHideFlags: 0

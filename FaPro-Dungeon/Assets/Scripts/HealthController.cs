@@ -11,10 +11,4 @@ public class HealthController : MonoBehaviour
     {
         currentHealth = maxHealth;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

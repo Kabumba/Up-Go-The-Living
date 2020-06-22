@@ -13,7 +13,6 @@ public class SpawnHeart : DeathEvent
         Room currentRoom = transform.GetComponentInParent<Room>();
         if (EnemyController.count == 0)
         {
-
             this.dropPos = transform.parent.GetComponentInChildren<EnemySpawn>().dropPos;
             if (Random.Range(0f, 1f) > dropRate)
             {

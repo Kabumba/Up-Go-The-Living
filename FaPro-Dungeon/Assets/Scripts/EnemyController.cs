@@ -80,7 +80,8 @@ public class EnemyController : MonoBehaviour
     public float range;
 
     public float attackRange;
-    
+
+    public bool isDead = false;
 
     public bool dealContactDamage = true;
 
@@ -117,12 +118,16 @@ public class EnemyController : MonoBehaviour
     
     public void Death()
     {
-        count--;
-        foreach (DeathEvent de in gameObject.GetComponents<DeathEvent>())
+        if (!isDead)
         {
-            de.OnDeath();
+            isDead = true;
+            count--;
+            foreach (DeathEvent de in gameObject.GetComponents<DeathEvent>())
+            {
+                de.OnDeath();
+            }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 
     public void DamageEnemy(float damage)
