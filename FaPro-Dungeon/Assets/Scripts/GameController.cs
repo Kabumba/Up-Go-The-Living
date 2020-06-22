@@ -62,10 +62,6 @@ public class GameController : MonoBehaviour
 
     public int floorNumber = 1;
 
-    public Text healthText;
-
-    public Text coinText;
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -79,8 +75,6 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthText.text = "Health: " + health;
-        coinText.text = "Coins: " + coins;
         UpdateItems();
         if (Time.time > lasthit + invincibleAfterHit)
         {
