@@ -10,4 +10,9 @@ public class Spectral : BulletEffect
         defaultEnemyHit = false;
         defaultObstacleHit = false;
     }
+
+    public override void OnEnemyHit(Collider2D collision)
+    {
+        collision.GetComponent<EnemyController>().DamageEnemy(bulletController.damage);
+    }
 }
