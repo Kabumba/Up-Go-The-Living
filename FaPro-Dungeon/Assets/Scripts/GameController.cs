@@ -86,7 +86,6 @@ public class GameController : MonoBehaviour
             instance = this;
         }
         items = new List<Item>();
-        changeableBullet = changeableBulletTemp;
     }
 
     // Update is called once per frame

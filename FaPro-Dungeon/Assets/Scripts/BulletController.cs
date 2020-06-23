@@ -60,7 +60,6 @@ public abstract class BulletEffect : MonoBehaviour
     private void Start()
     {
         bulletController = gameObject.GetComponent<BulletController>();
-        bulletController.bulletEffects.Add(this);
     }
 }
 
@@ -83,8 +82,6 @@ public class BulletController : MonoBehaviour
 
     public MovementController mvc;
 
-    public List<BulletEffect> bulletEffects;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -97,6 +94,7 @@ public class BulletController : MonoBehaviour
         mvc = gameObject.GetComponent<MovementController>();
         rb = gameObject.GetComponent<Rigidbody2D>();
         StartCoroutine(DeathDelay());
+
     }
 
     private void Awake()
@@ -105,7 +103,6 @@ public class BulletController : MonoBehaviour
         {
             transform.localScale = new Vector2(GameController.BulletSize, GameController.BulletSize);
         }
-        bulletEffects = new List<BulletEffect>();
         mvc.desiredVelocity = rb.velocity;
     }
 
@@ -118,7 +115,7 @@ public class BulletController : MonoBehaviour
 
     private void Update()
     {
-        foreach (BulletEffect be in bulletEffects)
+        foreach (BulletEffect be in GetComponents<BulletEffect>())
         {
             be.Tick();
         }
@@ -126,7 +123,7 @@ public class BulletController : MonoBehaviour
 
     public void Destroy()
     {
-        foreach (BulletEffect be in bulletEffects)
+        foreach (BulletEffect be in GetComponents<BulletEffect>())
         {
             be.OnDestroy();
         }
@@ -145,7 +142,7 @@ public class BulletController : MonoBehaviour
             case ("Enemy"):
                 if (!isEnemyBullet)
                 {
-                    foreach (BulletEffect be in bulletEffects)
+                    foreach (BulletEffect be in GetComponents<BulletEffect>())
                     {
                         be.OnEnemyHit(collision);
                         defaultBehavior = defaultBehavior && be.defaultEnemyHit;
@@ -164,7 +161,7 @@ public class BulletController : MonoBehaviour
             case ("Player"):
                 if (isEnemyBullet)
                 {
-                    foreach (BulletEffect be in bulletEffects)
+                    foreach (BulletEffect be in GetComponents<BulletEffect>())
                     {
                         be.OnPlayerHit(collision);
                         defaultBehavior = defaultBehavior && be.defaultPlayerHit;
@@ -179,7 +176,7 @@ public class BulletController : MonoBehaviour
             case ("Projectile"):
                 if (isEnemyBullet != collision.GetComponent<BulletController>().isEnemyBullet)
                 {
-                    foreach (BulletEffect be in bulletEffects)
+                    foreach (BulletEffect be in GetComponents<BulletEffect>())
                     {
                         be.OnProjectileHit(collision);
                         defaultBehavior = defaultBehavior && be.defaultProjectileHit;
@@ -190,7 +187,7 @@ public class BulletController : MonoBehaviour
                 }
                 break;
             default:
-                foreach (BulletEffect be in bulletEffects)
+                foreach (BulletEffect be in GetComponents<BulletEffect>())
                 {
                     be.OnObstacleHit(collision);
                     defaultBehavior = defaultBehavior && be.defaultObstacleHit;
