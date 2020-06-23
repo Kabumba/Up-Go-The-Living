@@ -12,6 +12,7 @@ public class EnemySpawn : MonoBehaviour
     public List<Transform> enemyPos = new List<Transform>();
     public Tilemap closedDoorTilemap;
     public Transform dropPos;
+    public Transform stairsPos;
     // Start is called before the first frame update
     void Start()
     {

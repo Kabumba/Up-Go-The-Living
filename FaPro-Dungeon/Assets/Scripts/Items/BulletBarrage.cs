@@ -11,6 +11,7 @@ public class BulletBarrage : Item
         foreach(BulletShooter bs in bss)
         {
             bs.barrageCount = 3;
+            bs.barrageTimeDelay = 0.1f;
         }
         GameController.ChangeFireRate(GameController.FireRate);
     }

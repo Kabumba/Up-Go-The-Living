@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
 
     private static int coins = 0;
 
-    private static float damage = 3.5f;
+    private static float damage = 100f;
 
     private static float damageMultiplier = 1f;
 

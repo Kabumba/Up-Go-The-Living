@@ -8,10 +8,14 @@ public class SpectralBullets : Item
 {
     public override void OnPickup()
     {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        ShooterController sc = player.GetComponent<ShooterController>();
         GameObject bulletPrefab = GameController.changeableBullet;
         bulletPrefab.layer = 10;
-        GameObject.Find("Player").GetComponent<ShooterController>().bulletPrefab = bulletPrefab;
-        GameObject.Find("Main Left").GetComponent<BulletShooter>().bulletPrefab = bulletPrefab;
-        GameObject.Find("Main Right").GetComponent<BulletShooter>().bulletPrefab = bulletPrefab;
+        sc.bulletPrefab = bulletPrefab;
+        foreach(BulletShooter bs in sc.bulletShooters)
+        {
+            bs.bulletPrefab = bulletPrefab;
+        }
     }
 }
