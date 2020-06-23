@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 7250691442013377698}
   - component: {fileID: 7250691442013377699}
   - component: {fileID: 8450929642296751649}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +651,7 @@ Tilemap:
       - {fileID: 1081073082336996511, guid: 2ed55001c4073b14280d309232dc7fa9, type: 3}
       - {fileID: 2399728964753873812, guid: 2ed55001c4073b14280d309232dc7fa9, type: 3}
       - {fileID: -1493605134265938726, guid: 2ed55001c4073b14280d309232dc7fa9, type: 3}
-      m_AnimationSpeed: 10.000001
+      m_AnimationSpeed: 10
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   - first: {x: 5, y: 2, z: 0}
@@ -904,5 +904,4 @@ MonoBehaviour:
   - {fileID: 363503399267798447, guid: 8652389d70272e7458d59d54d2167a5f, type: 3}
   - {fileID: -2212815561349976593, guid: 46bbfd812cba5e5468535901df7723b7, type: 3}
   - {fileID: 2969463405523957427, guid: 7872f9fb557f0114bb717d1e1064a589, type: 3}
-  pickedupItems: []
   itemPos: {fileID: 6290289800293170533}

@@ -77,11 +77,13 @@ public class BulletController : MonoBehaviour
 
     public bool isEnemyBullet;
 
-    public List<BulletEffect> bulletEffects;
+    public bool isPiercingShot;
 
     public Rigidbody2D rb;
 
     public MovementController mvc;
+
+    public List<BulletEffect> bulletEffects;
 
     // Start is called before the first frame update
     void Start()
@@ -152,7 +154,10 @@ public class BulletController : MonoBehaviour
                     {
                         collision.GetComponent<EnemyController>().DamageEnemy(damage);
                         collision.GetComponent<Rigidbody2D>().AddForce(gameObject.GetComponent<Rigidbody2D>().velocity * knockback, ForceMode2D.Impulse);
-                        Destroy();
+                        if (!isPiercingShot)
+                        {
+                            Destroy();
+                        }
                     }
                 }
                 break;

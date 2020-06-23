@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Main.unity
+    guid: bdaa422a23bf66f428e28e75625e9bb9
+  - enabled: 1
     path: Assets/Scenes/Rooms/1 Door/BasementD.unity
     guid: 769fc8cdfcfdc954c8a1426da3a29c8f
   - enabled: 1
@@ -63,9 +66,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Rooms/EndRooms/BasementEndU.unity
     guid: cbcb9f8d0c898604cb8ef6245fb26ac6
   - enabled: 1
-    path: Assets/Scenes/Rooms/ItemRooms/BasementItemU.unity
-    guid: 98e9629d5dbdd154793b8f92fb60ad0c
-  - enabled: 1
     path: Assets/Scenes/Rooms/ItemRooms/BasementItemD.unity
     guid: 20b1b272824d5df499a7481b5b7616e2
   - enabled: 1
@@ -89,9 +89,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Rooms/StartRooms/BasementStartRDL.unity
     guid: f8b74058744734c4193adea0fb5b2c3b
-  - enabled: 1
-    path: Assets/Scenes/Rooms/StartRooms/BasementStartU.unity
-    guid: b9bd9179ae9a3ad45b38509b938e13ac
   - enabled: 1
     path: Assets/Scenes/Rooms/StartRooms/BasementStartUD.unity
     guid: 3dafe0dbdb81d9d4ea909e56b2c03485
@@ -119,4 +116,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Rooms/StartRooms/BasementStartRL.unity
     guid: c552ad327764f4843b78f6729be88673
+  - enabled: 1
+    path: Assets/Scenes/Rooms/ItemRooms/BasementItemU.unity
+    guid: 5d7eea452d4aeef43a2de6a527c0f005
+  - enabled: 1
+    path: Assets/Scenes/Rooms/StartRooms/BasementStartU.unity
+    guid: 135ce852562f5e04884966d054a9aeab
   m_configObjects: {}

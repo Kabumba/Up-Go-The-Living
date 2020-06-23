@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8157665340148771868}
   m_Layer: 0
   m_Name: DoubleBullet
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 8157665340148771869}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 7658a6c1fc045ba43a8bb775c7834fd2, type: 2}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0

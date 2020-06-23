@@ -44,6 +44,8 @@ public class GameController : MonoBehaviour
     //Default: 1
     private static float invincibleAfterHit = 1f;
 
+    private static float damageThroughRage = 0f;
+
     private static float lasthit;
 
     private static bool invincible = false;
@@ -70,13 +72,11 @@ public class GameController : MonoBehaviour
 
     public static float DamageMultiplier { get => damageMultiplier; set => damageMultiplier = value; }
 
+    public static float DamageThroughRage { get => damageThroughRage; set => damageThroughRage = value; }
+
     public static List<Item> items;
 
     public int floorNumber = 1;
-
-    public Text healthText;
-
-    public Text coinText;
 
     // Start is called before the first frame update
     void Awake()
@@ -86,13 +86,12 @@ public class GameController : MonoBehaviour
             instance = this;
         }
         items = new List<Item>();
+        changeableBullet = changeableBulletTemp;
     }
 
     // Update is called once per frame
     void Update()
     {
-        healthText.text = "Health: " + health;
-        coinText.text = "Coins: " + coins;
         UpdateItems();
         if (Time.time > lasthit + invincibleAfterHit)
         {
@@ -189,5 +188,17 @@ public class GameController : MonoBehaviour
     public static void ChangeBulletSize(float bulletSizeChange)
     {
         bulletSize += bulletSizeChange;
+    }
+
+    public static bool Contains(string itemName)
+    {
+        foreach(Item item in items)
+        {
+            if (item.name.Equals(itemName))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
