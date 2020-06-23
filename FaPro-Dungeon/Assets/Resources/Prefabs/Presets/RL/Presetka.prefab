@@ -728,7 +728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1726841316243596627}
   - component: {fileID: 2275543156790752560}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: enemyPos (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -804,7 +804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3095983645665619897}
   - component: {fileID: 2965464690625227788}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: enemyPos (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -850,7 +850,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6347413307464496892}
   - component: {fileID: 7974877809110612128}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: enemyPos (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -896,7 +896,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2602102500888370199}
   - component: {fileID: 5737281927980734359}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: enemyPos (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -977,11 +977,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPos:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2602102500888370199}
+  - {fileID: 6347413307464496892}
+  - {fileID: 3095983645665619897}
+  - {fileID: 1726841316243596627}
   closedDoorTilemap: {fileID: 0}
   dropPos: {fileID: 6431171608079053125}
+  stairsPos: {fileID: 0}
 --- !u!61 &6270130958681957510
 BoxCollider2D:
   m_ObjectHideFlags: 0

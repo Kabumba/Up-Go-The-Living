@@ -12,6 +12,7 @@ public class Homing : BulletEffect
     {
         if (target!=null)
         {
+            BulletController bulletController = GetComponent<BulletController>();
             bulletController.mvc.RotateTowards(target);
             bulletController.mvc.MoveForward();
         }

@@ -11,6 +11,6 @@ public class Fistula : AI
 
     private void Start()
     {
-        //gameObject.transform.rotation = Quaternion.Euler(0, 0, -45);
+        gameObject.transform.rotation = Quaternion.Euler(0, 0, -45);
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2643065254014758072}
   - component: {fileID: 2643065254014758074}
   - component: {fileID: 5532501530891716478}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: One Tooth
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -52,6 +52,7 @@ MonoBehaviour:
   health: 20
   range: 10
   attackRange: 3
+  isDead: 0
   dealContactDamage: 1
   rb: {fileID: 2643065254014758074}
   isFlying: 1

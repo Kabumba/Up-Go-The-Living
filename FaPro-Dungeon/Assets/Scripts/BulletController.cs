@@ -5,8 +5,6 @@ using UnityEngine;
 
 public abstract class BulletEffect : MonoBehaviour
 {
-    public BulletController bulletController;
-
     //Soll das Projektil nach den Bulleteffects das normale Verhalten aufweisen, z.B. Schaden verursachen und zerstört werden?
     public bool defaultPlayerHit = true;
 
@@ -56,11 +54,7 @@ public abstract class BulletEffect : MonoBehaviour
     {
 
     }
-
-    private void Start()
-    {
-        bulletController = gameObject.GetComponent<BulletController>();
-    }
+    
 }
 
 public class BulletController : MonoBehaviour
