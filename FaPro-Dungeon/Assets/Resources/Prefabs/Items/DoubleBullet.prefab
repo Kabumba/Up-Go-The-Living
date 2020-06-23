@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8157665340148771868}
   m_Layer: 0
   m_Name: DoubleBullet
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

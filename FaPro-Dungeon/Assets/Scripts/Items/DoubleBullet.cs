@@ -11,8 +11,9 @@ public class DoubleBullet : Item
         Quaternion rotationBefore = player.transform.rotation;
         foreach (BulletShooter bs in shc.bulletShooters)
         {
-            bs.setFireShotDelay(-1);
+            bs.fireShotDelay = -1;
             bs.transform.Rotate(0, 0, 0);
         }
+        player.transform.rotation = rotationBefore;
     }
 }

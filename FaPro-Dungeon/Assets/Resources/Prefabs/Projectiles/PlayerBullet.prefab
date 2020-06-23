@@ -101,7 +101,9 @@ MonoBehaviour:
   lifeTime: 1
   knockback: 1.7
   isEnemyBullet: 0
+  isPiercingShot: 0
   mvc: {fileID: 0}
+  bulletEffects: []
 --- !u!58 &-1962027058676557102
 CircleCollider2D:
   m_ObjectHideFlags: 0

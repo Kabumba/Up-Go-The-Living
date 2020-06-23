@@ -22,6 +22,8 @@ public class EnemySpawn : MonoBehaviour
     {
         if (EnemyController.count == 0)
         {
+            GameController.ChangeDamage(-GameController.DamageThroughRage);
+            GameController.DamageThroughRage = 0f;
             StartCoroutine(OpenDoorRoutine());
         }
         else

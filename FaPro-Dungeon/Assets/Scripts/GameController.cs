@@ -8,13 +8,17 @@ public class GameController : MonoBehaviour
 
     public static GameController instance;
 
+    public GameObject changeableBulletTemp;
+
+    public static GameObject changeableBullet;
+
     private static int health = 6;
 
     private static int maxHealth = 6;
 
     private static int coins = 0;
 
-    private static float damage = 1000f;
+    private static float damage = 3.5f;
 
     private static float damageMultiplier = 1f;
 
@@ -22,7 +26,7 @@ public class GameController : MonoBehaviour
 
     private static float maxMoveSpeed = 8f;
 
-    private static float fireRate = 0.1f;
+    private static float fireRate = 0.5f;
 
     private static float range = 23.75f;
 
@@ -31,6 +35,8 @@ public class GameController : MonoBehaviour
     private static float bulletSize = 0.5f;
 
     private static float invincibleAfterHit = 1f;
+
+    private static float damageThroughRage = 0f;
 
     private static float lasthit;
 
@@ -58,6 +64,8 @@ public class GameController : MonoBehaviour
 
     public static float DamageMultiplier { get => damageMultiplier; set => damageMultiplier = value; }
 
+    public static float DamageThroughRage { get => damageThroughRage; set => damageThroughRage = value; }
+
     public static List<Item> items;
 
     public int floorNumber = 1;
@@ -70,6 +78,7 @@ public class GameController : MonoBehaviour
             instance = this;
         }
         items = new List<Item>();
+        changeableBullet = changeableBulletTemp;
     }
 
     // Update is called once per frame
@@ -171,5 +180,17 @@ public class GameController : MonoBehaviour
     public static void ChangeBulletSize(float bulletSizeChange)
     {
         bulletSize += bulletSizeChange;
+    }
+
+    public static bool Contains(string itemName)
+    {
+        foreach(Item item in items)
+        {
+            if (item.name.Equals(itemName))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

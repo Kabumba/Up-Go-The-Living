@@ -58,6 +58,7 @@ public class BulletShooter : MonoBehaviour
             if (rand < fireChance)
             {
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation) as GameObject;
+                bullet.SetActive(true);
                 if (bulletEffects != null)
                 {
                     foreach (BulletEffect be in bulletEffects)
