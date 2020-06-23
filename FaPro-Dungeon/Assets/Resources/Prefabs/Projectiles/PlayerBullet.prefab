@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3219085209816612228}
   - component: {fileID: -1962027058676557102}
   - component: {fileID: 1705927870007605940}
+  - component: {fileID: 6362465601888941021}
   m_Layer: 9
   m_Name: PlayerBullet
   m_TagString: Projectile
@@ -101,7 +102,9 @@ MonoBehaviour:
   lifeTime: 1
   knockback: 1.7
   isEnemyBullet: 0
-  mvc: {fileID: 0}
+  bulletEffects: []
+  rb: {fileID: 1705927870007605940}
+  mvc: {fileID: 6362465601888941021}
 --- !u!58 &-1962027058676557102
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -139,3 +142,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &6362465601888941021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5473610484710109101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5190a9f3bee2bee42addb16954e78b28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceleration: {x: 0, y: 0}
+  desiredVelocity: {x: 0, y: 0}
+  speed: 0
+  accelerationValue: 0.2
+  rb: {fileID: 0}
+  bounceOffObstacle: 0
+  bounceOffPlayer: 0
+  bounceOffEnemy: 0
+  bounceOffProjectile: 0

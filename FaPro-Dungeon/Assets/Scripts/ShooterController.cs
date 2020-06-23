@@ -54,6 +54,14 @@ public class ShooterController : MonoBehaviour
         bulletShooters.Add(bs);
     }
 
+    public void AddBulletEffectToAll(BulletEffect be)
+    {
+        foreach (BulletShooter bs in bulletShooters)
+        {
+            bs.bulletEffects.Add(be);
+        }
+    }
+
     public void InitializeBulletshooters()
     {
         foreach (BulletShooter bs in bulletShooters)

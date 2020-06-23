@@ -62,7 +62,7 @@ public class BulletShooter : MonoBehaviour
                 {
                     foreach (BulletEffect be in bulletEffects)
                     {
-                        bullet.GetComponent<BulletController>().bulletEffects.Add(be);
+                        bullet.AddComponent(be.GetType());
                     }
                 }
                 bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(
@@ -70,6 +70,11 @@ public class BulletShooter : MonoBehaviour
                     transform.up.y * shooterController.bulletSpeed + shooterController.velocityAddedToBullet * shooterController.rb.velocity.y,
                     0
                     );
+                bullet.GetComponent<BulletController>().mvc.speed = shooterController.bulletSpeed;
+                foreach(BulletEffect be in bullet.GetComponents<BulletEffect>())
+                {
+                    be.OnInstantiate();
+                }
                 GameController.OnFireItems();
             }
             if (i + 1 < barrageCount)

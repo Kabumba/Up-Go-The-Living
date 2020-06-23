@@ -27,7 +27,7 @@ public class MovementController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -122,6 +122,14 @@ public class MovementController : MonoBehaviour
         rb.velocity = new Vector2(0, 0);
     }
 
+    public void rebound(Collision2D collision)
+    {
+        Vector2 n = collision.GetContact(0).normal;
+        Vector2 d = GetRotation();
+        Vector2 r = d - 2 * Vector2.Dot(d, n) * n;
+        SetRotation(r);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         bool bounceOff = false;
@@ -142,10 +150,7 @@ public class MovementController : MonoBehaviour
         }
         if (bounceOff)
         {
-            Vector2 n = collision.GetContact(0).normal;
-            Vector2 d = GetRotation();
-            Vector2 r = d - 2 * Vector2.Dot(d, n) * n;
-            SetRotation(r);
+            rebound(collision);
         }
     }
 }

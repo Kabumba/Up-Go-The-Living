@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
 public class Prismabrille : Item
 {
     public override void OnPickup()

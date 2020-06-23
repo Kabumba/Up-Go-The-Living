@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public abstract class BulletEffect
+public abstract class BulletEffect : MonoBehaviour
 {
-    BulletController bulletController;
+    public BulletController bulletController;
 
     //Soll das Projektil nach den Bulleteffects das normale Verhalten aufweisen, z.B. Schaden verursachen und zerstört werden?
     public bool defaultPlayerHit = true;
@@ -46,10 +46,21 @@ public abstract class BulletEffect
 
     }
 
+    public virtual void OnInstantiate()
+    {
+
+    }
+
     //Wird in jedem Frame einmal aufgerufen
     public virtual void Tick()
     {
 
+    }
+
+    private void Start()
+    {
+        bulletController = gameObject.GetComponent<BulletController>();
+        bulletController.bulletEffects.Add(this);
     }
 }
 
@@ -68,6 +79,8 @@ public class BulletController : MonoBehaviour
 
     public List<BulletEffect> bulletEffects;
 
+    public Rigidbody2D rb;
+
     public MovementController mvc;
 
     // Start is called before the first frame update
@@ -80,13 +93,18 @@ public class BulletController : MonoBehaviour
             lifeTime = range / 30f;
         }
         mvc = gameObject.GetComponent<MovementController>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
         StartCoroutine(DeathDelay());
     }
 
     private void Awake()
     {
-        transform.localScale = new Vector2(GameController.BulletSize, GameController.BulletSize);
+        if (!isEnemyBullet)
+        {
+            transform.localScale = new Vector2(GameController.BulletSize, GameController.BulletSize);
+        }
         bulletEffects = new List<BulletEffect>();
+        mvc.desiredVelocity = rb.velocity;
     }
 
     //Sorgt dafür, dass das Projektil zerstört wird, wenn es sich zu weit von seiner startpostion entfernt hat
