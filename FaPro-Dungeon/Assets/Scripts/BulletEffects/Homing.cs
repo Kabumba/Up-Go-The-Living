@@ -38,6 +38,9 @@ public class Homing : BulletEffect
 
     public override void OnInstantiate()
     {
-        gameObject.GetComponent<SpriteRenderer>().color = Color.magenta;
+        Color temp = GetComponent<SpriteRenderer>().color;
+        Color neu = Color.magenta;
+        neu.a = temp.a;
+        GetComponent<SpriteRenderer>().color = neu;
     }
 }

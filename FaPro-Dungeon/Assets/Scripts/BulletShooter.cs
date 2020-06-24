@@ -72,7 +72,7 @@ public class BulletShooter : MonoBehaviour
                     0
                     );
                 bullet.GetComponent<BulletController>().mvc.speed = shooterController.bulletSpeed;
-                foreach(BulletEffect be in bullet.GetComponents<BulletEffect>())
+                foreach (BulletEffect be in bullet.GetComponents<BulletEffect>())
                 {
                     be.OnInstantiate();
                 }
@@ -88,6 +88,12 @@ public class BulletShooter : MonoBehaviour
     public void setFireShotDelay(int fireShotDelay)
     {
         this.fireShotDelay = fireShotDelay;
+    }
+
+    public void resetLastFire()
+    {
+        lastFireTime = 0;
+        lastFireShot = 0;
     }
 }
 

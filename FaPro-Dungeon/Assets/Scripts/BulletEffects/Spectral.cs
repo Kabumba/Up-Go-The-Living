@@ -9,4 +9,11 @@ public class Spectral : BulletEffect
     {
         defaultObstacleHit = false;
     }
+
+    public override void OnInstantiate()
+    {
+        Color temp = GetComponent<SpriteRenderer>().color;
+        temp.a = 0.6f;
+        GetComponent<SpriteRenderer>().color = temp;
+    }
 }

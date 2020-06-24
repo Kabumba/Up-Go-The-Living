@@ -71,4 +71,11 @@ public class ShooterController : MonoBehaviour
             bs.bulletPrefab = bulletPrefab;
         }
     }
+
+    public void UpdateBulletEffects()
+    {
+        foreach (BulletShooter bs in bulletShooters)
+        {
+            bs.bulletEffects = bulletShooters[0].bulletEffects;
+        }
 }

@@ -54,7 +54,7 @@ public abstract class BulletEffect : MonoBehaviour
     {
 
     }
-    
+
 }
 
 public class BulletController : MonoBehaviour
@@ -69,8 +69,6 @@ public class BulletController : MonoBehaviour
     public float knockback = 5f;
 
     public bool isEnemyBullet;
-
-    public bool isPiercingShot;
 
     public Rigidbody2D rb;
 
@@ -145,10 +143,7 @@ public class BulletController : MonoBehaviour
                     {
                         collision.GetComponent<EnemyController>().DamageEnemy(damage);
                         collision.GetComponent<Rigidbody2D>().AddForce(gameObject.GetComponent<Rigidbody2D>().velocity * knockback, ForceMode2D.Impulse);
-                        if (!isPiercingShot)
-                        {
-                            Destroy();
-                        }
+                        Destroy();
                     }
                 }
                 break;
