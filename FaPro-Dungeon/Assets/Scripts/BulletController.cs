@@ -79,7 +79,7 @@ public class BulletController : MonoBehaviour
     {
         if (!isEnemyBullet)
         {
-            damage = GameController.Damage;
+            damage = GameController.GetDamage();
             range = GameController.Range;
             lifeTime = range / 30f;
         }

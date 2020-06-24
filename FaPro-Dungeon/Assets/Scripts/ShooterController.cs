@@ -78,4 +78,13 @@ public class ShooterController : MonoBehaviour
         {
             bs.bulletEffects = bulletShooters[0].bulletEffects;
         }
+    }
+
+    public void resetLastFire()
+    {
+        foreach (BulletShooter bs in bulletShooters)
+        {
+            bs.resetLastFire();
+        }
+    }
 }

@@ -98,6 +98,11 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public static float GetDamage()
+    {
+        return damage * DamageMultiplier;
+    }
+
     public void UpdateItems()
     {
         foreach (Item item in items)
@@ -162,6 +167,11 @@ public class GameController : MonoBehaviour
     public static void ChangeDamage(float damageChange)
     {
         damage += damageChange;
+    }
+
+    public static void ChangeDamageMultiplier(float damageChange)
+    {
+        damageMultiplier += damageChange-1;
     }
 
     public static void ChangeMoveSpeed(float moveSpeedChange)
