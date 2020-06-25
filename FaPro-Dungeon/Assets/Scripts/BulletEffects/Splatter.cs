@@ -12,7 +12,7 @@ public class Splatter : BulletEffect
     {
         if (!gameObject.name.Equals("BulletEffects"))
         {
-            foreach (BulletShooter bs in gameObject.GetComponent<ShooterController>().bulletShooters)
+            foreach (BulletShooter bs in gameObject.GetComponentsInChildren<BulletShooter>())
             {
                 bs.SplatterShoot();
             }

@@ -23,9 +23,9 @@ public class Poison : BulletEffect
     public override void OnInstantiate()
     {
         rand = Random.Range(0, 100);
-        Debug.Log(rand);
-        if (rand >= 90)
+        if (rand >= 90 || successfulPoison)
         {
+            successfulPoison = true;
             gameObject.GetComponent<SpriteRenderer>().color = Color.green;
         }
     }

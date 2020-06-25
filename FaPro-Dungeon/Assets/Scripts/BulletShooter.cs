@@ -58,7 +58,8 @@ public class BulletShooter : MonoBehaviour
             {
                 if (!be.isSplatter)
                 {
-                    bullet.AddComponent(be.GetType());
+                    UnityEditorInternal.ComponentUtility.CopyComponent(be);
+                    UnityEditorInternal.ComponentUtility.PasteComponentAsNew(bullet);
                 }
             }
         }

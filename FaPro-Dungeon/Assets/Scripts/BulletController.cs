@@ -16,6 +16,8 @@ public abstract class BulletEffect : MonoBehaviour
 
     public bool isSplatter = false;
 
+    public bool successfulPoison = false;
+
     //Wird aufgerufen wenn das Projektil einen nicht-freundlichen Spieler trifft.
     public virtual void OnPlayerHit(Collider2D collision)
     {
@@ -109,7 +111,7 @@ public class BulletController : MonoBehaviour
     public IEnumerator DeathDelay()
     {
         yield return new WaitForSeconds(lifeTime);
-        Destroy();
+        Destroy(gameObject);
     }
 
     private void Update()
@@ -120,15 +122,6 @@ public class BulletController : MonoBehaviour
         }
         distanceTravelled += Vector3.Distance(transform.position, lastPosition);
         lastPosition = transform.position;
-    }
-
-    public void Destroy()
-    {
-        foreach (BulletEffect be in GetComponents<BulletEffect>())
-        {
-            be.OnDestroy();
-        }
-        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -148,7 +141,7 @@ public class BulletController : MonoBehaviour
                     {
                         collision.GetComponent<EnemyController>().DamageEnemy(damage);
                         collision.GetComponent<Rigidbody2D>().AddForce(gameObject.GetComponent<Rigidbody2D>().velocity * knockback, ForceMode2D.Impulse);
-                        Destroy();
+                        Destroy(gameObject);
                     }
                 }
                 break;
@@ -163,7 +156,7 @@ public class BulletController : MonoBehaviour
                     if (defaultBehavior)
                     {
                         GameController.DamagePlayer(1);
-                        Destroy();
+                        Destroy(gameObject);
                     }
                 }
                 break;
@@ -192,7 +185,7 @@ public class BulletController : MonoBehaviour
                 }
                 if (defaultBehavior)
                 {
-                    Destroy();
+                    Destroy(gameObject);
                 }
 
                 break;
