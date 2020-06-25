@@ -18,6 +18,8 @@ public class TripleShot : Item
             shc.bulletShooters.Add(thirdBS);
             foreach (BulletShooter bs in shc.bulletShooters)
             {
+                bs.resetLastFire();
+                bs.fireShotOffset = 0;
                 switch (bs.gameObject.name)
                 {
                     case ("Main Left"):
