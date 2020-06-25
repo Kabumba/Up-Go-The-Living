@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rage : Item
+public class RageBullet : Item
 {
-    public GameObject rageBullet;
     public override void OnPickup()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         ShooterController sc = player.GetComponent<ShooterController>();
-        BulletEffect rageEffect = rageBullet.GetComponent<BulletEffect>();
-        foreach(BulletShooter bs in sc.bulletShooters)
-        {
-            bs.bulletEffects.Add(rageEffect);
-        }
+        Rage rage = GameObject.Find("BulletEffects").AddComponent<Rage>() as Rage;
+        sc.AddBulletEffectToAll(rage);
     }
 }

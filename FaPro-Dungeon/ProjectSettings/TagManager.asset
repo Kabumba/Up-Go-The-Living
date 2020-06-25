@@ -52,7 +52,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Pierce
+  - name: Bullet
     uniqueID: 1482615577
     locked: 0
   - name: Door

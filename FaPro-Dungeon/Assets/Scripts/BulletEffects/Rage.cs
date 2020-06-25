@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RageBullet : BulletEffect
+public class Rage : BulletEffect
 {
     public override void OnEnemyHit(Collider2D collision)
     {

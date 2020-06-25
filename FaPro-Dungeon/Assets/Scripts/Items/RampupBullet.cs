@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Psychokinese : Item
+public class RampupBullet : Item
 {
     public override void OnPickup()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         ShooterController shc = player.GetComponent<ShooterController>();
-        Homing homing = GameObject.Find("BulletEffects").AddComponent<Homing>() as Homing;
-        shc.AddBulletEffectToAll(homing);
+        RampupDamage rampupDamage = GameObject.Find("BulletEffects").AddComponent<RampupDamage>() as RampupDamage;
+        shc.AddBulletEffectToAll(rampupDamage);
     }
 }

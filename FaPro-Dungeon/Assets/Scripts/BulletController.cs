@@ -14,6 +14,8 @@ public abstract class BulletEffect : MonoBehaviour
 
     public bool defaultObstacleHit = true;
 
+    public bool isSplatter = false;
+
     //Wird aufgerufen wenn das Projektil einen nicht-freundlichen Spieler trifft.
     public virtual void OnPlayerHit(Collider2D collision)
     {
@@ -70,11 +72,13 @@ public class BulletController : MonoBehaviour
 
     public bool isEnemyBullet;
 
-    public bool isPiercingShot;
-
     public Rigidbody2D rb;
 
     public MovementController mvc;
+
+    public float distanceTravelled = 0;
+
+    Vector3 lastPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +91,7 @@ public class BulletController : MonoBehaviour
         }
         mvc = gameObject.GetComponent<MovementController>();
         rb = gameObject.GetComponent<Rigidbody2D>();
+        lastPosition = transform.position;
         StartCoroutine(DeathDelay());
 
     }
@@ -113,6 +118,8 @@ public class BulletController : MonoBehaviour
         {
             be.Tick();
         }
+        distanceTravelled += Vector3.Distance(transform.position, lastPosition);
+        lastPosition = transform.position;
     }
 
     public void Destroy()
@@ -126,10 +133,6 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<Collider2D>().isTrigger)
-        {
-            return;
-        }
         bool defaultBehavior = true;
         switch (collision.tag)
         {
@@ -145,10 +148,7 @@ public class BulletController : MonoBehaviour
                     {
                         collision.GetComponent<EnemyController>().DamageEnemy(damage);
                         collision.GetComponent<Rigidbody2D>().AddForce(gameObject.GetComponent<Rigidbody2D>().velocity * knockback, ForceMode2D.Impulse);
-                        if (!isPiercingShot)
-                        {
-                            Destroy();
-                        }
+                        Destroy();
                     }
                 }
                 break;
@@ -181,6 +181,10 @@ public class BulletController : MonoBehaviour
                 }
                 break;
             default:
+                if (collision.GetComponent<Collider2D>().isTrigger)
+                {
+                    return;
+                }
                 foreach (BulletEffect be in GetComponents<BulletEffect>())
                 {
                     be.OnObstacleHit(collision);

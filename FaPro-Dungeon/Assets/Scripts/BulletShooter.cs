@@ -38,7 +38,6 @@ public class BulletShooter : MonoBehaviour
         {
             if (lastFireShot >= fireShotDelay + fireShotOffset)
             {
-
                 StartCoroutine(Barrage());
                 lastFireShot = fireShotOffset;
             }
@@ -50,6 +49,32 @@ public class BulletShooter : MonoBehaviour
         }
     }
 
+    public void SplatterShoot()
+    {
+        GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation) as GameObject;
+        if (bulletEffects != null)
+        {
+            foreach (BulletEffect be in bulletEffects)
+            {
+                if (!be.isSplatter)
+                {
+                    bullet.AddComponent(be.GetType());
+                }
+            }
+        }
+        bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(
+            transform.up.x * shooterController.bulletSpeed + shooterController.velocityAddedToBullet * shooterController.rb.velocity.x,
+            transform.up.y * shooterController.bulletSpeed + shooterController.velocityAddedToBullet * shooterController.rb.velocity.y,
+            0
+            );
+        bullet.GetComponent<BulletController>().mvc.speed = shooterController.bulletSpeed;
+        foreach (BulletEffect be in bullet.GetComponents<BulletEffect>())
+        {
+            be.OnInstantiate();
+        }
+        GameController.OnFireItems();
+    }
+
     private IEnumerator Barrage()
     {
         for (int i = 0; i < barrageCount; i++)
@@ -58,7 +83,6 @@ public class BulletShooter : MonoBehaviour
             if (rand < fireChance)
             {
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation) as GameObject;
-                bullet.SetActive(true);
                 if (bulletEffects != null)
                 {
                     foreach (BulletEffect be in bulletEffects)
