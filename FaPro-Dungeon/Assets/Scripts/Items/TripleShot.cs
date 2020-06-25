@@ -42,6 +42,7 @@ public class TripleShot : Item
                         break;
                 }
             }
+            shc.UpdateBulletEffects();
             player.transform.rotation = rotationBefore;
             GameController.ChangeFireDelay(new FireDelayUp());
         }
