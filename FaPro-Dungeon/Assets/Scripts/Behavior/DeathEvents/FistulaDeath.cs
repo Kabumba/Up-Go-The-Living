@@ -13,4 +13,9 @@ public class FistulaDeath : DeathEvent
         GameObject.Instantiate(prefab, gameObject.transform.position, Quaternion.Euler(0, 0, 135));
         GameObject.Instantiate(prefab, gameObject.transform.position, Quaternion.Euler(0, 0, -135));
     }
+
+    private void Start()
+    {
+        gameObject.transform.rotation = Quaternion.Euler(0, 0, -45);
+    }
 }

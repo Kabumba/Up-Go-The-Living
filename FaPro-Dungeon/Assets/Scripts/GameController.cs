@@ -3,10 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public abstract class Statdecorator
+{
+    public Statdecorator next;
+
+    public virtual float GetStat()
+    {
+        return next.GetStat();
+    }
+}
+
+
+
 public class GameController : MonoBehaviour
 {
+    //------------ATTRIBUTES---------------------------------------------------
+    
 
-    public static GameController instance;
+    //------------Health-------------------------------------
 
     //Default: 6
     private static int health = 6;
@@ -14,81 +28,106 @@ public class GameController : MonoBehaviour
     //Default: 6
     private static int maxHealth = 6;
 
+
+    //------------Coins--------------------------------------
+
     //Default: 0
     private static int coins = 0;
 
+
+    //------------Damage-------------------------------------
+
     //Default: 3.5
-    private static float damage = 3.5f;
+    private static float baseDamage = 3.5f;
+
+    //Default: 0
+    private static float damageUp = 0;
 
     //Default: 1
     private static float damageMultiplier = 1f;
 
+    //Default: 0
+    public static float damageThroughRage = 0f;
+
+
+    //------------MoveSpeed----------------------------------
+
+    //Default: 1
+    private static float moveSpeed = 1f;
+
     //Default: 4
-    private static float moveSpeed = 4f;
+    private static float baseMoveSpeedFactor = 4f;
 
-    //Default: 8
-    private static float maxMoveSpeed = 8f;
+    //Default: 2
+    private static float maxMoveSpeed = 2f;
 
-    //Default: 0.5
-    private static float fireRate = 0.5f;
+
+    //------------FireRate-----------------------------------
+
+    //Default: 0
+    private static float baseFireRate = 0;
+
+    private static Statdecorator fireRateDecor;
+
+    private static Statdecorator fireDelayDecor;
+
+
+    //------------Range--------------------------------------
 
     //Default: 23.75
     private static float range = 23.75f;
 
+    //Default: 30f
+    private static float baseRangeDivider = 30f;
+
+
+    //------------BulletSpeed--------------------------------
+
+    //Default: 1
+    private static float bulletSpeed = 1f;
+
     //Default: 7
-    private static float bulletSpeed = 7f;
+    private static float baseBulletSpeed = 7f;
+
+
+    //------------BulletSize---------------------------------
 
     //Default: 0.5
     private static float bulletSize = 0.5f;
 
+
+    //------------Invincibility------------------------------
+
     //Default: 1
     private static float invincibleAfterHit = 1f;
-
-    private static float damageThroughRage = 0f;
 
     private static float lasthit;
 
     private static bool invincible = false;
 
-    public static int Health { get => health; set => health = value; }
 
-    public static int MaxHealth { get => maxHealth; set => maxHealth = value; }
-
-    public static int Coins { get => coins; set => coins = value; }
-
-    public static float Damage { get => damage; set => damage = value; }
-
-    public static float MoveSpeed { get => moveSpeed; set => moveSpeed = value; }
-
-    public static float FireRate { get => fireRate; set => fireRate = value; }
-
-    public static float Range { get => range; set => range = value; }
-
-    public static float BulletSpeed { get => bulletSpeed; set => bulletSpeed = value; }
-
-    public static float BulletSize { get => bulletSize; set => bulletSize = value; }
-
-    public static float InvincibleAfterHit { get => invincibleAfterHit; set => invincibleAfterHit = value; }
-
-    public static float DamageMultiplier { get => damageMultiplier; set => damageMultiplier = value; }
-
-    public static float DamageThroughRage { get => damageThroughRage; set => damageThroughRage = value; }
 
     public static List<Item> items;
 
     public int floorNumber = 1;
 
-    // Start is called before the first frame update
+
+    //------------METHODS------------------------------------------------------
+
+
+    //------------General------------------------------------
+
+    private void Start()
+    {
+        fireRateDecor = new BaseFireRate();
+        fireDelayDecor = new BaseFireDelay();
+    }
+
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
         items = new List<Item>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateItems();
@@ -98,12 +137,7 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public static float GetDamage()
-    {
-        return damage * DamageMultiplier;
-    }
-
-    public void UpdateItems()
+    private void UpdateItems()
     {
         foreach (Item item in items)
         {
@@ -119,6 +153,67 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public static bool Contains(string itemName)
+    {
+        foreach (Item item in items)
+        {
+            if (item.name.Equals(itemName))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    //------------Health-------------------------------------
+
+    public static int GetHealth()
+    {
+        return health;
+    }
+
+    public static int GetMaxHealth()
+    {
+        return maxHealth;
+    }
+
+    public static void HealPlayer(int healAmount)
+    {
+        health = Mathf.Min(maxHealth, health + healAmount);
+    }
+
+    public static void AddMaxHealth(int maxHealthChange)
+    {
+        maxHealth += maxHealthChange;
+    }
+
+
+    //------------Coins--------------------------------------
+
+    public static void AddCoins(int coinChange)
+    {
+        coins += coinChange;
+    }
+
+
+    //------------Damage-------------------------------------
+
+    public static float GetEffectiveDamage()
+    {
+        return baseDamage * Mathf.Sqrt(damageUp * 1.2f + 1) * damageMultiplier;
+    }
+
+    public static void AddDamage(float damageChange)
+    {
+        damageUp += damageChange;
+    }
+
+    public static void MultiplyDamageMultiplier(float multiplier)
+    {
+        damageMultiplier *= multiplier;
+    }
+
     public static void DamagePlayer(int damage)
     {
         if (!invincible)
@@ -128,7 +223,7 @@ public class GameController : MonoBehaviour
             {
                 item.OnDamageTaken();
             }
-            if (Health <= 0)
+            if (health <= 0)
             {
                 KillPlayer();
             }
@@ -137,6 +232,132 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public static void KillPlayer()
+    {
+
+    }
+
+
+    //------------MoveSpeed----------------------------------
+
+    public static float GetMoveSpeed()
+    {
+        return moveSpeed * baseMoveSpeedFactor;
+    }
+
+    public static void AddMoveSpeed(float moveSpeedChange)
+    {
+        moveSpeed = Mathf.Max(0.1f, Mathf.Min(moveSpeedChange + moveSpeed, maxMoveSpeed));
+    }
+
+
+    //------------FireRate-----------------------------------
+
+    public static float GetDelayBetweenShots()
+    {
+        return (GetFireDelay() + 1) / 30;
+    }
+
+    public static void ChangeFireRate(Statdecorator change)
+    {
+        change.next = fireRateDecor;
+        fireRateDecor = change;
+    }
+
+    public static void ChangeFireDelay(Statdecorator change)
+    {
+        change.next = fireDelayDecor;
+        fireDelayDecor = change;
+    }
+
+    private static float GetBaseFireDelay()
+    {
+        float firerate = GetFireRate();
+        if (firerate >= 0)
+        {
+            return 16 - 6 * Mathf.Sqrt(firerate * 1.3f * 1);
+        }
+        else
+        {
+            if (firerate > -0.77f)
+            {
+                return 16 - 6 * Mathf.Sqrt(firerate * 1.3f * 1) - 6 * firerate;
+            }
+            else
+            {
+                return 16 - 6 * firerate;
+            }
+        }
+    }
+
+    private static float GetFireRate()
+    {
+        return fireRateDecor.GetStat();
+    }
+
+    private static float GetFireDelay()
+    {
+        return fireDelayDecor.GetStat();
+    }
+
+    private class BaseFireRate : Statdecorator
+    {
+        public override float GetStat()
+        {
+            return baseFireRate;
+        }
+    }
+
+    private class BaseFireDelay : Statdecorator
+    {
+        public override float GetStat()
+        {
+            return GetBaseFireDelay();
+        }
+    }
+
+
+    //------------Range--------------------------------------
+
+    public static float GetBulletLifeTime()
+    {
+        return range / baseRangeDivider;
+    }
+
+    public static void AddRange(float rangeChange)
+    {
+        range += rangeChange;
+    }
+
+
+    //------------BulletSpeed--------------------------------
+
+    public static float GetBulletSpeed()
+    {
+        return bulletSpeed * baseBulletSpeed;
+    }
+
+    public static void AddBulletSpeed(float bulletSpeedChange)
+    {
+        bulletSpeed = Mathf.Max(0.6f, bulletSpeedChange + bulletSpeed);
+    }
+
+
+    //------------BulletSize---------------------------------
+
+    public static float GetBulletSize()
+    {
+        return bulletSize;
+    }
+
+    public static void AddBulletSize(float bulletSizeChange)
+    {
+        bulletSize += bulletSizeChange;
+    }
+
+
+    //------------Invincibility------------------------------
+
     IEnumerator InvincibilityDelay()
     {
         invincible = true;
@@ -144,70 +365,4 @@ public class GameController : MonoBehaviour
         invincible = false;
     }
 
-    public static void HealPlayer(int healAmount)
-    {
-        health = Mathf.Min(maxHealth, Health + healAmount);
-    }
-
-    public static void KillPlayer()
-    {
-
-    }
-
-    public static void ChangeMaxHealth(int maxHealthChange)
-    {
-        maxHealth += maxHealthChange;
-    }
-
-    public static void ChangeCoins(int coinChange)
-    {
-        coins += coinChange;
-    }
-
-    public static void ChangeDamage(float damageChange)
-    {
-        damage += damageChange;
-    }
-
-    public static void ChangeDamageMultiplier(float damageChange)
-    {
-        damageMultiplier += damageChange-1;
-    }
-
-    public static void ChangeMoveSpeed(float moveSpeedChange)
-    {
-        moveSpeed = Mathf.Max(0.2f, Mathf.Min(moveSpeedChange + moveSpeed, maxMoveSpeed));
-    }
-
-    public static void ChangeFireRate(float fireRateChange)
-    {
-        fireRate += fireRateChange;
-    }
-
-    public static void ChangeRange(float rangeChange)
-    {
-        range += rangeChange;
-    }
-
-    public static void ChangeBulletSpeed(float bulletSpeedChange)
-    {
-        bulletSpeed += bulletSpeedChange;
-    }
-
-    public static void ChangeBulletSize(float bulletSizeChange)
-    {
-        bulletSize += bulletSizeChange;
-    }
-
-    public static bool Contains(string itemName)
-    {
-        foreach(Item item in items)
-        {
-            if (item.name.Equals(itemName))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
 }

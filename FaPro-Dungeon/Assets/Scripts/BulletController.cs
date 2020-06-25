@@ -59,9 +59,7 @@ public abstract class BulletEffect : MonoBehaviour
 
 public class BulletController : MonoBehaviour
 {
-
-    public float range;
-
+    
     public float damage;
 
     public float lifeTime;
@@ -79,9 +77,8 @@ public class BulletController : MonoBehaviour
     {
         if (!isEnemyBullet)
         {
-            damage = GameController.GetDamage();
-            range = GameController.Range;
-            lifeTime = range / 30f;
+            damage = GameController.GetEffectiveDamage();
+            lifeTime = GameController.GetBulletLifeTime();
         }
         mvc = gameObject.GetComponent<MovementController>();
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -93,7 +90,7 @@ public class BulletController : MonoBehaviour
     {
         if (!isEnemyBullet)
         {
-            transform.localScale = new Vector2(GameController.BulletSize, GameController.BulletSize);
+            transform.localScale = new Vector2(GameController.GetBulletSize(), GameController.GetBulletSize());
         }
         mvc.desiredVelocity = rb.velocity;
     }

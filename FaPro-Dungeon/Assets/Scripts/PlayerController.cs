@@ -22,9 +22,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        shc.fireDelay = GameController.FireRate;
-        speed = GameController.MoveSpeed;
-        shc.bulletSpeed = GameController.BulletSpeed;
+        shc.fireDelay = GameController.GetDelayBetweenShots();
+        speed = GameController.GetMoveSpeed();
+        shc.bulletSpeed = GameController.GetBulletSpeed();
 
         //Inputs
         float horizontal = Input.GetAxis("Horizontal");

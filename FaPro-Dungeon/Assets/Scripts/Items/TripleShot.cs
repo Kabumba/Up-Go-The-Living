@@ -41,7 +41,15 @@ public class TripleShot : Item
                 }
             }
             player.transform.rotation = rotationBefore;
-            GameController.ChangeFireRate(GameController.FireRate * 2);
+            GameController.ChangeFireDelay(new FireDelayUp());
+        }
+    }
+
+    private class FireDelayUp : Statdecorator
+    {
+        public override float GetStat()
+        {
+            return (next.GetStat() * 2.1f) + 3;
         }
     }
 }

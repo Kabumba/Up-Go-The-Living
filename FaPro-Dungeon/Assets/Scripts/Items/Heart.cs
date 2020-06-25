@@ -6,7 +6,7 @@ public class Heart : Item
 {
     public override void OnPickup()
     {
-        if (GameController.Health < GameController.MaxHealth)
+        if (GameController.GetHealth() < GameController.GetMaxHealth())
         {
             GameController.HealPlayer(2);
             Destroy(gameObject);

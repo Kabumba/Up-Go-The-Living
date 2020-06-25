@@ -6,9 +6,14 @@ public class FRateUp : Item
 {
     public override void OnPickup()
     {
-        if (GameController.FireRate > 0.1)
+        GameController.ChangeFireRate(new FireRateChange());
+    }
+
+    private class FireRateChange : Statdecorator
+    {
+        public override float GetStat()
         {
-            GameController.ChangeFireRate(-GameController.FireRate / 5);
+            return next.GetStat() + 0.7f;
         }
     }
 }

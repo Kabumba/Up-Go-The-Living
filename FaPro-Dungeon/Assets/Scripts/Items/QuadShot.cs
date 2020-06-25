@@ -21,7 +21,7 @@ public class QuadShot : Item
         shc.bulletShooters.Add(fourthBS);
         if (!GameController.Contains("TripleShot"))
         {
-            GameController.ChangeFireRate(GameController.FireRate * 3);
+            GameController.ChangeFireDelay(new FireDelayUp());
         }
         else
         {
@@ -33,11 +33,12 @@ public class QuadShot : Item
                     Destroy(bs.gameObject);
                 }
             }
-            GameController.ChangeFireRate(GameController.FireRate / 3);
+            GameController.ChangeFireDelay(new FireDelayDown());
         }
         foreach (BulletShooter bs in shc.bulletShooters)
         {
             bs.resetLastFire();
+            bs.fireShotOffset = 0;
             switch (bs.gameObject.name)
             {
                 case ("Main Left"):
@@ -62,5 +63,21 @@ public class QuadShot : Item
         }
         shc.UpdateBulletEffects();
         player.transform.rotation = rotationBefore;
+    }
+
+    private class FireDelayUp : Statdecorator
+    {
+        public override float GetStat()
+        {
+            return (next.GetStat() * 2.1f) + 3;
+        }
+    }
+
+    private class FireDelayDown : Statdecorator
+    {
+        public override float GetStat()
+        {
+            return next.GetStat()/3;
+        }
     }
 }

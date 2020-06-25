@@ -13,6 +13,5 @@ public class BulletBarrage : Item
             bs.barrageCount = 3;
             bs.barrageTimeDelay = 0.1f;
         }
-        GameController.ChangeFireRate(GameController.FireRate);
     }
 }

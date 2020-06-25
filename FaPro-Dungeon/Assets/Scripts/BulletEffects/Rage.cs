@@ -6,7 +6,7 @@ public class Rage : BulletEffect
 {
     public override void OnEnemyHit(Collider2D collision)
     {
-        GameController.ChangeDamage(0.5f);
-        GameController.DamageThroughRage += 0.5f;
+        GameController.AddDamage(0.5f);
+        GameController.damageThroughRage += 0.5f;
     }
 }

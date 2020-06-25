@@ -6,6 +6,6 @@ public class DamageUp : Item
 {
     public override void OnPickup()
     {
-        GameController.ChangeDamage(GameController.Damage);
+        GameController.AddDamage(1);
     }
 }

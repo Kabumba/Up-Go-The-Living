@@ -15,8 +15,8 @@ public class Health : MonoBehaviour
     public Sprite rightEmptyHeart;
     private void Update()
     {
-        numOfHearts = GameController.MaxHealth;
-        health = GameController.Health;
+        numOfHearts = GameController.GetMaxHealth();
+        health = GameController.GetHealth();
         for (int i = 0; i < hearts.Length; i++)
         {
             if (i < health && (i % 2 == 0))

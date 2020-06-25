@@ -6,11 +6,9 @@ public class Zyklop : Item
 {
     public override void OnPickup()
     {
-        GameController.BulletSize = 1;
-        GameController.ChangeDamage(4);
-        GameController.ChangeDamageMultiplier(2);
-        GameController.FireRate *= 2.1f;
-        GameController.FireRate += 3f;
+        GameController.AddDamage(4);
+        GameController.MultiplyDamageMultiplier(2);
+        GameController.ChangeFireDelay(new FireDelayUp());
 
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -45,5 +43,13 @@ public class Zyklop : Item
         }
         shc.bulletShooters.Add(newMain);
         player.transform.rotation = rotationBefore;
+    }
+
+    private class FireDelayUp : Statdecorator
+    {
+        public override float GetStat()
+        {
+            return (next.GetStat() * 2.1f) + 3;
+        }
     }
 }

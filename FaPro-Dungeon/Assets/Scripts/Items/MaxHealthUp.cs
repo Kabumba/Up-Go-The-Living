@@ -6,7 +6,7 @@ public class MaxHealthUp : Item
 {
     public override void OnPickup()
     {
-        GameController.ChangeMaxHealth(2);
+        GameController.AddMaxHealth(2);
         GameController.HealPlayer(2);
     }
 }

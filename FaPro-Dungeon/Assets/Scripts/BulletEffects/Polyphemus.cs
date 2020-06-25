@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Polyphemus : BulletEffect
 {
+    public float bulletSize = 1f;
+
     private void Start()
     {
         defaultEnemyHit = false;
@@ -11,8 +13,8 @@ public class Polyphemus : BulletEffect
 
     public override void Tick()
     {
-        float scale = GetComponent<BulletController>().damage / GameController.GetDamage();
-        transform.localScale = new Vector2(GameController.BulletSize*scale, GameController.BulletSize*scale);
+        float scale = GetComponent<BulletController>().damage / GameController.GetEffectiveDamage();
+        transform.localScale = new Vector2(bulletSize*scale, bulletSize*scale);
     }
 
     public override void OnEnemyHit(Collider2D collision)

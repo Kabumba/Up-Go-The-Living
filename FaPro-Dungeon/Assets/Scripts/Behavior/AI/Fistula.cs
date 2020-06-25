@@ -8,9 +8,4 @@ public class Fistula : AI
     {
         SetState(new Forward(character));
     }
-
-    private void Start()
-    {
-        gameObject.transform.rotation = Quaternion.Euler(0, 0, -45);
-    }
 }

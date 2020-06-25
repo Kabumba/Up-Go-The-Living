@@ -6,6 +6,6 @@ public class RangeUp : Item
 {
     public override void OnPickup()
     {
-        GameController.ChangeRange(4f);
+        GameController.AddRange(4f);
     }
 }
