@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 880301938532150062}
   - component: {fileID: 7129371018058197501}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LookAhead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 4577716362895644905}
   - component: {fileID: 6163656324173728335}
   - component: {fileID: 552847007119938120}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pooter
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -169,6 +169,9 @@ MonoBehaviour:
   isFlying: 1
   mvc: {fileID: 0}
   shc: {fileID: 0}
+  poisonTicks: 0
+  poisonDamage: 1
+  isPoisoned: 0
 --- !u!50 &3006069647624691927
 Rigidbody2D:
   serializedVersion: 4
@@ -259,7 +262,6 @@ MonoBehaviour:
   velocityAddedToBullet: 0
   rb: {fileID: 3006069647624691927}
   bulletShooters: []
-  damage: 3.5
 --- !u!114 &552847007119938120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +286,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2455466466314583673}
   - component: {fileID: 4232928028597752002}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: MainAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

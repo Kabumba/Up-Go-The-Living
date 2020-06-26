@@ -9,7 +9,7 @@ public class Zyklop : Item
         GameController.AddDamage(4);
         GameController.MultiplyDamageMultiplier(2);
         GameController.ChangeFireDelay(new FireDelayUp());
-
+        GameController.AddBulletSize(0.5f);
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         ShooterController shc = player.GetComponent<ShooterController>();

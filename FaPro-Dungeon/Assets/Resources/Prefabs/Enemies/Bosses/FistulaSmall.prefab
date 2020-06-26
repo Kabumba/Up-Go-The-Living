@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 1386192807293438637}
   - component: {fileID: 1386192807293438639}
   - component: {fileID: 3414569349333825667}
-  m_Layer: 0
+  - component: {fileID: 2140235783325324404}
+  m_Layer: 12
   m_Name: FistulaSmall
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -52,11 +53,15 @@ MonoBehaviour:
   health: 15
   range: 10
   attackRange: 6
+  isDead: 0
   dealContactDamage: 1
   rb: {fileID: 1386192807293438639}
   isFlying: 1
   mvc: {fileID: 363766474349671057}
   shc: {fileID: 0}
+  poisonTicks: 0
+  poisonDamage: 1
+  isPoisoned: 0
 --- !u!114 &363766474349671057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,3 +182,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7e2eb78f827ae4a9b3c31238d9debe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentStateName: 
+--- !u!114 &2140235783325324404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386192807293438633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f907a6643250bf84ca354613c94e8f49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stairsPrefab: {fileID: 8219320749496532412, guid: 951b02877c69c21488dfc8e29e62d988,
+    type: 3}

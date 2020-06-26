@@ -42,20 +42,20 @@ public class QuadShot : Item
             switch (bs.gameObject.name)
             {
                 case ("Main Left"):
-                    bs.gameObject.transform.position = new Vector3(player.transform.position.x + -0.25f, player.transform.position.y + 0.433f, 0f);
-                    bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, 45);
+                    bs.gameObject.transform.position = new Vector3(player.transform.position.x + -0.4f, player.transform.position.y + 0.3f, 0f);
+                    bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, 6);
                     break;
                 case ("Main Right"):
-                    bs.gameObject.transform.position = new Vector3(player.transform.position.x + 0.25f, player.transform.position.y + 0.433f, 0f);
-                    bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, -45);
+                    bs.gameObject.transform.position = new Vector3(player.transform.position.x + 0.4f, player.transform.position.y + 0.3f, 0f);
+                    bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, -6);
                     break;
                 case ("Main Middle Left"):
-                    bs.gameObject.transform.position = new Vector3(player.transform.position.x - 0.08f, player.transform.position.y + 0.433f, 0f);
-                    bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, 15);
+                    bs.gameObject.transform.position = new Vector3(player.transform.position.x - 0.133f, player.transform.position.y + 0.482f, 0f);
+                    bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, 2.5f);
                     break;
                 case ("Main Middle Right"):
-                    bs.gameObject.transform.position = new Vector3(player.transform.position.x + 0.08f, player.transform.position.y + 0.433f, 0f);
-                    bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, -15);
+                    bs.gameObject.transform.position = new Vector3(player.transform.position.x + 0.133f, player.transform.position.y + 0.482f, 0f);
+                    bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, -2.5f);
                     break;
                 default:
                     break;

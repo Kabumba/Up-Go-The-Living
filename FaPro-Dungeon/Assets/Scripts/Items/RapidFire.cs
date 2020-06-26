@@ -8,6 +8,7 @@ public class RapidFire : Item
     {
         GameController.ChangeFireDelay(new FireDelayChange());
         GameController.MultiplyDamageMultiplier(0.2f);
+        GameController.AddBulletSize(-0.25f);
     }
 
     private class FireDelayChange : Statdecorator

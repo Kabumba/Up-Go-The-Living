@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 772708d9c3f65344e8092462a8cb0136
+guid: 51a9d95b5e276f94c9a2b283c5b9e2d6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - pierceSprite: {instanceID: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

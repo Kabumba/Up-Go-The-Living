@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5332118420304385850}
   - component: {fileID: 8476125016320681238}
   - component: {fileID: 4185723175271577946}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FistulaMedium
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -53,11 +53,15 @@ MonoBehaviour:
   health: 30
   range: 10
   attackRange: 6
+  isDead: 0
   dealContactDamage: 1
   rb: {fileID: 5332118420304385850}
   isFlying: 1
   mvc: {fileID: 6903905932656045828}
   shc: {fileID: 0}
+  poisonTicks: 0
+  poisonDamage: 1
+  isPoisoned: 0
 --- !u!114 &6903905932656045828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,6 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b7e2eb78f827ae4a9b3c31238d9debe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentStateName: 
 --- !u!114 &4185723175271577946
 MonoBehaviour:
   m_ObjectHideFlags: 0

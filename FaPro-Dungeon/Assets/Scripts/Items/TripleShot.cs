@@ -24,18 +24,18 @@ public class TripleShot : Item
                 {
                     case ("Main Left"):
                         bs.gameObject.transform.position = new Vector3(player.transform.position.x + -0.25f, player.transform.position.y + 0.433f, 0f);
-                        bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, 45);
-                        bs.fireShotDelay = -1;
+                        bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, 5);
+                        bs.fireShotDelay = 0;
                         break;
                     case ("Main Right"):
                         bs.gameObject.transform.position = new Vector3(player.transform.position.x + 0.25f, player.transform.position.y + 0.433f, 0f);
-                        bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, -45);
-                        bs.fireShotDelay = -1;
+                        bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, -5);
+                        bs.fireShotDelay = 0;
                         break;
                     case ("Main Middle"):
-                        bs.gameObject.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 0.433f, 0f);
+                        bs.gameObject.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, 0f);
                         bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
-                        bs.fireShotDelay = -1;
+                        bs.fireShotDelay = 0;
                         break;
                     default:
                         bs.fireShotDelay = 1;

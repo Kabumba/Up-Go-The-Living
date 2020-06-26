@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 8795982355056541237}
   - component: {fileID: 9087049862522079182}
   m_Layer: 12
-  m_Name: Wall Creep Up
+  m_Name: Wall Creep
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,6 +113,9 @@ MonoBehaviour:
   isFlying: 1
   mvc: {fileID: 0}
   shc: {fileID: 0}
+  poisonTicks: 0
+  poisonDamage: 1
+  isPoisoned: 0
 --- !u!50 &5881169383958305007
 Rigidbody2D:
   serializedVersion: 4
@@ -174,7 +177,6 @@ MonoBehaviour:
   velocityAddedToBullet: 0
   rb: {fileID: 5881169383958305007}
   bulletShooters: []
-  damage: 3.5
 --- !u!114 &8795982355056541237
 MonoBehaviour:
   m_ObjectHideFlags: 0

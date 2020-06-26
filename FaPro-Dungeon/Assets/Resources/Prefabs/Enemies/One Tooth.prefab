@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2643065254014758072}
   - component: {fileID: 2643065254014758074}
   - component: {fileID: 5532501530891716478}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: One Tooth
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -58,6 +58,9 @@ MonoBehaviour:
   isFlying: 1
   mvc: {fileID: 3647609439614768260}
   shc: {fileID: 0}
+  poisonTicks: 0
+  poisonDamage: 1
+  isPoisoned: 0
 --- !u!114 &3647609439614768260
 MonoBehaviour:
   m_ObjectHideFlags: 0
