@@ -11,7 +11,7 @@ public class Pierce : BulletEffect
 
     public override void OnEnemyHit(Collider2D collision)
     {
-        collision.GetComponent<EnemyController>().DamageEnemy(GameController.Damage);
+        collision.GetComponent<EnemyController>().DamageEnemy(GameController.GetEffectiveDamage());
     }
 
     public override void OnInstantiate()

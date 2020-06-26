@@ -12,7 +12,7 @@ public class Poison : BulletEffect
     }
     public override void OnEnemyHit(Collider2D collision)
     {
-        collision.GetComponent<EnemyController>().DamageEnemy(GameController.Damage);
+        collision.GetComponent<EnemyController>().DamageEnemy(GameController.GetEffectiveDamage());
         if (rand >= 90)
         {
             collision.GetComponent<EnemyController>().PoisonDamage();
