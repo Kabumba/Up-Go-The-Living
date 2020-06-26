@@ -7,7 +7,8 @@ public class RageBullet : Item
     public override void OnPickup()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        ShooterController shc = player.GetComponent<ShooterController>();
-        shc.AddBulletEffectToAll(new Rage());
+        ShooterController sc = player.GetComponent<ShooterController>();
+        Rage rage = GameObject.Find("BulletEffects").AddComponent<Rage>() as Rage;
+        sc.AddBulletEffectToAll(rage);
     }
 }

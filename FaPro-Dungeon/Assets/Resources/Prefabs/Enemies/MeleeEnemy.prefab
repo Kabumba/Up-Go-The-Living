@@ -140,11 +140,15 @@ MonoBehaviour:
   health: 10
   range: 4
   attackRange: 0
+  isDead: 0
   dealContactDamage: 1
   rb: {fileID: 0}
   isFlying: 0
   mvc: {fileID: 0}
   shc: {fileID: 0}
+  poisonTicks: 0
+  poisonDamage: 1
+  isPoisoned: 0
 --- !u!114 &3477940481755264154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1365aa80969acdc4b91465c4c863e714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentStateName: 
 --- !u!114 &6538331775876773904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +179,10 @@ MonoBehaviour:
   speed: 4.3
   accelerationValue: 0.2
   rb: {fileID: 2696955392005806660}
-  bounceOff: 0
+  bounceOffObstacle: 0
+  bounceOffPlayer: 0
+  bounceOffEnemy: 0
+  bounceOffProjectile: 0
 --- !u!114 &3612294403507276262
 MonoBehaviour:
   m_ObjectHideFlags: 0

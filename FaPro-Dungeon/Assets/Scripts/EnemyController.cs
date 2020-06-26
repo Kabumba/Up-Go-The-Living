@@ -78,7 +78,7 @@ public class EnemyController : MonoBehaviour
 
     public float health = 10;
 
-    private float maxHealth = 10;
+    //private float maxHealth = 10;
 
     public float range;
 
@@ -98,6 +98,12 @@ public class EnemyController : MonoBehaviour
 
     public ShooterController shc;
 
+    public int poisonTicks = 0;
+
+    public float poisonDamage = 1f;
+
+    public bool isPoisoned;
+
     
     // Start is called before the first frame update
     void Start()
@@ -113,7 +119,7 @@ public class EnemyController : MonoBehaviour
     {
         count++;
     }
-   
+
     public bool IsPlayerInRange()
     {
         return Vector3.Distance(transform.position, player.transform.position) <= range;
@@ -157,5 +163,26 @@ public class EnemyController : MonoBehaviour
             ContactDamage();
         }
     }
-    
+
+    public void PoisonDamage()
+    {
+        if (!isPoisoned)
+        {
+            poisonTicks = 3;
+            StartCoroutine("PoisonTicks");
+        }
+    }
+
+    IEnumerator PoisonTicks()
+    {
+        isPoisoned = true;
+        yield return new WaitForSeconds(1f);
+        while (poisonTicks > 0) {
+            health = Mathf.Max(0, health - poisonDamage);
+            poisonTicks -= 1;
+            Debug.Log("Tick");
+            yield return new WaitForSeconds(1f);
+        }
+        isPoisoned = false;
+    }
 }

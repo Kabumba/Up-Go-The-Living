@@ -54,6 +54,7 @@ MonoBehaviour:
   health: 15
   range: 7
   attackRange: 7
+  isDead: 0
   dealContactDamage: 1
   rb: {fileID: 0}
   isFlying: 0
@@ -113,7 +114,10 @@ MonoBehaviour:
   speed: 0.5
   accelerationValue: 0.1
   rb: {fileID: 2162446303656976366}
-  bounceOff: 1
+  bounceOffObstacle: 0
+  bounceOffPlayer: 0
+  bounceOffEnemy: 0
+  bounceOffProjectile: 0
 --- !u!114 &7078688687741171062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596f5ac04b4d5864185c1130940026df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentStateName: 
 --- !u!1 &2771077666501278148
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +256,11 @@ MonoBehaviour:
   fireShotDelay: 0
   shooterController: {fileID: 0}
   fireShotOffset: 0
+  fireTimeOffset: 0
   fireChance: 1
+  barrageCount: 1
+  barrageTimeDelay: 0
+  bulletEffects: []
 --- !u!1 &7010217605520521301
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,7 +309,11 @@ MonoBehaviour:
   fireShotDelay: 0
   shooterController: {fileID: 0}
   fireShotOffset: 0
+  fireTimeOffset: 0
   fireChance: 1
+  barrageCount: 1
+  barrageTimeDelay: 0
+  bulletEffects: []
 --- !u!1 &7268887542065196390
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,7 +362,11 @@ MonoBehaviour:
   fireShotDelay: 0
   shooterController: {fileID: 0}
   fireShotOffset: 0
+  fireTimeOffset: 0
   fireChance: 1
+  barrageCount: 1
+  barrageTimeDelay: 0
+  bulletEffects: []
 --- !u!1 &8660547368204048372
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +415,11 @@ MonoBehaviour:
   fireShotDelay: 0
   shooterController: {fileID: 0}
   fireShotOffset: 0
+  fireTimeOffset: 0
   fireChance: 1
+  barrageCount: 1
+  barrageTimeDelay: 0
+  bulletEffects: []
 --- !u!1 &9137196025313535834
 GameObject:
   m_ObjectHideFlags: 0
