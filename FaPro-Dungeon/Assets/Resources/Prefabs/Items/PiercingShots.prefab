@@ -62,7 +62,6 @@ MonoBehaviour:
   name: Piercing Shots
   description: Shots pierce through enemies.
   itemImage: {fileID: 21300000, guid: 27ae192e3f3ea7b4fbe85029d80f9d5b, type: 3}
-  pierceSprite: {fileID: 21300000, guid: 81b30e742f5584d44a253728e17218f5, type: 3}
 --- !u!212 &4062774527270017731
 SpriteRenderer:
   m_ObjectHideFlags: 0
