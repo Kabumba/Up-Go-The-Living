@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1536503205437103595}
   - component: {fileID: 7054341854425828324}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,6 +53,7 @@ MonoBehaviour:
   fireChance: 1
   barrageCount: 1
   barrageTimeDelay: 0
+  bulletEffects: []
 --- !u!1 &8259172534844782315
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,7 +71,7 @@ GameObject:
   - component: {fileID: 6466372231899634522}
   - component: {fileID: 1786238543716885664}
   - component: {fileID: 4242247839246825255}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Spitty
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -179,6 +180,7 @@ MonoBehaviour:
   health: 10
   range: 4
   attackRange: 0
+  isDead: 0
   dealContactDamage: 1
   rb: {fileID: 0}
   isFlying: 0
@@ -405,4 +407,3 @@ MonoBehaviour:
   velocityAddedToBullet: 0
   rb: {fileID: 0}
   bulletShooters: []
-  damage: 3.5

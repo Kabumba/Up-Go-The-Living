@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnEnemies : DeathEvent
+public class SpawnEnemiesDeath : EnemyEffect
 {
     public EnemyController enemyPrefab;
 

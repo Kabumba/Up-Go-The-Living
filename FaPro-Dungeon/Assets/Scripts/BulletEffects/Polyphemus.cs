@@ -6,7 +6,7 @@ public class Polyphemus : BulletEffect
 {
     private void Start()
     {
-        defaultEnemyHit = false;
+        defaultDestroyOnEnemyHit = false;
     }
 
     public override void Tick()
@@ -20,13 +20,13 @@ public class Polyphemus : BulletEffect
         float enemyHealth = collision.gameObject.GetComponent<EnemyController>().health;
         if (GetComponent<BulletController>().damage >= enemyHealth)
         {
-            defaultEnemyHit = false;
+            defaultDamageEnemy = false;
             collision.GetComponent<EnemyController>().DamageEnemy(GetComponent<BulletController>().damage);
             GetComponent<BulletController>().damage -= enemyHealth;
         }
         else
         {
-            defaultEnemyHit = true;
+            defaultDestroyOnEnemyHit = true;
         }
     }
 }

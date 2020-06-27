@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FistulaDeath : DeathEvent
+public class FistulaDeath : EnemyEffect
 {
     public GameObject prefab;
 

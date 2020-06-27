@@ -6,6 +6,6 @@ public class MSpeedUp : Item
 {
     public override void OnPickup()
     {
-        GameController.AddMoveSpeed(0.5f);
+        GameController.AddMoveSpeed(0.3f);
     }
 }

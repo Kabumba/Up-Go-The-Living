@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 589633899248880794}
   - component: {fileID: 3765411937894953604}
   - component: {fileID: 8445862285392907646}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Maggot
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -124,6 +124,7 @@ MonoBehaviour:
   health: 15
   range: 4
   attackRange: 0
+  isDead: 0
   dealContactDamage: 1
   rb: {fileID: 0}
   isFlying: 0

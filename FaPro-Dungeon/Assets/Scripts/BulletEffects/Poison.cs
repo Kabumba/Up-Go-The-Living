@@ -4,29 +4,26 @@ using UnityEngine;
 
 public class Poison : BulletEffect
 {
-    private int rand;
+    private bool poisonous;
 
-    private void Start()
-    {
-        defaultEnemyHit = false;
-    }
     public override void OnEnemyHit(Collider2D collision)
     {
-        collision.GetComponent<EnemyController>().DamageEnemy(GameController.GetEffectiveDamage());
-        if (rand >= 90)
+        if (poisonous)
         {
-            collision.GetComponent<EnemyController>().PoisonDamage();
+            collision.GetComponent<EnemyController>().ApplyStatusEffect<Poisoned>();
         }
-        Destroy(gameObject);
     }
 
     public override void OnInstantiate()
     {
-        rand = Random.Range(0, 100);
-        if (rand >= 90 || successfulPoison)
+        float rand = Random.Range(0, 100);
+        if (rand >= 90)
         {
-            successfulPoison = true;
-            gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+            poisonous = true;
+            //gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+            Color temp = gameObject.GetComponent<SpriteRenderer>().color;
+            temp.g = Mathf.Max(255, temp.g + 100f);
+            gameObject.GetComponent<SpriteRenderer>().color = temp;
         }
     }
 }

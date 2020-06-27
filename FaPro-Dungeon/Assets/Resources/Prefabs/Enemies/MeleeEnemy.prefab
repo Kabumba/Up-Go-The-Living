@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3477940481755264154}
   - component: {fileID: 6538331775876773904}
   - component: {fileID: 3612294403507276262}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: MeleeEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -146,9 +146,6 @@ MonoBehaviour:
   isFlying: 0
   mvc: {fileID: 0}
   shc: {fileID: 0}
-  poisonTicks: 0
-  poisonDamage: 1
-  isPoisoned: 0
 --- !u!114 &3477940481755264154
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,7 +8,11 @@ public abstract class BulletEffect : MonoBehaviour
     //Soll das Projektil nach den Bulleteffects das normale Verhalten aufweisen, z.B. Schaden verursachen und zerstört werden?
     public bool defaultPlayerHit = true;
 
-    public bool defaultEnemyHit = true;
+    public bool defaultDamageEnemy= true;
+
+    public bool defaultKnockbackEnemy = true;
+
+    public bool defaultDestroyOnEnemyHit = true;
 
     public bool defaultProjectileHit = true;
 
@@ -129,15 +133,25 @@ public class BulletController : MonoBehaviour
             case ("Enemy"):
                 if (!isEnemyBullet)
                 {
+                    bool knock = true;
+                    bool dealDamage = true;
                     foreach (BulletEffect be in GetComponents<BulletEffect>())
                     {
                         be.OnEnemyHit(collision);
-                        defaultBehavior = defaultBehavior && be.defaultEnemyHit;
+                        knock = knock && be.defaultKnockbackEnemy;
+                        dealDamage = dealDamage && be.defaultDamageEnemy;
+                        defaultBehavior = defaultBehavior && be.defaultDestroyOnEnemyHit;
+                    }
+                    if (dealDamage)
+                    {
+                        collision.GetComponent<EnemyController>().DamageEnemy(damage);
+                    }
+                    if (knock)
+                    {
+                        collision.GetComponent<Rigidbody2D>().AddForce(gameObject.GetComponent<Rigidbody2D>().velocity * knockback, ForceMode2D.Impulse);
                     }
                     if (defaultBehavior)
                     {
-                        collision.GetComponent<EnemyController>().DamageEnemy(damage);
-                        collision.GetComponent<Rigidbody2D>().AddForce(gameObject.GetComponent<Rigidbody2D>().velocity * knockback, ForceMode2D.Impulse);
                         Destroy(gameObject);
                     }
                 }

@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public abstract class DeathEvent : MonoBehaviour
+public abstract class EnemyEffect : MonoBehaviour
 {
-    public abstract void OnDeath();
+    public virtual void OnDeath() { }
+
+    public virtual void OnApply() { }
 }
 
 public abstract class State
@@ -17,6 +19,7 @@ public abstract class State
     public abstract void OnUpdate();
 
     public virtual void OnStateEnter() { }
+
     public virtual void OnStateExit() { }
 
     public State(EnemyController character)
@@ -98,12 +101,21 @@ public class EnemyController : MonoBehaviour
 
     public ShooterController shc;
 
-    public int poisonTicks = 0;
+    
+    public SpriteRenderer GetSpriteRenderer()
+    {
+        if(GetComponents<SpriteRenderer>().Length == 0)
+        {
+            return GetComponentInChildren<SpriteRenderer>();
+        }
+        return GetComponent<SpriteRenderer>();
+    }
 
-    public float poisonDamage = 1f;
-
-    public bool isPoisoned;
-
+    public void ApplyStatusEffect<effect>() where effect : EnemyEffect
+    {
+        EnemyEffect se = gameObject.AddComponent<effect>();
+        se.OnApply();
+    }
     
     // Start is called before the first frame update
     void Start()
@@ -131,7 +143,7 @@ public class EnemyController : MonoBehaviour
         {
             isDead = true;
             count--;
-            foreach (DeathEvent de in gameObject.GetComponents<DeathEvent>())
+            foreach (EnemyEffect de in gameObject.GetComponents<EnemyEffect>())
             {
                 de.OnDeath();
             }
@@ -162,27 +174,5 @@ public class EnemyController : MonoBehaviour
         {
             ContactDamage();
         }
-    }
-
-    public void PoisonDamage()
-    {
-        if (!isPoisoned)
-        {
-            poisonTicks = 3;
-            StartCoroutine("PoisonTicks");
-        }
-    }
-
-    IEnumerator PoisonTicks()
-    {
-        isPoisoned = true;
-        yield return new WaitForSeconds(1f);
-        while (poisonTicks > 0) {
-            health = Mathf.Max(0, health - poisonDamage);
-            poisonTicks -= 1;
-            Debug.Log("Tick");
-            yield return new WaitForSeconds(1f);
-        }
-        isPoisoned = false;
     }
 }

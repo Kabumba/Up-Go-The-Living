@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2154381200821688415}
   - component: {fileID: 2154381200821688413}
   - component: {fileID: -7095730258533686616}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Dip
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -53,6 +53,7 @@ MonoBehaviour:
   health: 3
   range: 10
   attackRange: 6
+  isDead: 0
   dealContactDamage: 1
   rb: {fileID: 2154381200821688413}
   isFlying: 0

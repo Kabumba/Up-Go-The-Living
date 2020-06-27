@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class SpawnHeart : DeathEvent
+public class DropHeart : EnemyEffect
 {
     public Item heartPrefab;
     private Transform dropPos;

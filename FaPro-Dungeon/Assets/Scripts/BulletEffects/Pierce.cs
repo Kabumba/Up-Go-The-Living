@@ -7,12 +7,8 @@ public class Pierce : BulletEffect
     // Start is called before the first frame update
     void Start()
     {
-        defaultEnemyHit = false;
-    }
-
-    public override void OnEnemyHit(Collider2D collision)
-    {
-        collision.GetComponent<EnemyController>().DamageEnemy(GetComponent<BulletController>().damage);
+        defaultKnockbackEnemy = false;
+        defaultDestroyOnEnemyHit = false;
     }
 
     public override void OnInstantiate()

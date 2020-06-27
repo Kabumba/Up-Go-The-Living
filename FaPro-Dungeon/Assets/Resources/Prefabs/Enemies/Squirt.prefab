@@ -16,7 +16,8 @@ GameObject:
   - component: {fileID: 8893839153068640795}
   - component: {fileID: 8893839153068640793}
   - component: {fileID: -8404406861979108705}
-  m_Layer: 0
+  - component: {fileID: 724516229087339969}
+  m_Layer: 13
   m_Name: Squirt
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -53,6 +54,7 @@ MonoBehaviour:
   health: 15
   range: 10
   attackRange: 6
+  isDead: 0
   dealContactDamage: 1
   rb: {fileID: 8893839153068640793}
   isFlying: 0
@@ -70,6 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff0f4fcdabf56dd45ab82c0bb416cccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentStateName: 
   dashSpeed: 10
   dashTime: 4
   idleTime: 3
@@ -197,3 +200,17 @@ MonoBehaviour:
   enemyPrefab: {fileID: 2154381200821688414, guid: 97ca3e35e80318d459ce0b95a1fb77aa,
     type: 3}
   number: 2
+--- !u!114 &724516229087339969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893839153068640799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7fec332dc6670343a08d0a0eb05ed86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heartPrefab: {fileID: 8144117919567158134, guid: 605d6fffb54cbb44e9de80b02556d415,
+    type: 3}

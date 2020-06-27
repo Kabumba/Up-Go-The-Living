@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 
-public class SpawnStairs : DeathEvent
+public class SpawnStairs : EnemyEffect
 {
     public GameObject stairsPrefab;
     public override void OnDeath()
