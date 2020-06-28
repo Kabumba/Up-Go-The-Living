@@ -28,14 +28,7 @@ public class Poisoned : EnemyEffect
             StartCoroutine("PoisonTicks");
         }
     }
-
-    public override void OnDeath()
-    {
-        Color temp = GetComponent<EnemyController>().GetSpriteRenderer().color;
-        temp.g = Mathf.Max(0, temp.g - greenincrease);
-        GetComponent<EnemyController>().GetSpriteRenderer().color = temp;
-    }
-
+    
     IEnumerator PoisonTicks()
     {
         while (poisonTicks > 0)
@@ -45,19 +38,9 @@ public class Poisoned : EnemyEffect
             poisonTicks -= 1;
             Debug.Log("Tick");
         }
-        OnDeath();
+        Color temp = GetComponent<EnemyController>().GetSpriteRenderer().color;
+        temp.g = Mathf.Max(0, temp.g - greenincrease);
+        GetComponent<EnemyController>().GetSpriteRenderer().color = temp;
         Destroy(this);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

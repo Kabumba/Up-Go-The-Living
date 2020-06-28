@@ -16,7 +16,8 @@ public class Flee : State
 
     public override void OnUpdate()
     {
-        character.rb.rotation = Vector2.SignedAngle(new Vector2(-1, 0), target.transform.position - character.transform.position);
+        mvc.RotateTowards(character.player);
+        mvc.SetRotation(-mvc.GetRotation());
         mvc.MoveForward();
     }
 }
