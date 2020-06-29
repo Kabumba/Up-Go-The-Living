@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Poison : BulletEffect
 {
-    private bool poisonous;
+    public bool poisonous;
+
+    public float chance = 1;
 
     public override void OnEnemyHit(Collider2D collision)
     {
@@ -16,8 +18,8 @@ public class Poison : BulletEffect
 
     public override void OnInstantiate()
     {
-        float rand = Random.Range(0, 100);
-        if (rand >= 50)
+        float rand = Random.value;
+        if (rand < chance)
         {
             poisonous = true;
             //gameObject.GetComponent<SpriteRenderer>().color = Color.green;

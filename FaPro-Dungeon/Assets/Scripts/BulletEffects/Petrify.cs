@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Petrify : BulletEffect
 {
-    private bool petrifying;
+    public bool petrifying;
+
+    public float chance = 0.15f;
 
     public override void OnEnemyHit(Collider2D collision)
     {
@@ -16,8 +18,8 @@ public class Petrify : BulletEffect
 
     public override void OnInstantiate()
     {
-        float rand = Random.Range(0, 100);
-        if (rand >= 85)
+        float rand = Random.value;
+        if (rand < chance)
         {
             petrifying = true;
             Color temp = gameObject.GetComponent<SpriteRenderer>().color;

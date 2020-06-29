@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 546023582744292118}
   - component: {fileID: 501610853334558305}
   m_Layer: 0
-  m_Name: PoisonDarts
+  m_Name: Blasrohr
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,9 +59,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9517bc052c50bd94b863632822f81c2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: PoisonDarts
-  description: Poison enemies.
-  itemImage: {fileID: 21300000, guid: 27ae192e3f3ea7b4fbe85029d80f9d5b, type: 3}
+  name: Blasrohr
+  description: Vergiftet Gegner
+  itemImage: {fileID: 21300000, guid: 417a2920938a845488bce7730780f620, type: 3}
 --- !u!212 &546023582744292118
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -101,7 +101,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 27ae192e3f3ea7b4fbe85029d80f9d5b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 417a2920938a845488bce7730780f620, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -46,9 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac78eb852807ec34bb9325a5dde9ba91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: BulletBarrage
-  description: Every bullet shooter shoots 3 bullets in a row.
-  itemImage: {fileID: 21300000, guid: 27ae192e3f3ea7b4fbe85029d80f9d5b, type: 3}
+  name: Halbautomatik
+  description: Dreifach Salven
+  itemImage: {fileID: 21300000, guid: 6e31f74d18f874f4b8d6cd4cbd31c4c3, type: 3}
 --- !u!114 &6209987654736575046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,8 +117,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 27ae192e3f3ea7b4fbe85029d80f9d5b, type: 3}
-  m_Color: {r: 0.2924528, g: 0.15588287, b: 0.15588287, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 6e31f74d18f874f4b8d6cd4cbd31c4c3, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

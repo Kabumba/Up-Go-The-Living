@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public abstract class EnemyEffect : MonoBehaviour
-{
-    public virtual void OnDeath() { }
-
-    public virtual void OnApply() { }
-}
 
 public abstract class State
 {

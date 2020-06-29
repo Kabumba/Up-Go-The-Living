@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Poisoned : EnemyEffect
 {
-    public int poisonTicks = 0;
+    public int poisonTicks;
 
-    public float poisonDamage = 1f;
+    public float poisonDamage = 2f;
 
     float greenincrease;
 
     public override void OnApply()
     {
-        poisonTicks = 3;
+        poisonTicks = Random.Range(2,3);
         if (gameObject.GetComponents<Poisoned>().Length > 1)
         {
-            gameObject.GetComponents<Poisoned>()[0].poisonTicks = poisonTicks;
+            gameObject.GetComponents<Poisoned>()[0].poisonTicks = Mathf.Max(poisonTicks, gameObject.GetComponents<Poisoned>()[0].poisonTicks);
             Destroy(this);
         }
         else

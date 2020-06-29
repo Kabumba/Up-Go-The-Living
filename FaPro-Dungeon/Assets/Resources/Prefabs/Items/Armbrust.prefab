@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4062774527270017731}
   - component: {fileID: 4895885254139395556}
   m_Layer: 0
-  m_Name: PiercingShots
+  m_Name: Armbrust
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,10 +59,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b015dd129b8f1c4bb2da560fe6d9380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Piercing Shots
-  description: Shots pierce through enemies.
-  itemImage: {fileID: 21300000, guid: 27ae192e3f3ea7b4fbe85029d80f9d5b, type: 3}
-  pierceSprite: {fileID: 21300000, guid: 81b30e742f5584d44a253728e17218f5, type: 3}
+  name: Armbrust
+  description: "Durchschlagende Sch\xFCsse"
+  itemImage: {fileID: 21300000, guid: b34b9b7e6122518479708d56e33df1a6, type: 3}
 --- !u!212 &4062774527270017731
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -102,7 +101,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 27ae192e3f3ea7b4fbe85029d80f9d5b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b34b9b7e6122518479708d56e33df1a6, type: 3}
   m_Color: {r: 0.3962264, g: 0.3962264, b: 0.3962264, a: 1}
   m_FlipX: 0
   m_FlipY: 0

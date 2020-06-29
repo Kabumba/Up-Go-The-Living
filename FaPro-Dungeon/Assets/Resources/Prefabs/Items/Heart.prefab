@@ -59,8 +59,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af938675edddaa42be36256c0fa60f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Heart
-  description: Heals the player for one heart.
+  name: Herz
+  description: Heilung
   itemImage: {fileID: 21300000, guid: 96a1e47434ba1ac4a9c3b3da4a50abce, type: 3}
 --- !u!212 &8144117919567158135
 SpriteRenderer:
