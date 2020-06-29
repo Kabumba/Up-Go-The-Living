@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 336853668244725808}
   - component: {fileID: 2552812693066111604}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: MiddleShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7947739524140059696}
   - component: {fileID: 4960697986582803893}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: LeftShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   m_Component:
   - component: {fileID: 912875273836863788}
   - component: {fileID: 5028144563204785020}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: RightShot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 900801028404776036}
   - component: {fileID: 6372857301328280495}
   - component: {fileID: 3152154228329276373}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Digle
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -1002,11 +1002,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPos:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4454923107633305904}
+  - {fileID: 8805446740883869325}
+  - {fileID: 6434233359070979617}
   closedDoorTilemap: {fileID: 0}
   dropPos: {fileID: 6491285770612903150}
+  stairsPos: {fileID: 0}
 --- !u!61 &1378025351326780874
 BoxCollider2D:
   m_ObjectHideFlags: 0

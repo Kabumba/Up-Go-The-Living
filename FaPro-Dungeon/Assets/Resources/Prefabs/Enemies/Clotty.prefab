@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7078688687741171062}
   - component: {fileID: -2530628875709453035}
   - component: {fileID: -96999084559861771}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Clotty
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4288074374505796631}
   - component: {fileID: 6144497812693751492}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: LookAhead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1515540063443523896}
   - component: {fileID: 8374042738495767468}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: MainAttack (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,7 +285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3306440902205189120}
   - component: {fileID: 6737198666891944532}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: MainAttack (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8240468630015919389}
   - component: {fileID: 4965915806835268155}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: MainAttack (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +391,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1560119741128114496}
   - component: {fileID: 939942267501244411}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: MainAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 3326531783704577607}
   - component: {fileID: 9027933994477230052}
   - component: {fileID: 32297953022972717}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Fixed
   m_TagString: Untagged
   m_Icon: {fileID: 0}

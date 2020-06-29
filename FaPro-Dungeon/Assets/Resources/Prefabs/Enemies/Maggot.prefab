@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 589633899248880794}
   - component: {fileID: 3765411937894953604}
   - component: {fileID: 8445862285392907646}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Maggot
   m_TagString: Enemy
   m_Icon: {fileID: 0}

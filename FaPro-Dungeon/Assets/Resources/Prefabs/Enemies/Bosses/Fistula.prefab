@@ -59,9 +59,6 @@ MonoBehaviour:
   isFlying: 0
   mvc: {fileID: 241691932920073026}
   shc: {fileID: 0}
-  poisonTicks: 0
-  poisonDamage: 1
-  isPoisoned: 0
 --- !u!114 &241691932920073026
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,7 +19,7 @@ public class Bouncy : BulletEffect
     private void Awake()
     {
         defaultObstacleHit = false;
-
+        defaultDestroyOnEnemyHit = false;
     }
 
     public override void OnInstantiate()
@@ -33,7 +33,7 @@ public class Bouncy : BulletEffect
         Destroy(collHelp.GetComponent<BulletController>());
         Destroy(collHelp.GetComponent<SpriteRenderer>());
         collHelp.transform.localScale = new Vector2(1, 1);
-        collHelp.layer = 14; //BulletHelper
+        collHelp.layer = 13; //BulletHelper
         collHelp.GetComponent<Collider2D>().isTrigger = false;
     }
 }

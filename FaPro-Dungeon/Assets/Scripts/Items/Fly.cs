@@ -6,6 +6,6 @@ public class Fly : Item
 {
     public override void OnPickup()
     {
-        GameObject.FindGameObjectWithTag("Player").layer = 12;
+        GameObject.FindGameObjectWithTag("Player").layer = 14; //PlayerFlying
     }
 }

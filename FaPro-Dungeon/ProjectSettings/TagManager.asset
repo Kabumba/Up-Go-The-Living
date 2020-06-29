@@ -20,11 +20,11 @@ TagManager:
   - 
   - Holes
   - Bullets
-  - 
+  - Player
   - Obstacles
   - Flying
-  - NonFlying
   - BulletHelper
+  - PlayerFlying
   - 
   - 
   - 

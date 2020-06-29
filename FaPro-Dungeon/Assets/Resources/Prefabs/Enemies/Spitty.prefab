@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1536503205437103595}
   - component: {fileID: 7054341854425828324}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 6466372231899634522}
   - component: {fileID: 1786238543716885664}
   - component: {fileID: 4242247839246825255}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Spitty
   m_TagString: Enemy
   m_Icon: {fileID: 0}

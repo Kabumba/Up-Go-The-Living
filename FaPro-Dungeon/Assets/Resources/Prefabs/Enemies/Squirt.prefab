@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8893839153068640793}
   - component: {fileID: -8404406861979108705}
   - component: {fileID: 724516229087339969}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Squirt
   m_TagString: Enemy
   m_Icon: {fileID: 0}
