@@ -245,6 +245,11 @@ public class GameController : MonoBehaviour
         return moveSpeed * baseMoveSpeedFactor;
     }
 
+    public static float GetMoveSpeedStat()
+    {
+        return moveSpeed;
+    }
+
     public static void AddMoveSpeed(float moveSpeedChange)
     {
         moveSpeed = Mathf.Max(0.1f, Mathf.Min(moveSpeedChange + moveSpeed, maxMoveSpeed));
@@ -256,6 +261,11 @@ public class GameController : MonoBehaviour
     public static float GetDelayBetweenShots()
     {
         return (GetFireDelay() + 1) / 30;
+    }
+
+    public static float GetShotsPerSecond()
+    {
+        return 1/GetDelayBetweenShots();
     }
 
     public static void ChangeFireRate(Statdecorator change)
@@ -324,6 +334,11 @@ public class GameController : MonoBehaviour
         return range / baseRangeDivider;
     }
 
+    public static float GetRangeStat()
+    {
+        return range;
+    }
+
     public static void AddRange(float rangeChange)
     {
         range += rangeChange;
@@ -335,6 +350,11 @@ public class GameController : MonoBehaviour
     public static float GetBulletSpeed()
     {
         return bulletSpeed * baseBulletSpeed;
+    }
+
+    public static float GetBulletSpeedStat()
+    {
+        return bulletSpeed;
     }
 
     public static void AddBulletSpeed(float bulletSpeedChange)
