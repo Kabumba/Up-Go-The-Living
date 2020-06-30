@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1192791007904894646}
   - component: {fileID: 1327421390242133808}
   - component: {fileID: 2905011914265466124}
-  - component: {fileID: 5893448378704250849}
   - component: {fileID: 4922467639419468593}
   m_Layer: 0
   m_Name: Flummi
@@ -114,26 +113,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &5893448378704250849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453126500331454905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 733dd55870872e1428831957e0023b23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultPlayerHit: 1
-  defaultDamageEnemy: 1
-  defaultKnockbackEnemy: 1
-  defaultDestroyOnEnemyHit: 1
-  defaultProjectileHit: 1
-  defaultObstacleHit: 1
-  isSplatter: 0
-  successfulPoison: 0
 --- !u!114 &4922467639419468593
 MonoBehaviour:
   m_ObjectHideFlags: 0
