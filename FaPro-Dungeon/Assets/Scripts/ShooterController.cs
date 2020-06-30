@@ -73,7 +73,7 @@ public class ShooterController : MonoBehaviour
     {
         foreach (BulletShooter bs in bulletShooters)
         {
-            bs.bulletEffects = bulletShooters[0].bulletEffects;
+            bs.bulletEffects = new List<BulletEffect>(bulletShooters[0].bulletEffects);
         }
     }
 

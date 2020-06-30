@@ -21,8 +21,12 @@ public class Splatter : BulletEffect
 
     public override void OnInstantiate()
     {
-        UnityEditorInternal.ComponentUtility.CopyComponent(GameObject.Find("Player").GetComponent<ShooterController>());
-        UnityEditorInternal.ComponentUtility.PasteComponentAsNew(gameObject);
+        ShooterController referenceSc = GameObject.Find("Player").GetComponent<ShooterController>();
+        ShooterController newSc = gameObject.AddComponent<ShooterController>();
+        newSc.bulletSpeed = referenceSc.bulletSpeed;
+        newSc.fireDelay = referenceSc.fireDelay;
+        newSc.velocityAddedToBullet = referenceSc.velocityAddedToBullet;
+        newSc.bulletShooters = new List<BulletShooter>();
         BulletShooter bs1 = Instantiate(GameObject.Find("Player").GetComponent<ShooterController>().bulletShooters[0], new Vector3(gameObject.transform.position.x - 0.35f, gameObject.transform.position.y + 0.35f, 0f), Quaternion.Euler(0, 0, 45));
         BulletShooter bs2 = Instantiate(GameObject.Find("Player").GetComponent<ShooterController>().bulletShooters[0], new Vector3(gameObject.transform.position.x + 0.35f, gameObject.transform.position.y + 0.35f, 0f), Quaternion.Euler(0, 0, -45));
         BulletShooter bs3 = Instantiate(GameObject.Find("Player").GetComponent<ShooterController>().bulletShooters[0], new Vector3(gameObject.transform.position.x + 0.35f, gameObject.transform.position.y - 0.35f, 0f), Quaternion.Euler(0, 0, -135));

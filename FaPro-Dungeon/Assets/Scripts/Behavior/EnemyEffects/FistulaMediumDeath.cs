@@ -18,6 +18,5 @@ public class FistulaMediumDeath : EnemyEffect
         x.transform.Rotate(new Vector3(0, 0, 90));
         y.transform.Rotate(new Vector3(0, 0, -90));
 
-
     }
 }

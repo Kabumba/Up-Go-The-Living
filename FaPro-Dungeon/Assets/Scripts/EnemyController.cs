@@ -75,7 +75,7 @@ public class EnemyController : MonoBehaviour
 
     public float health = 10;
 
-    //private float maxHealth = 10;
+    public float maxHealth = 10;
 
     public float range;
 
@@ -95,6 +95,10 @@ public class EnemyController : MonoBehaviour
 
     public ShooterController shc;
 
+    public bool isBoss;
+
+    public HealthBar healthBar;
+
     
     public SpriteRenderer GetSpriteRenderer()
     {
@@ -110,6 +114,7 @@ public class EnemyController : MonoBehaviour
         EnemyEffect se = gameObject.AddComponent<effect>();
         se.OnApply();
     }
+
     
     // Start is called before the first frame update
     void Start()
@@ -119,6 +124,10 @@ public class EnemyController : MonoBehaviour
         mvc = gameObject.GetComponent<MovementController>();
         rb.freezeRotation = true;
         shc = gameObject.GetComponent<ShooterController>();
+        if (isBoss)
+        {
+            healthBar.SetMaxHealth(maxHealth);
+        }
     }
 
     public void Awake()
@@ -148,6 +157,10 @@ public class EnemyController : MonoBehaviour
     public void DamageEnemy(float damage)
     {
         health = Mathf.Max(0, health - damage);
+        if (isBoss)
+        {
+            healthBar.SetHealth(health);
+        }
         if (health <= 0)
         {
             Death();

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,8 +59,7 @@ public class BulletShooter : MonoBehaviour
             {
                 if (!be.isSplatter)
                 {
-                    UnityEditorInternal.ComponentUtility.CopyComponent(be);
-                    UnityEditorInternal.ComponentUtility.PasteComponentAsNew(bullet);
+                    bullet.AddComponent(be.GetType());
                 }
             }
         }
@@ -80,7 +80,7 @@ public class BulletShooter : MonoBehaviour
     {
         for (int i = 0; i < barrageCount; i++)
         {
-            float rand = Random.Range(0f, 1);
+            float rand = UnityEngine.Random.Range(0f, 1);
             if (rand < fireChance)
             {
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation) as GameObject;
