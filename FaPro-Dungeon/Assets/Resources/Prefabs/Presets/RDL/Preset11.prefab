@@ -847,9 +847,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPos:
-  - {fileID: 0}
+  - {fileID: 563020509470875287}
   - {fileID: 2608370549040920950}
-  - {fileID: 0}
+  - {fileID: 1200695159218651682}
+  - {fileID: 7053029388282881453}
+  - {fileID: 8363672699445517251}
+  - {fileID: 632461492493552714}
   closedDoorTilemap: {fileID: 0}
   dropPos: {fileID: 5174972678719069487}
   stairsPos: {fileID: 0}

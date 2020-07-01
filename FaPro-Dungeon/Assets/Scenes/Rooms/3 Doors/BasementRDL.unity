@@ -160,8 +160,8 @@ MonoBehaviour:
   topDoor: {fileID: 0}
   bottomDoor: {fileID: 0}
   presets:
-  - {fileID: 165365757889630453, guid: ae158e53119b69c4ba7f8b2405a56ded, type: 3}
   - {fileID: 5382437089833673613, guid: af311ebddff0b504ebd0b55feca3943d, type: 3}
+  - {fileID: 1273508394880478667, guid: ad297404aed1c2949942b82bfab3d613, type: 3}
   - {fileID: 948213765811809829, guid: 8dbfb6ee15c6c8749b518bcba7bca836, type: 3}
   - {fileID: 5047041878456997324, guid: 1f2c73edb3dc67342a1509dfdbefefc3, type: 3}
   - {fileID: 1333081018142477534, guid: 50b0a7eb22953e74a87c797d18fb2638, type: 3}

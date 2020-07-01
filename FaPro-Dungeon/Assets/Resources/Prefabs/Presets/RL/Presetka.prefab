@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &510027393636677927
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6307876994482629921}
+  - component: {fileID: 3327168930139163104}
+  m_Layer: 12
+  m_Name: enemyPos (8)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6307876994482629921
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510027393636677927}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalPosition: {x: 0.5, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1098112602830258599}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+--- !u!114 &3327168930139163104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 510027393636677927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e383cffcaa89364baf951e814bdfa91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 7499157798739559906, guid: 5481d1b2fedd9e643a824961e67a6935, type: 3}
 --- !u!1 &1098112602830258593
 GameObject:
   m_ObjectHideFlags: 0
@@ -35,6 +80,7 @@ Transform:
   - {fileID: 6347413307464496892}
   - {fileID: 3095983645665619897}
   - {fileID: 1726841316243596627}
+  - {fileID: 6307876994482629921}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -981,6 +1027,7 @@ MonoBehaviour:
   - {fileID: 6347413307464496892}
   - {fileID: 3095983645665619897}
   - {fileID: 1726841316243596627}
+  - {fileID: 6307876994482629921}
   closedDoorTilemap: {fileID: 0}
   dropPos: {fileID: 6431171608079053125}
   stairsPos: {fileID: 0}

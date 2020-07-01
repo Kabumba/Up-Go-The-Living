@@ -160,18 +160,18 @@ MonoBehaviour:
   topDoor: {fileID: 0}
   bottomDoor: {fileID: 0}
   presets:
-  - {fileID: 165365757889630453, guid: ae158e53119b69c4ba7f8b2405a56ded, type: 3}
   - {fileID: 1807369876761372847, guid: 18b7a782101def84faa08089cad24d6b, type: 3}
-  - {fileID: 2593659437881158427, guid: 3017751fb128a4d4b962cec65d7c377b, type: 3}
+  - {fileID: 1920454098725285902, guid: 1e8c5445fa0e6f34aa0e071ba086c176, type: 3}
+  - {fileID: 4091571243272630731, guid: de9cefaaddd64db4dbc0e48c1f814af7, type: 3}
+  - {fileID: 5022386837695802478, guid: af7cda2fd490ccf4f8d2d64a6044c2e7, type: 3}
+  - {fileID: 7143948531445121261, guid: 39bd63eba6a753b4cacec88f8356efaa, type: 3}
+  - {fileID: 3428019783310533026, guid: 4b61cfd40ca6a8c4f99da3e1f5df45f9, type: 3}
+  - {fileID: 4445957131819510099, guid: 7b59e9424c4768a459cd9e87b5eec8af, type: 3}
   - {fileID: 948213765811809829, guid: 8dbfb6ee15c6c8749b518bcba7bca836, type: 3}
   - {fileID: 5047041878456997324, guid: 1f2c73edb3dc67342a1509dfdbefefc3, type: 3}
   - {fileID: 1333081018142477534, guid: 50b0a7eb22953e74a87c797d18fb2638, type: 3}
   - {fileID: 6759874931412431832, guid: db0fac910579eef4293290889d49a48b, type: 3}
   - {fileID: 4231412047248334583, guid: 5093327c300679b47b09e4cc0ee68206, type: 3}
-  - {fileID: 1920454098725285902, guid: 1e8c5445fa0e6f34aa0e071ba086c176, type: 3}
-  - {fileID: 4091571243272630731, guid: de9cefaaddd64db4dbc0e48c1f814af7, type: 3}
-  - {fileID: 5022386837695802478, guid: af7cda2fd490ccf4f8d2d64a6044c2e7, type: 3}
-  - {fileID: 7143948531445121261, guid: 39bd63eba6a753b4cacec88f8356efaa, type: 3}
   - {fileID: 3714349021202346799, guid: 24f5c43a61b02b444a058494c976efe3, type: 3}
   - {fileID: 7938660110854748341, guid: 4f97bd176a31079439d48e9c23d2ab38, type: 3}
   closedDoorTilemap: {fileID: 1457182928}
