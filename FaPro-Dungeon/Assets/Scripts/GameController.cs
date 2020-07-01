@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour
     //------------Damage-------------------------------------
 
     //Default: 3.5
-    private static float baseDamage = 10f;
+    private static float baseDamage = 3.5f;
 
     //Default: 0
     private static float damageUp = 0;
