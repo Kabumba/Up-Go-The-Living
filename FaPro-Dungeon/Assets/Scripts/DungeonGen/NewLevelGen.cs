@@ -9,20 +9,30 @@ public class NewLevelGen : MonoBehaviour
 
     private GameObject player;
 
+    public GameObject victoryScreen;
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         player = GameObject.FindGameObjectWithTag("Player");
         if (other.gameObject.tag == "Player")
         {
-            CoroutineManager.Instance.StartCoroutine(DelayRoutine());
-            GameObject.FindGameObjectWithTag("Player").SetActive(false);
-            GameObject.FindGameObjectWithTag("BlackScreen").GetComponent<SpriteRenderer>().enabled = true;
-            player.transform.position = new Vector2(0, 0);
-            Destroy(GameObject.Find("RoomController"));
-            RoomController rc = Instantiate(rcPrefab, transform.position, transform.rotation);
-            rc.name = "RoomController";
-            DungeonGenerator dg = rc.GetComponent<DungeonGenerator>();
-            dg.NewFloor();
+            if (GameController.floorNumber < 5)
+            {
+                CoroutineManager.Instance.StartCoroutine(DelayRoutine());
+                GameObject.FindGameObjectWithTag("Player").SetActive(false);
+                GameObject.FindGameObjectWithTag("BlackScreen").GetComponent<SpriteRenderer>().enabled = true;
+                player.transform.position = new Vector2(0, 0);
+                Destroy(GameObject.Find("RoomController"));
+                RoomController rc = Instantiate(rcPrefab, transform.position, transform.rotation);
+                rc.name = "RoomController";
+                DungeonGenerator dg = rc.GetComponent<DungeonGenerator>();
+                dg.NewFloor();
+                GameController.floorNumber++;
+            }
+            else
+            {
+                GameController.victory = true;
+            }
         }
     }
 

@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour
     //------------Damage-------------------------------------
 
     //Default: 3.5
-    private static float baseDamage = 10f;
+    private static float baseDamage = 300f;
 
     //Default: 0
     private static float damageUp = 0;
@@ -109,7 +109,11 @@ public class GameController : MonoBehaviour
 
     public static List<Item> items;
 
-    public int floorNumber = 1;
+    public static int floorNumber = 1;
+
+    public static bool victory = false;
+
+    public static bool dead = false;
 
 
     //------------METHODS------------------------------------------------------
@@ -135,6 +139,34 @@ public class GameController : MonoBehaviour
         {
             invincible = false;
         }
+    }
+
+    public static void resetStats()
+    {
+        health = 6;
+        maxHealth = 6;
+        coins = 0;
+        baseDamage = 300f;
+        damageUp = 0;
+        damageMultiplier = 1f;
+        damageThroughRage = 0f;
+        moveSpeed = 1f;
+        baseMoveSpeedFactor = 4f;
+        maxMoveSpeed = 2f;
+        baseFireRate = 0;
+        range = 23.75f;
+        baseRangeDivider = 30f;
+        bulletSpeed = 1f;
+        baseBulletSpeed = 7f;
+        bulletSize = 0.5f;
+        invincibleAfterHit = 1f;
+        invincible = false;
+        floorNumber = 1;
+        victory = false;
+        fireRateDecor = new BaseFireRate();
+        fireDelayDecor = new BaseFireDelay();
+        items = new List<Item>();
+        dead = false;
     }
 
     private void UpdateItems()
@@ -234,7 +266,7 @@ public class GameController : MonoBehaviour
 
     public static void KillPlayer()
     {
-
+        dead = true;
     }
 
 

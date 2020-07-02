@@ -73,6 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rcPrefab: {fileID: 4186190587179837150, guid: 731b18cc421876f478c99afb2906a344,
     type: 3}
+  victoryScreen: {fileID: 0}
 --- !u!212 &5160461270519095708
 SpriteRenderer:
   m_ObjectHideFlags: 0
