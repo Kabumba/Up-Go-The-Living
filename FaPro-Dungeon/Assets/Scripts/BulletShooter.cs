@@ -53,14 +53,11 @@ public class BulletShooter : MonoBehaviour
     public void SplatterShoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation) as GameObject;
-        if (bulletEffects != null)
+        foreach (BulletEffect be in GetComponents<BulletEffect>())
         {
-            foreach (BulletEffect be in bulletEffects)
+            if (!be.isSplatter)
             {
-                if (!be.isSplatter)
-                {
-                    bullet.AddComponent(be.GetType());
-                }
+                bullet.AddComponent(be.GetType());
             }
         }
         bullet.GetComponent<Rigidbody2D>().velocity = new Vector3(

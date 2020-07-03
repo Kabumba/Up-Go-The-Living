@@ -23,7 +23,7 @@ public class Zyklop : Item
         newMain.fireShotDelay = 0;
 
         newMain.bulletEffects = shc.bulletShooters[0].bulletEffects;
-        newMain.bulletEffects.Add(new Polyphemus());
+        Polyphemus polyphemus = GameObject.Find("BulletEffects").AddComponent<Polyphemus>() as Polyphemus;
 
         newMain.gameObject.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, 0f);
         newMain.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
