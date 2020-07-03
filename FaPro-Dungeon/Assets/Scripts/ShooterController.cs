@@ -84,4 +84,16 @@ public class ShooterController : MonoBehaviour
             bs.resetLastFire();
         }
     }
+
+    public bool Contains(string name)
+    {
+        foreach(BulletShooter bs in bulletShooters)
+        {
+            if(bs.name.Equals(name))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

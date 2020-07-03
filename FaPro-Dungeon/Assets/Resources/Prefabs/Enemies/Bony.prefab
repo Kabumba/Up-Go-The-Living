@@ -134,6 +134,16 @@ PrefabInstance:
       propertyPath: health
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8259172534844782312, guid: b8ec08e5c8ef59749809b4b7a0b5456a,
+        type: 3}
+      propertyPath: maxHealth
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8259172534844782312, guid: b8ec08e5c8ef59749809b4b7a0b5456a,
+        type: 3}
+      propertyPath: stageHealth
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8259172534844782315, guid: b8ec08e5c8ef59749809b4b7a0b5456a,
         type: 3}
       propertyPath: m_Name

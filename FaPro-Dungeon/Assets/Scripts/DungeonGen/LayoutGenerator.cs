@@ -255,7 +255,7 @@ public class LayoutGenerator : MonoBehaviour
     {
         maxNumberOfBossRooms = Dgd.numberOfBossRooms;
         maxNumberOfLootRooms = Dgd.numberOfLootRooms;
-        maxNumberOfRooms = Mathf.RoundToInt(UnityEngine.Random.Range(Dgd.minNumberOfRooms - 0.5f, Dgd.maxNumberOfRooms + 0.5f));
+        maxNumberOfRooms = GameController.floorNumber*2 + Mathf.RoundToInt(UnityEngine.Random.Range(Dgd.minNumberOfRooms - 0.5f, Dgd.maxNumberOfRooms + 0.5f));
         maxNumberOfNonSpecialRooms = MaxNumberOfNonSpecialRooms();
         InitializeRooms();
         InitializeRules();
@@ -456,6 +456,8 @@ public class LayoutGenerator : MonoBehaviour
                         }
                     }
                 }
+                rules[(int)addTo][(int)dir].Add(new ForceBossRoom(dir));
+                rules[(int)addTo][(int)dir].Add(new ForceLootRoom(dir));
             }
         }
 

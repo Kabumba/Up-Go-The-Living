@@ -216,6 +216,128 @@ class AddBossRoom : AddSingleRoom
         addTo = aT;
         toAdd = RoomType.Boss;
         dir = d;
-        weight = 0.2f;
+        weight = 0.05f;
+    }
+}
+
+class ForceRoom : AddSingleRoom
+{
+    public override void Apply(RoomNode rn)
+    {
+        rn.Create(toAdd, dir);
+        if(RoomNode.MaxDoors(rn.Type) < rn.DoorCount())
+        {
+            rn.Type = PlusOne(rn.Type);
+        }
+        roomNode = rn;
+    }
+
+    public RoomType PlusOne(RoomType rt)
+    {
+        switch (rt)
+        {
+            case (RoomType.Enemy1):
+                return RoomType.Enemy2;
+            case (RoomType.Enemy2):
+                return RoomType.Enemy3;
+            case (RoomType.Enemy3):
+                return RoomType.Enemy4;
+            default:
+                throw new System.ArgumentException();
+        }
+    }
+
+    public override bool IsApplicable(RoomNode rn)
+    {
+        return CanForceSingleRoom(rn);
+    }
+
+    public bool CanForceSingleRoom(RoomNode rn)
+    {
+        return isExtendable(rn) && Lg.roomList.Count < Lg.maxNumberOfRooms && rn.Type == addTo && rn.Get(dir) == null && !Lg.rooms.ContainsKey(rn.Position + directionMovementMap[dir]) && toAdd != RoomType.Start;
+    }
+
+    public bool isExtendable(RoomNode rn)
+    {
+        switch (rn.Type)
+        {
+            case (RoomType.Enemy1):
+                return true;
+            case (RoomType.Enemy2):
+                return true;
+            case (RoomType.Enemy3):
+                return true;
+            case (RoomType.Enemy4):
+                return rn.DoorCount() < 4;
+            default:
+                return false;
+        }
+    }
+    
+
+    public override string ToString()
+    {
+        return "ForceSingleRoom: addTo: " + addTo + " at " + roomNode.Position + ", toAdd: " + toAdd + ", dir: " + dir;
+    }
+
+}
+
+class ForceBossRoom : ForceRoom
+{
+    public override void Apply(RoomNode rn)
+    {
+        rn.Create(RoomType.Boss, dir);
+        if (RoomNode.MaxDoors(rn.Type) < rn.DoorCount())
+        {
+            rn.Type = PlusOne(rn.Type);
+        }
+        roomNode = rn;
+    }
+
+    public override bool IsApplicable(RoomNode rn)
+    {
+        return CanForceSingleRoom(rn) && Lg.numberOfBossRooms < Lg.maxNumberOfBossRooms;
+    }
+
+    public override string ToString()
+    {
+        return "ForceSingleRoom: addTo: " + addTo + " at " + roomNode.Position + ", toAdd: Boss, dir: " + dir;
+    }
+
+    public ForceBossRoom(Direction d)
+    {
+        toAdd = RoomType.Loot;
+        dir = d;
+        weight = 0.0001f;
+    }
+}
+
+class ForceLootRoom : ForceRoom
+{
+    public override void Apply(RoomNode rn)
+    {
+        rn.Create(RoomType.Loot, dir);
+        if (RoomNode.MaxDoors(rn.Type) < rn.DoorCount())
+        {
+            rn.Type = PlusOne(rn.Type);
+        }
+        roomNode = rn;
+    }
+
+    public override bool IsApplicable(RoomNode rn)
+    {
+        return CanForceSingleRoom(rn) && Lg.numberOfLootRooms < Lg.maxNumberOfLootRooms;
+    }
+
+    public override string ToString()
+    {
+        return "ForceSingleRoom: addTo: " + addTo + " at " + roomNode.Position + ", toAdd: Loot, dir: " + dir;
+    }
+
+    public ForceLootRoom(Direction d)
+    {
+        toAdd = RoomType.Loot;
+        dir = d;
+        weight = 0.0001f;
     }
 }

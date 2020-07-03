@@ -146,7 +146,7 @@ public class GameController : MonoBehaviour
         health = 6;
         maxHealth = 6;
         coins = 0;
-        baseDamage = 300f;
+        baseDamage = 3.5f;
         damageUp = 0;
         damageMultiplier = 1f;
         damageThroughRage = 0f;

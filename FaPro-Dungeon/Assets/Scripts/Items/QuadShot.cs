@@ -19,6 +19,20 @@ public class QuadShot : Item
         fourthBS.transform.parent = player.transform;
         fourthBS.name = "Main Middle Right";
         shc.bulletShooters.Add(fourthBS);
+        if(!shc.Contains("Main Left"))
+        {
+            BulletShooter main = Instantiate(shc.bulletShooters[0], transform.position, transform.rotation);
+            main.transform.parent = player.transform;
+            main.name = "Main Left";
+            shc.bulletShooters.Add(main);
+        }
+        if (!shc.Contains("Main Right"))
+        {
+            BulletShooter main = Instantiate(shc.bulletShooters[0], transform.position, transform.rotation);
+            main.transform.parent = player.transform;
+            main.name = "Main Right";
+            shc.bulletShooters.Add(main);
+        }
         if (!GameController.Contains("TripleShot"))
         {
             GameController.ChangeFireDelay(new FireDelayUp());
@@ -31,6 +45,7 @@ public class QuadShot : Item
                 {
                     shc.bulletShooters.Remove(bs);
                     Destroy(bs.gameObject);
+                    break;
                 }
             }
             GameController.ChangeFireDelay(new FireDelayDown());
@@ -44,18 +59,22 @@ public class QuadShot : Item
                 case ("Main Left"):
                     bs.gameObject.transform.position = new Vector3(player.transform.position.x + -0.4f, player.transform.position.y + 0.3f, 0f);
                     bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, 6);
+                    bs.fireShotDelay = 0;
                     break;
                 case ("Main Right"):
                     bs.gameObject.transform.position = new Vector3(player.transform.position.x + 0.4f, player.transform.position.y + 0.3f, 0f);
                     bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, -6);
+                    bs.fireShotDelay = 0;
                     break;
                 case ("Main Middle Left"):
                     bs.gameObject.transform.position = new Vector3(player.transform.position.x - 0.133f, player.transform.position.y + 0.482f, 0f);
                     bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, 2.5f);
+                    bs.fireShotDelay = 0;
                     break;
                 case ("Main Middle Right"):
                     bs.gameObject.transform.position = new Vector3(player.transform.position.x + 0.133f, player.transform.position.y + 0.482f, 0f);
                     bs.gameObject.transform.rotation = Quaternion.Euler(0, 0, -2.5f);
+                    bs.fireShotDelay = 0;
                     break;
                 default:
                     break;

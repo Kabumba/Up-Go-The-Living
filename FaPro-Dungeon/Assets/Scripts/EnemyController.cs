@@ -73,9 +73,11 @@ public class EnemyController : MonoBehaviour
 
     public GameObject player;
 
-    public float health = 10;
+    public float health;
 
-    public float maxHealth = 10;
+    public float maxHealth;
+
+    public float stageHealth;
 
     public float range;
 
@@ -124,6 +126,10 @@ public class EnemyController : MonoBehaviour
         mvc = gameObject.GetComponent<MovementController>();
         rb.freezeRotation = true;
         shc = gameObject.GetComponent<ShooterController>();
+
+        health += GameController.floorNumber * stageHealth;
+        maxHealth = health;
+
         if (isBoss)
         {
             healthBar.SetMaxHealth(maxHealth);

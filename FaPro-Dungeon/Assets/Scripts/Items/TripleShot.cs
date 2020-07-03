@@ -16,6 +16,20 @@ public class TripleShot : Item
             thirdBS.transform.parent = player.transform;
             thirdBS.name = "Main Middle";
             shc.bulletShooters.Add(thirdBS);
+            if (!shc.Contains("Main Left"))
+            {
+                BulletShooter main = Instantiate(shc.bulletShooters[0], transform.position, transform.rotation);
+                main.transform.parent = player.transform;
+                main.name = "Main Left";
+                shc.bulletShooters.Add(main);
+            }
+            if (!shc.Contains("Main Right"))
+            {
+                BulletShooter main = Instantiate(shc.bulletShooters[0], transform.position, transform.rotation);
+                main.transform.parent = player.transform;
+                main.name = "Main Right";
+                shc.bulletShooters.Add(main);
+            }
             foreach (BulletShooter bs in shc.bulletShooters)
             {
                 bs.resetLastFire();
@@ -38,7 +52,6 @@ public class TripleShot : Item
                         bs.fireShotDelay = 0;
                         break;
                     default:
-                        bs.fireShotDelay = 1;
                         break;
                 }
             }

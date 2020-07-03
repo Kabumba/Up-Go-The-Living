@@ -13,6 +13,7 @@ public class EnemySpawn : MonoBehaviour
     public Tilemap closedDoorTilemap;
     public Transform dropPos;
     public Transform stairsPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -75,6 +76,7 @@ public class EnemySpawn : MonoBehaviour
             int e = UnityEngine.Random.Range(0, enemies.Count);
             EnemyController enemy = Instantiate(enemies[e], ep.position, ep.rotation);
             enemy.transform.parent = room.transform;
+            enemy.ApplyStatusEffect<StartOfRoom>();
             enemyPos.Remove(ep);
         }
     }

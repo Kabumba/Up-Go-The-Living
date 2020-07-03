@@ -316,8 +316,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  health: 100
-  maxHealth: 100
+  health: 150
+  maxHealth: 0
+  stageHealth: 50
   range: 10
   attackRange: 6
   isDead: 0
@@ -326,9 +327,6 @@ MonoBehaviour:
   isFlying: 0
   mvc: {fileID: 6218385035514542470}
   shc: {fileID: 0}
-  poisonTicks: 0
-  poisonDamage: 1
-  isPoisoned: 0
   isBoss: 1
   healthBar: {fileID: 2971991192872547770}
 --- !u!114 &6218385035514542470

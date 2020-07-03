@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d66fd46b0615d646be045bd682382ef, type: 3}
   m_Name: DungeonGenerationData
   m_EditorClassIdentifier: 
-  minNumberOfRooms: 10
-  maxNumberOfRooms: 15
+  minNumberOfRooms: 8
+  maxNumberOfRooms: 12
   numberOfBossRooms: 1
   numberOfLootRooms: 1

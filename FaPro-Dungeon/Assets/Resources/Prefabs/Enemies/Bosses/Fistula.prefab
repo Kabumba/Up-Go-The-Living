@@ -51,8 +51,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  health: 60
-  maxHealth: 60
+  health: 40
+  maxHealth: 0
+  stageHealth: 20
   range: 10
   attackRange: 6
   isDead: 0
