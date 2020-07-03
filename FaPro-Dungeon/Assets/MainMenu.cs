@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
+        GameController.resetStats();
         SceneManager.LoadScene("Main");
     }
 
