@@ -111,10 +111,6 @@ public class GameController : MonoBehaviour
 
     public static int floorNumber = 1;
 
-    public static bool victory = false;
-
-    public static bool dead = false;
-
 
     //------------METHODS------------------------------------------------------
 
@@ -162,11 +158,9 @@ public class GameController : MonoBehaviour
         invincibleAfterHit = 1f;
         invincible = false;
         floorNumber = 1;
-        victory = false;
         fireRateDecor = new BaseFireRate();
         fireDelayDecor = new BaseFireDelay();
         items = new List<Item>();
-        dead = false;
     }
 
     private void UpdateItems()
@@ -266,7 +260,8 @@ public class GameController : MonoBehaviour
 
     public static void KillPlayer()
     {
-        dead = true;
+        GameObject.FindGameObjectWithTag("Player").SetActive(false);
+        FindObjectOfType<GameOverScreen>().gameOverScreenUI.SetActive(true);
     }
 
 

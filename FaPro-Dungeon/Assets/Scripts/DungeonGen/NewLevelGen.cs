@@ -31,7 +31,8 @@ public class NewLevelGen : MonoBehaviour
             }
             else
             {
-                GameController.victory = true;
+                player.SetActive(false);
+                FindObjectOfType<VictoryScreen>().victoryScreenUI.SetActive(true);
             }
         }
     }

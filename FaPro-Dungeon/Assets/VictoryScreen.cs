@@ -7,15 +7,7 @@ public class VictoryScreen : MonoBehaviour
 {
     public GameObject victoryScreenUI;
 
-    private void Update()
-    {
-        if (GameController.victory)
-        {
-            GameObject.FindGameObjectWithTag("Player").SetActive(false);
-            victoryScreenUI.SetActive(true);
-        }
-    }
-
+    
     public void Restart()
     {
         GameController.resetStats();
