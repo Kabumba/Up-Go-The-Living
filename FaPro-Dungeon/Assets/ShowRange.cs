@@ -6,6 +6,7 @@ public class ShowRange : MonoBehaviour
 {
     void Update()
     {
-        gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "Range: " + GameController.GetBulletLifeTime().ToString("G1");
+        float range = Mathf.RoundToInt(GameController.GetRangeStat());
+        gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "Reichweite: " + range.ToString();
     }
 }

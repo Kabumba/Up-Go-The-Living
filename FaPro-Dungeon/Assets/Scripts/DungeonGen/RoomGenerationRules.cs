@@ -22,7 +22,7 @@ public abstract class RoomGenerationRule
         {Direction.right, Vector2Int.right }
     };
 
-    public abstract override string ToString();
+    public abstract string ToString(RoomNode rn);
     
 }
 
@@ -50,9 +50,9 @@ class AddSingleRoom : RoomGenerationRule
         return Lg.roomList.Count < Lg.maxNumberOfRooms && rn.DoorCount() <RoomNode.MaxDoors(rn.Type) && rn.Type == addTo && rn.Get(dir) == null && !Lg.rooms.ContainsKey(rn.Position + directionMovementMap[dir]) && toAdd!=RoomType.Start;
     }
 
-    public override string ToString()
+    public override string ToString(RoomNode rn)
     {
-        return "AddSingleRoom: addTo: " + addTo + " at " + roomNode.Position + ", toAdd: " + toAdd + ", dir: " + dir;
+        return "AddSingleRoom: addTo: " + addTo + " at " + rn.Position + ", toAdd: " + toAdd + ", dir: " + dir;
     }
 
 }
@@ -102,9 +102,9 @@ class MoveSingleRoom : AddSingleRoom
         return Lg.roomList.Count < Lg.maxNumberOfRooms && rn.Type == addTo && rn.Get(dir) == null && !Lg.rooms.ContainsKey(rn.Position + directionMovementMap[dir]) && Lg.numberOfNonSpecialRooms < Lg.maxNumberOfNonSpecialRooms && replaceWith != RoomType.Start && rn.DoorCount() < RoomNode.MaxDoors(replaceWith);
     }
 
-    public override string ToString()
+    public override string ToString(RoomNode rn)
     {
-        return "MoveSingleRoom: addTo: " + addTo + " at " + roomNode.Position + ", replaceWith: " + replaceWith + ", dir: " + dir;
+        return "MoveSingleRoom: addTo: " + addTo + " at " + rn.Position + ", replaceWith: " + replaceWith + ", dir: " + dir;
     }
 
     public MoveSingleRoom(RoomType aT, RoomType rW, Direction d)
@@ -182,9 +182,9 @@ class AddLootRoom : AddSingleRoom
     {
         return CanAddSingleRoom(rn) && Lg.numberOfLootRooms < Lg.maxNumberOfLootRooms;
     }
-    public override string ToString()
+    public override string ToString(RoomNode rn)
     {
-        return "AddSingleRoom: addTo: " + addTo + " at " + roomNode.Position + ", toAdd: Loot, dir: " + dir;
+        return "AddSingleRoom: addTo: " + addTo + " at " + rn.Position + ", toAdd: Loot, dir: " + dir;
     }
     public AddLootRoom(RoomType aT, Direction d)
     {
@@ -205,11 +205,11 @@ class AddBossRoom : AddSingleRoom
 
     public override bool IsApplicable(RoomNode rn)
     {
-        return CanAddSingleRoom(rn) && Lg.numberOfBossRooms < Lg.maxNumberOfBossRooms;
+        return CanAddSingleRoom(rn) && Lg.numberOfBossRooms < Lg.maxNumberOfBossRooms && rn.Type != RoomType.Start;
     }
-    public override string ToString()
+    public override string ToString(RoomNode rn)
     {
-        return "AddSingleRoom: addTo: " + addTo + " at " + roomNode.Position + ", toAdd: Boss, dir: " + dir;
+        return "AddSingleRoom: addTo: " + addTo + " at " + rn.Position + ", toAdd: Boss, dir: " + dir;
     }
     public AddBossRoom(RoomType aT, Direction d)
     {
@@ -254,7 +254,7 @@ class ForceRoom : AddSingleRoom
 
     public bool CanForceSingleRoom(RoomNode rn)
     {
-        return isExtendable(rn) && Lg.roomList.Count < Lg.maxNumberOfRooms && rn.Type == addTo && rn.Get(dir) == null && !Lg.rooms.ContainsKey(rn.Position + directionMovementMap[dir]) && toAdd != RoomType.Start;
+        return isExtendable(rn) && Lg.roomList.Count < Lg.maxNumberOfRooms && rn.Get(dir) == null && !Lg.rooms.ContainsKey(rn.Position + directionMovementMap[dir]) && toAdd != RoomType.Start;
     }
 
     public bool isExtendable(RoomNode rn)
@@ -275,9 +275,9 @@ class ForceRoom : AddSingleRoom
     }
     
 
-    public override string ToString()
+    public override string ToString(RoomNode rn)
     {
-        return "ForceSingleRoom: addTo: " + addTo + " at " + roomNode.Position + ", toAdd: " + toAdd + ", dir: " + dir;
+        return "ForceSingleRoom: addTo: " + addTo + " at " + rn.Position + ", toAdd: " + toAdd + ", dir: " + dir;
     }
 
 }
@@ -296,12 +296,12 @@ class ForceBossRoom : ForceRoom
 
     public override bool IsApplicable(RoomNode rn)
     {
-        return CanForceSingleRoom(rn) && Lg.numberOfBossRooms < Lg.maxNumberOfBossRooms;
+        return CanForceSingleRoom(rn) && Lg.numberOfBossRooms < Lg.maxNumberOfBossRooms && rn.Type!=RoomType.Start;
     }
 
-    public override string ToString()
+    public override string ToString(RoomNode rn)
     {
-        return "ForceSingleRoom: addTo: " + addTo + " at " + roomNode.Position + ", toAdd: Boss, dir: " + dir;
+        return "ForceSingleRoom: addTo: " + rn.Type + " at " + rn.Position + ", toAdd: Boss, dir: " + dir;
     }
 
     public ForceBossRoom(Direction d)
@@ -329,9 +329,9 @@ class ForceLootRoom : ForceRoom
         return CanForceSingleRoom(rn) && Lg.numberOfLootRooms < Lg.maxNumberOfLootRooms;
     }
 
-    public override string ToString()
+    public override string ToString(RoomNode rn)
     {
-        return "ForceSingleRoom: addTo: " + addTo + " at " + roomNode.Position + ", toAdd: Loot, dir: " + dir;
+        return "ForceSingleRoom: addTo: " + rn.Type + " at " + rn.Position + ", toAdd: Loot, dir: " + dir;
     }
 
     public ForceLootRoom(Direction d)

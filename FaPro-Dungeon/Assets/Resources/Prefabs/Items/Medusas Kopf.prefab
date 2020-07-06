@@ -126,5 +126,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Medusas Kopf
-  description: "Versteinernde Sch\xFCsse."
+  description: "Versteinernde Sch\xFCsse"
   itemImage: {fileID: 21300000, guid: 0391c3f2076bf9b44b1445b9baf9f899, type: 3}

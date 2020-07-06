@@ -184,5 +184,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Psychokinese
-  description: Zielsuchende Geschosse.
+  description: Zielsuchende Geschosse
   itemImage: {fileID: 21300000, guid: 60c2b1bea98d49d45b5ce38c5ec59501, type: 3}

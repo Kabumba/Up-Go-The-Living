@@ -6,6 +6,7 @@ public class ShowFireRate : MonoBehaviour
 {
     void Update()
     {
-        gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "Fire rate: " + GameController.GetDelayBetweenShots().ToString("G1");
+        float firerate = Mathf.RoundToInt(GameController.GetShotsPerSecond() * 10f)/10f;
+        gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "Feuerrate: " + firerate.ToString();
     }
 }

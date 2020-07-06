@@ -39,15 +39,12 @@ public abstract class AIChange : EnemyEffect
         AI destroy = newAI;
         newAI = null;
         Destroy(destroy);
-
-        print("destroyed");
+        
         bool enablePreviousAI = true;
         foreach (AIChange aic in GetComponents<AIChange>())
         {
             if (aic.newAI != null && !aic.newAI.enabled)
             {
-
-                print("other AI enabled");
                 print(aic.newAI.GetType());
                 aic.newAI.enabled = true;
                 enablePreviousAI = false;
@@ -56,7 +53,6 @@ public abstract class AIChange : EnemyEffect
         }
         if (enablePreviousAI)
         {
-            print("previous AI enabled");
             previousAI.enabled = true;
         }
 

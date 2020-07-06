@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Granatapfel
-  description: "Sch\xFCsse zersplittern."
+  description: "Sch\xFCsse zersplittern"
   itemImage: {fileID: 21300000, guid: 859fbc14d8dc3874c9778ceb7cae5455, type: 3}
 --- !u!212 &1273288819452592459
 SpriteRenderer:

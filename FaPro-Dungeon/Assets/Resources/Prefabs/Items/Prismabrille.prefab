@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Prismabrille
-  description: "Diagonal schie\xDFen."
+  description: "Diagonal schie\xDFen"
   itemImage: {fileID: 21300000, guid: b61dffd5881e0b747972253d4187bfe7, type: 3}
 --- !u!60 &363503399267798418
 PolygonCollider2D:

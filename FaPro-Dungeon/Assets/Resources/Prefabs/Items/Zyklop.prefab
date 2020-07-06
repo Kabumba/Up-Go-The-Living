@@ -126,5 +126,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Zyklop
-  description: "Mega Sch\xFCsse."
+  description: "Mega Sch\xFCsse"
   itemImage: {fileID: 21300000, guid: eb5e17f492fddb44082b40bb78788b51, type: 3}

@@ -6,6 +6,7 @@ public class ShowMovementSpeed : MonoBehaviour
 {
     void Update()
     {
-        gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "Movement speed: " + GameController.GetMoveSpeed().ToString("G");
+        float moveSpeed = Mathf.RoundToInt(GameController.GetMoveSpeedStat() * 10f) / 10f;
+        gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "Geschwindigkeit: " + moveSpeed.ToString();
     }
 }

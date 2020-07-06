@@ -126,5 +126,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Flummi
-  description: "Sch\xFCsse prallen ab."
+  description: "Sch\xFCsse prallen ab"
   itemImage: {fileID: 21300000, guid: 2e6926e23d4591e41984cbed6aece57c, type: 3}

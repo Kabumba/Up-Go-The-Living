@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Ritalin
-  description: "H\xF6here Feuerrate."
+  description: "H\xF6here Feuerrate"
   itemImage: {fileID: 21300000, guid: d44d40280bbee594d8cb29ab692965f3, type: 3}
 --- !u!114 &8689004108654606251
 MonoBehaviour:

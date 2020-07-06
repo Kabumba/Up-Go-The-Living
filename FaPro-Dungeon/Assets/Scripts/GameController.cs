@@ -111,6 +111,8 @@ public class GameController : MonoBehaviour
 
     public static int floorNumber = 1;
 
+    public static bool dead;
+
 
     //------------METHODS------------------------------------------------------
 
@@ -228,6 +230,16 @@ public class GameController : MonoBehaviour
     public static float GetEffectiveDamage()
     {
         return baseDamage * Mathf.Sqrt(damageUp * 1.2f + 1) * damageMultiplier;
+    }
+
+    public static float GetDamageMultiplier()
+    {
+        return damageMultiplier;
+    }
+
+    public static float GetDamageUp()
+    {
+        return damageUp;
     }
 
     public static void AddDamage(float damageChange)

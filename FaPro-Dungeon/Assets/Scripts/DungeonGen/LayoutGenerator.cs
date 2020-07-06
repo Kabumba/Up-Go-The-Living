@@ -356,6 +356,7 @@ public class LayoutGenerator : MonoBehaviour
                 {
                     if (rule.IsApplicable(randomRoom))
                     {
+                        //print(rule.ToString(randomRoom));
                         applicableRules.Add(rule);
                         totalweights += rule.weight;
                     }

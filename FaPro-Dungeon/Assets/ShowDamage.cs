@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class ShowDamage : MonoBehaviour
 {
-    private void Start()
+    void Update()
     {
-        gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "Damage: " + GameController.GetEffectiveDamage().ToString("G");
+        float damage = Mathf.RoundToInt(GameController.GetEffectiveDamage() * 10f) / 10f;
+        gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "Schaden: " + damage.ToString();
     }
 }

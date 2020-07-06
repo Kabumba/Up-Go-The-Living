@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Akimbo
-  description: Doppelschuss.
+  description: Doppelschuss
   itemImage: {fileID: 21300000, guid: eef05c7e9304c0a4398f1dfcd5d8ffe5, type: 3}
 --- !u!114 &8157665340148771870
 MonoBehaviour:
