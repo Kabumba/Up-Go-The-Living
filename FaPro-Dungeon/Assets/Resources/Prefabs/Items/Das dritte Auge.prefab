@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Das dritte Auge
-  description: Dreifach Schuss
+  description: Dreifach Schuss.
   itemImage: {fileID: 21300000, guid: 2ac38dd419c550845982bbe02d28afcc, type: 3}
 --- !u!212 &1678382199316027972
 SpriteRenderer:

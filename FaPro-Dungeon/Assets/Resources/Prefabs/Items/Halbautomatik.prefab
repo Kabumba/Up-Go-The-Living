@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Halbautomatik
-  description: Dreifach Salven
+  description: Dreifach Salven.
   itemImage: {fileID: 21300000, guid: 6e31f74d18f874f4b8d6cd4cbd31c4c3, type: 3}
 --- !u!114 &6209987654736575046
 MonoBehaviour:

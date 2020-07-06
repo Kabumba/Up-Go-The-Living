@@ -126,5 +126,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Dunkle Materie
-  description: "Furchtererregende Sch\xFCsse"
+  description: "Furchtererregende Sch\xFCsse."
   itemImage: {fileID: 21300000, guid: b86b64de5f399a143a0af7a08929b715, type: 3}

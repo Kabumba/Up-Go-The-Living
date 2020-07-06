@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Armbrust
-  description: "Durchschlagende Sch\xFCsse"
+  description: "Durchschlagende Sch\xFCsse."
   itemImage: {fileID: 21300000, guid: b34b9b7e6122518479708d56e33df1a6, type: 3}
 --- !u!212 &4062774527270017731
 SpriteRenderer:

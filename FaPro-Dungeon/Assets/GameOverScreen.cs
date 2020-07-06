@@ -7,7 +7,16 @@ public class GameOverScreen : MonoBehaviour
 {
     public GameObject gameOverScreenUI;
 
-    
+    public GameObject player;
+
+    private void Update()
+    {
+        if (GameController.dead)
+        {
+            player.SetActive(false);
+            gameOverScreenUI.SetActive(true);
+        }
+    }
     public void Restart()
     {
         GameController.resetStats();

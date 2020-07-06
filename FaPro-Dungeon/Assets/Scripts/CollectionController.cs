@@ -72,8 +72,10 @@ public class CollectionController : MonoBehaviour
         {
             GameController.items.Add(item);
             item.OnPickup();
-            if (!item.name.Equals("Heart"))
+            if (!item.name.Equals("Herz"))
             {
+                GameObject.Find("Canvas").GetComponent<ItemText>().itemPickedUp = true;
+                GameObject.Find("Canvas").GetComponent<ItemText>().item = item;
                 Destroy(gameObject);
             }
         }

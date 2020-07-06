@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -61,6 +62,7 @@ public class EnemySpawn : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
+            EnemyController.count = 0;
             EnemySpawner();
             gameObject.GetComponent<BoxCollider2D>().enabled = false;
         }

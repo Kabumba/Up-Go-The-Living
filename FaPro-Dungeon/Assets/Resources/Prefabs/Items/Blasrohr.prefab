@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Blasrohr
-  description: Vergiftet Gegner
+  description: Vergiftet Gegner.
   itemImage: {fileID: 21300000, guid: 417a2920938a845488bce7730780f620, type: 3}
 --- !u!212 &546023582744292118
 SpriteRenderer:
