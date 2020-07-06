@@ -35,8 +35,7 @@ public class Poisoned : EnemyEffect
         {
             yield return new WaitForSeconds(1f);
             GetComponent<EnemyController>().DamageEnemy(poisonDamage);
-            poisonTicks -= 1;
-            Debug.Log("Tick");
+            poisonTicks--;
         }
         Color temp = GetComponent<EnemyController>().GetSpriteRenderer().color;
         temp.g = Mathf.Max(0, temp.g - greenincrease);
