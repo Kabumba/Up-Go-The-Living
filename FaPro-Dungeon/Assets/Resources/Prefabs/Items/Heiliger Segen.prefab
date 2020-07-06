@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Heiliger Segen
-  description: Alle Werte hoch
+  description: Powerup auf alle Werte.
   itemImage: {fileID: 21300000, guid: 64c290a5e16bb5140b4a8e4e5ee1b777, type: 3}
 --- !u!212 &8491867567539771333
 SpriteRenderer:

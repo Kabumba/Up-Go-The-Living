@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Geist
-  description: "Durch W\xE4nde schie\xDFen"
+  description: "Durch Hindernisse schie\xDFen."
   itemImage: {fileID: 21300000, guid: b6942be54089b4f428cb3aa7f83db6c2, type: 3}
 --- !u!58 &6255436854534287865
 CircleCollider2D:

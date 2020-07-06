@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75d5ed28fa750914c9478624473eb41f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: HeartContainer
-  description: Gives player one heart container and heals for 1.
+  name: Herzcontainer
+  description: Maximales Leben +1.
   itemImage: {fileID: 21300000, guid: 27ae192e3f3ea7b4fbe85029d80f9d5b, type: 3}
 --- !u!114 &2298013852183473561
 MonoBehaviour:

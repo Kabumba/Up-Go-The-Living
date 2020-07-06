@@ -126,5 +126,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Multivitaminsaft
-  description: "Gro\xDF und stark"
+  description: Schadensupgrade.
   itemImage: {fileID: 21300000, guid: 791e458bca86d304694b0823d697c0ad, type: 3}

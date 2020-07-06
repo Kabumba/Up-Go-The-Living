@@ -89,8 +89,16 @@ public class BulletController : MonoBehaviour
     {
         if (!isEnemyBullet)
         {
-            damage = GameController.GetEffectiveDamage();
-            lifeTime = GameController.GetBulletLifeTime();
+            if (gameObject.name.Equals("SplatterBullet(Clone)"))
+            {
+                damage = GameController.GetEffectiveDamage() / 2;
+                lifeTime = GameController.GetBulletLifeTime() / 4;
+            }
+            else
+            {
+                damage = GameController.GetEffectiveDamage();
+                lifeTime = GameController.GetBulletLifeTime();
+            }
         }
         mvc = gameObject.GetComponent<MovementController>();
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -103,7 +111,14 @@ public class BulletController : MonoBehaviour
     {
         if (!isEnemyBullet)
         {
-            transform.localScale = new Vector2(GameController.GetBulletSize(), GameController.GetBulletSize());
+            if (gameObject.name.Equals("SplatterBullet(Clone)"))
+            {
+                transform.localScale = new Vector2(GameController.GetBulletSize() * 0.75f, GameController.GetBulletSize() * 0.75f);
+            }
+            else
+            {
+                transform.localScale = new Vector2(GameController.GetBulletSize(), GameController.GetBulletSize());
+            }
         }
         mvc.desiredVelocity = rb.velocity;
     }

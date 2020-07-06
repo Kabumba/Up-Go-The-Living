@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Gatling
-  description: haha bullets go brrrrr
+  description: "Stark erh\xF6hte Feuerrate."
   itemImage: {fileID: 21300000, guid: a44e90078c1305642a78d31e2754ed9d, type: 3}
 --- !u!114 &7858148655445884318
 MonoBehaviour:
