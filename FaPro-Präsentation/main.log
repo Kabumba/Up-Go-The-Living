@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2019.4.14)  9 JUL 2020 12:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6350 64-bit) (preloaded format=pdflatex 2019.4.14)  10 JUL 2020 14:03
 entering extended mode
 **./main.tex
 (main.tex
@@ -1157,41 +1157,71 @@ Dictionary: translator-theorem-dictionary, Language: English
 ]
 \openout2 = `Kapitel/Zielsetzung.aux'.
 
- (Kapitel/Zielsetzung.tex)
+ (Kapitel/Zielsetzung.tex
+LaTeX Font Info:    Try loading font information for U+msa on input line 14.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 14.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
+line 14.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\sansmathaccent\ot1mathkerncmss.fd"
+File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
+thkerncmss.
+)
+[3
+
+
+] [4
+
+])
 \openout2 = `Kapitel/L-Systems.aux'.
 
- (Kapitel/L-Systems.tex [3
+ (Kapitel/L-Systems.tex [5
 
 
-
-
-]
-[4
-
-] [5
 
 ] [6
 
-] <Bilder/EbenenCollage.png, id=125, 813.0375pt x 680.5425pt>
+] [7
+
+] [8
+
+] [9
+
+]
+<Bilder/EbenenCollage.png, id=157, 813.0375pt x 680.5425pt>
 File: Bilder/EbenenCollage.png Graphic file (type png)
 
 <use Bilder/EbenenCollage.png>
-Package pdftex.def Info: Bilder/EbenenCollage.png used on input line 60.
+Package pdftex.def Info: Bilder/EbenenCollage.png used on input line 69.
 (pdftex.def)             Requested size: 317.08334pt x 265.4105pt.
 
-Overfull \vbox (5.93051pt too high) detected at line 60
+Overfull \vbox (5.93051pt too high) detected at line 69
  []
 
-[7
+[10
 
  <./Bilder/EbenenCollage.png>])
 \openout2 = `Kapitel/Steering-Behaviors.aux'.
 
- (Kapitel/Steering-Behaviors.tex)
+ (Kapitel/Steering-Behaviors.tex [11
+
+
+
+]
+[12
+
+])
 \openout2 = `Kapitel/Gameplay-Elemente.aux'.
 
-
-(Kapitel/Gameplay-Elemente.tex)
+ (Kapitel/Gameplay-Elemente.tex)
 \openout2 = `Kapitel/Fazit.aux'.
 
  (Kapitel/Fazit.tex)
@@ -1212,23 +1242,35 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 40.
 (Kapitel/Fazit.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 40.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 40.
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 3728751F8B8D5D4C745B2F97DB3CAF8B;154.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `main.out':
+(rerunfilecheck)             Before: 3728751F8B8D5D4C745B2F97DB3CAF8B;154
+(rerunfilecheck)             After:  A9034A4F4FB150EB48D8C35E3FD70F56;223.
  ) 
 Here is how much of TeX's memory you used:
- 17610 strings out of 493323
- 332677 string characters out of 3139057
+ 17728 strings out of 493323
+ 335418 string characters out of 3139057
  406320 words of memory out of 3000000
- 20705 multiletter control sequences out of 15000+200000
- 5452 words of font info for 20 fonts, out of 3000000 for 9000
+ 20788 multiletter control sequences out of 15000+200000
+ 12035 words of font info for 44 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,15n,63p,792b,595s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss8.pfb>
-Output written on main.pdf (7 pages, 129889 bytes).
+pdfTeX warning (dest): name{Outline0.2.1.3} has been referenced but does not 
+exist, replaced by a fixed one
+
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss12.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmss8.pfb><C:/Program Files/MiKTeX 
+2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Program Files/MiKTeX 2.9
+/fonts/type1/public/amsfonts/symbols/msam7.pfb>
+Output written on main.pdf (12 pages, 162614 bytes).
 PDF statistics:
- 150 PDF objects out of 1000 (max. 8388607)
- 18 named destinations out of 1000 (max. 500000)
- 240 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 208 PDF objects out of 1000 (max. 8388607)
+ 30 named destinations out of 1000 (max. 500000)
+ 288 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,3 +1,4 @@
 \beamer@sectionintoc {1}{Zielsetzung}{3}{0}{1}
-\beamer@sectionintoc {2}{Schwerpunkte}{3}{0}{2}
-\beamer@subsectionintoc {2}{1}{L-Systems}{3}{0}{2}
+\beamer@sectionintoc {2}{Schwerpunkte}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{L-Systems}{5}{0}{2}
+\beamer@subsectionintoc {2}{2}{Steering-Behaviors}{11}{0}{2}
