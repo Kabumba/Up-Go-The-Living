@@ -7,8 +7,18 @@
 \subtitle{Entwicklungsprozess}
 \author{Frederik, Leandro}
 \institute{TU Dortmund}
-
 \date{14. Juli 2020}
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
 
 \begin{document}
 
@@ -25,10 +35,10 @@
 
 \section{Schwerpunkte}
 
-\subsection{L-Systems}
+\subsection{LSystems}
 \include{Kapitel/L-Systems}
 
-\subsection{Steering-Behaviors}
+\subsection{Steering Behaviors}
 \include{Kapitel/Steering-Behaviors}
 
 \section{Gameplay-Elemente}
