@@ -156,7 +156,7 @@ MonoBehaviour:
   acceleration: {x: 0, y: 0}
   desiredVelocity: {x: 0, y: 0}
   speed: 0
-  accelerationValue: 0.2
+  accelerationValue: 0.05
   rb: {fileID: 0}
   bounceOffObstacle: 0
   bounceOffPlayer: 0

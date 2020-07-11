@@ -47,7 +47,7 @@ public class MovementController : MonoBehaviour
     {
         float angle = (rb.rotation + 90) * Mathf.Deg2Rad;
         rb.rotation = Vector2.SignedAngle(new Vector2(0, 1), setTo);
-        transform.rotation = Quaternion.Euler(new Vector3(0,0,rb.rotation));
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, rb.rotation));
     }
 
     public void RotateTowards(GameObject towards)
@@ -57,23 +57,13 @@ public class MovementController : MonoBehaviour
 
     public void MoveForward()
     {
-        acceleration = GetRotation() * accelerationValue;
-        desiredVelocity = acceleration.normalized * speed;
-        if (rb.velocity.magnitude == 0)
+        desiredVelocity = GetRotation() * speed;
+        acceleration = (desiredVelocity - rb.velocity) * accelerationValue;
+        rb.velocity += acceleration;
+        if (rb.velocity.magnitude > speed)
         {
-            rb.velocity = acceleration;
-        }
-        else
-        {
-            if (rb.velocity != desiredVelocity)
-            {
-                rb.velocity += acceleration;
-            }
-            if (rb.velocity.magnitude > speed)
-            {
 
-                rb.velocity = speed * rb.velocity.normalized;
-            }
+            rb.velocity = speed * rb.velocity.normalized;
         }
     }
 
@@ -102,7 +92,7 @@ public class MovementController : MonoBehaviour
 
     public void Dash(float dashSpeed, float dashTime)
     {
-        
+
         Vector2 dash = GetRotation() * dashSpeed;
         rb.velocity = dash;
         StartCoroutine(DashSlowDown(dash, dashTime));

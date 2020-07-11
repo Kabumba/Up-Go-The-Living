@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   lifeTime: 1
-  knockback: 1.7
+  knockback: 0.85
   isEnemyBullet: 0
   rb: {fileID: 1705927870007605940}
   mvc: {fileID: 6362465601888941021}

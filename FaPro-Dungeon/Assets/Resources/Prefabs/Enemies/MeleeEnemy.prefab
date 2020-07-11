@@ -138,6 +138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   health: 10
+  maxHealth: 10
+  stageHealth: 0
   range: 4
   attackRange: 0
   isDead: 0
@@ -146,6 +148,8 @@ MonoBehaviour:
   isFlying: 0
   mvc: {fileID: 0}
   shc: {fileID: 0}
+  isBoss: 0
+  healthBar: {fileID: 0}
 --- !u!114 &3477940481755264154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,7 +178,7 @@ MonoBehaviour:
   acceleration: {x: 0, y: 0}
   desiredVelocity: {x: 0, y: 0}
   speed: 4.3
-  accelerationValue: 0.2
+  accelerationValue: 0.1
   rb: {fileID: 2696955392005806660}
   bounceOffObstacle: 0
   bounceOffPlayer: 0
