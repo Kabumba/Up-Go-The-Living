@@ -2,22 +2,29 @@
 \usetheme{Boadilla}
 \beamertemplatenavigationsymbolsempty
 \usepackage[utf8]{inputenc}
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\setbeamertemplate{page number in head/foot}[framenumber]
 
 \title{Up Go The Living}
 \subtitle{Entwicklungsprozess}
 \author{Frederik, Leandro}
 \institute{TU Dortmund}
-
 \date{14. Juli 2020}
 
-\begin{document}
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\insertsectionhead\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
 
+\begin{document}
 \begin{frame}
 \titlepage
-\end{frame}
-
-\begin{frame}{Inhalt}
-\tableofcontents
 \end{frame}
 
 \section{Zielsetzung}
@@ -25,16 +32,12 @@
 
 \section{Schwerpunkte}
 
-\subsection{L-Systems}
+\subsection{LSystems}
 \include{Kapitel/L-Systems}
 
-\subsection{Steering-Behaviors}
+\subsection{Steering Behaviors}
 \include{Kapitel/Steering-Behaviors}
 
 \section{Gameplay-Elemente}
-\include{Kapitel/Gameplay-Elemente}
-
-\section{Fazit}
-\include{Kapitel/Fazit}
 
 \end{document}
